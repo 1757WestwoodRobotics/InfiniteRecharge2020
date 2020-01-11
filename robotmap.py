@@ -1,5 +1,4 @@
 import wpilib
-from Robot import Robot
 
 motorcontrollerports = {
     "ballshooter1": 0,
