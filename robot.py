@@ -14,7 +14,7 @@ class Robot(wpilib.TimedRobot):
         self.rightBack = WPI_TalonSRX(motorcontrollerports["rightBack"])
 
         self.rightDrive = SpeedControllerGroup(self.rightFront, self.rightBack)
-        self.leftDrive = SpeedControllerGroup(self.leftFront, self.rightFront)
+        self.leftDrive = SpeedControllerGroup(self.leftFront, self.leftBack)
 
         self.differentialDrive = drive.DifferentialDrive(self.leftDrive, self.rightDrive)
 
