@@ -1,6 +1,6 @@
 import wpilib
 
-motorcontrollerports = {
+can = {
     "ballshooter1": 0,
     "ballshooter2": 1,
     "leftFront": 5,
