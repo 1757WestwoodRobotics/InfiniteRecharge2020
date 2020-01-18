@@ -1,10 +1,23 @@
 import wpilib
 
 can = {
-    "ballshooter1": 0,
-    "ballshooter2": 1,
-    "leftFront": 5,
-    "rightFront": 6,
-    "leftBack": 7,
-    "rightBack": 8
+    "leftFront": 0,
+    "rightFront": 1,
+    "leftBack": 2,
+    "rightBack": 3,
+    "ballshooter1": 4,
+    "ballshooter2": 5,
+    "controlPanel": 6
+}
+
+colors = {
+    "red": 0,
+    "green": 1,
+    "blue": 2,
+    "yellow": 3
+}
+
+neutralModes = {
+    "coast": 1,
+    "brake": 2
 }
