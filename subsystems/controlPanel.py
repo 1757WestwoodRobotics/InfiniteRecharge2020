@@ -5,6 +5,14 @@ from wpilib.command.subsystem import Subsystem
 
 class ControlPanel(Subsystem):
 
-    def init(self):
+    def __init__(self):
+        super().__init__(name=ControlPanel)
+
         self.CPTalon = WPI_TalonSRX(can["controlPanel"])
         self.CPTalon.setNeutralMode(neutralModes["brake"])
+
+    def ControlPanelSpin(self, descolor):
+        if descolor == self.color:
+            self.CPTalon.set(0)
+        else:
+            self.CPTalon.set(1)

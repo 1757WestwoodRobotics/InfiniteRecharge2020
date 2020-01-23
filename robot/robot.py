@@ -2,7 +2,7 @@ import wpilib
 from wpilib import drive, SpeedControllerGroup, RobotDrive, XboxController, interfaces, SerialPort
 from wpilib.interfaces import GenericHID
 from ctre import WPI_TalonSRX
-from robotmap import *
+import oi
 from subsystems.drivetrain import *
 from subsystems.ballshooter import *
 from subsystems.controlPanel import *
@@ -21,17 +21,11 @@ class Robot(wpilib.TimedRobot):
 
         self.serial = SerialPort(9600, SerialPort.Port.kUSB)
 
-        def ControlPanelSpin(descolor):
-            if descolor == self.color:
-                self.CPTalon.set(0)
-            else:
-                self.CPTalon.set(1)
+        self.color = int(self.serial.readString())
 
     def teleopPeriodic(self):
 
         Drivetrain.xboxControllerDrive()
-
-        self.color = int(self.serial.readString())
 
         if XboxController.getAButton():
             robotInit.ControlPanelSpin(colors["blue"])

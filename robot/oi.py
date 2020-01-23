@@ -1,3 +1,6 @@
 import wpilib
 from wpilib import XboxController
-from robot import Robot
+
+class OI:
+    
+    self.xboxController = XboxController(0)
