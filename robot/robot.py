@@ -1,13 +1,9 @@
 import wpilib
 from ctre import WPI_TalonSRX
-from wpilib import drive, SpeedControllerGroup, RobotDrive, XboxController, interfaces, SerialPort
+from wpilib import drive, SpeedControllerGroup, XboxController, interfaces, SerialPort
 from wpilib.interfaces import GenericHID
-# from ctre import WPI_TalonSRX
 # import oi
-# from subsystems.drivetrain import *
-# from subsystems.ballshooter import *
-# from subsystems.controlPanel import *
-from robotmap import *
+from robotmap import can
 from networktables import NetworkTables
 
 class Robot(wpilib.TimedRobot):
