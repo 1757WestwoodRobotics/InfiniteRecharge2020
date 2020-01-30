@@ -3,4 +3,4 @@ from wpilib import XboxController
 
 class OI:
     
-    self.xboxController = XboxController(0)
+    XboxController = XboxController(0)

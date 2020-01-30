@@ -3,9 +3,8 @@ from ctre import WPI_TalonSRX
 from rev.color import ColorSensorV3
 from wpilib import drive, SpeedControllerGroup, XboxController, interfaces, SerialPort
 from wpilib.interfaces import GenericHID
-# import oi
-from robot.robotmap import *
 from networktables import NetworkTables
+from robotmap import *
 
 class Robot(wpilib.TimedRobot):
 
