@@ -8,8 +8,8 @@ class ControlPanel(Subsystem):
     def __init__(self):
         super().__init__(name=ControlPanel)
 
-        self.CPTalon = WPI_TalonSRX(can["controlPanel"])
-        self.CPTalon.setNeutralMode(neutralModes["brake"])
+        self.CPTalon = WPI_TalonSRC(Can.ControlPanel)
+        self.CPTalon.setNeutralMode(NeutralModes.Brake)
 
     def ControlPanelSpin(self, descolor):
         if descolor == self.color:

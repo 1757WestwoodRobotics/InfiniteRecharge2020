@@ -8,5 +8,5 @@ class Ballshooter(Subsystem):
     def __init__(self):
         super().__init__(name=Ballshooter)
         
-        self.ballTalon1 = WPI_TalonSRX(can["ballshooter1"])
-        self.ballTalon2 = WPI_TalonSRX(can["ballshooter2"])
+        self.ballTalon1 = WPI_TalonSRX(Can.BallShooter1)
+        self.ballTalon2 = WPI_TalonSRX(Can.BallShooter2])
