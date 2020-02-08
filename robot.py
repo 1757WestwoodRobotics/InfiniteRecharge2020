@@ -1,23 +1,33 @@
 import wpilib
-from rev.color import ColorSensorV3
+
+# Team 1757 stuff
+import subsystems.team1757Subsystems
+import commands.team1757TestColorSensor
 
 
 class Robot(wpilib.TimedRobot):
     def robotInit(self):
-        self.colorSensor = ColorSensorV3(wpilib.I2C.Port.kOnboard)
+        subsystems.team1757Subsystems.init()
 
-    def robotPeriodic(self):
-        # Get the sensor attributes
-        color = self.colorSensor.getColor()
-        ir = self.colorSensor.getIR()
+        self.colorSensorTester = Team1757TestColorSensor()
 
-        # Get the individual components of the color
-        red = color.red
-        blue = color.blue
-        green = color.green
+    # def robotPeriodic(self):
+    #     # Get the sensor attributes
+    #     color = self.colorSensor.getColor()
+    #     ir = self.colorSensor.getIR()
 
-        # Get the approximate proximity of an object
-        proximity = self.colorSensor.getProximity()
-        
+    #     # Get the individual components of the color
+    #     red = color.red
+    #     blue = color.blue
+    #     green = color.green
+
+    #     # Get the approximate proximity of an object
+    #     proximity = self.colorSensor.getProximity()
+
+    def testInit(self):
+        self.colorSensorTester.start()
+
+
+
 if __name__ == "__main__":
     wpilib.run(Robot)
