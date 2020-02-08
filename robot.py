@@ -35,8 +35,6 @@ class Robot(CommandBasedRobot):
         """
         subsystems.team1757Subsystems.init()
 
-        self.colorSensorTester = Team1757TestColorSensor()
-
         self.motor = singlemotor.SingleMotor()
 
         self.autonomousProgram = AutonomousProgram()
@@ -46,6 +44,7 @@ class Robot(CommandBasedRobot):
         OI must be initialized after subsystems.
         """
         self.oi = oi.OI(self)
+        self.colorSensorTester = commands.team1757TestColorSensor.Team1757TestColorSensorCommand()
 
     def autonomousInit(self):
         """
@@ -57,8 +56,9 @@ class Robot(CommandBasedRobot):
 
         self.autonomousProgram.start()
 
-    def testInit(self):
+    def teleopInit(self):
         self.colorSensorTester.start()
+
 
 
 if __name__ == "__main__":

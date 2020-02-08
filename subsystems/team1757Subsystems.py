@@ -22,4 +22,4 @@ revColorSensor = None
 def init():
     global revColorSensor
 
-    revColorSensor = ColorSensorSubsystem()
+    revColorSensor = subsystems.colorsensor.ColorSensorSubsystem()
