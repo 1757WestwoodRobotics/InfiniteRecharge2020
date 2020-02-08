@@ -34,5 +34,5 @@ robotpy-wpilib-utilities==2020.1.1
 robotpy-wpiutil==2020.2.2.0
 six==1.14.0
 wcwidth==0.1.8
-wpilib==2020.2.2.6
+wpilib==2020.2.2.7
 wrapt==1.11.2

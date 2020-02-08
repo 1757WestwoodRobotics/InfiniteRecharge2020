@@ -9,7 +9,7 @@ import oi
 from commands.autonomous import AutonomousProgram
 
 
-class ExampleBot(CommandBasedRobot):
+class Robot(CommandBasedRobot):
     """
     The CommandBasedRobot base class implements almost everything you need for
     a working robot program. All you need to do is set up the subsystems and
@@ -24,7 +24,10 @@ class ExampleBot(CommandBasedRobot):
         you will need to access later.
         """
 
+        ###### Singleton magic - ignore for now
         Command.getRobot = lambda x=0: self
+        ###### Stop ignoring ##################
+
         self.motor = singlemotor.SingleMotor()
 
         self.autonomousProgram = AutonomousProgram()
@@ -47,4 +50,4 @@ class ExampleBot(CommandBasedRobot):
 
 
 if __name__ == "__main__":
-    wpilib.run(ExampleBot)
+    wpilib.run(Robot)
