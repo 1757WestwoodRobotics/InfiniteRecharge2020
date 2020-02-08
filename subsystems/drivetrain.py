@@ -8,7 +8,7 @@ from wpilib.command import Subsystem
 class Drivetrain(Subsystem):
     
     def __init__(self):
-        super().__init__(name=Drivetrain)
+        Subsystem.__init__(name=Drivetrain)
 
         self.leftFront = WPI_TalonSRX(Can.LeftFront)
         self.rightFront = WPI_TalonSRX(Can.RightFront)
@@ -19,3 +19,9 @@ class Drivetrain(Subsystem):
         self.leftDrive = SpeedControllerGroup(self.leftFront, self.leftBack)
 
         self.differentialDrive = drive.DifferentialDrive(self.leftDrive, self.rightDrive)
+
+    def arcadeDrive(self, speed, rotation):
+        self.differentialDrive.arcadeDrive(speed, rotation, True)
+
+    def tankDrive(self, leftSpeed, rightSpeed):
+        self.differentialDrive.tankDrive(leftSpeed, rightSpeed, True)
