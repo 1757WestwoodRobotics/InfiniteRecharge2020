@@ -2,4 +2,4 @@
 
 from subprocess import call
 
-call("pip install -r requirements.txt", shell=True)
+call("cat requirements.txt | xargs -n 1 pip install", shell=True)
