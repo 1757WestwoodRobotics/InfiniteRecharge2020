@@ -1,6 +1,7 @@
 import wpilib
 from ctre import WPI_TalonSRX
 from robot import *
+from robotmap import Can
 from wpilib.command.subsystem import Subsystem
 
 class Ballshooter(Subsystem):
