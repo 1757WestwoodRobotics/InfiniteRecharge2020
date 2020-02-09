@@ -1,5 +1,6 @@
 import wpilib
 from wpilib.command import Subsystem
+from ctre import WPI_TalonSRX
 
 from commands.collect import Collect
 
@@ -14,7 +15,7 @@ class BallCollector(Subsystem):
 
         Subsystem.__init__(self, "BallCollector")
 
-        self.motor = wpilib.Talon(2)
+        self.motor = WPI_TalonSRX(2)
 
     def setSpeed(self, speed):
         self.motor.set(speed)
