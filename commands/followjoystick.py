@@ -1,5 +1,5 @@
 from wpilib.command import Command
-
+import subsystems
 
 class FollowJoystick(Command):
     """
@@ -10,10 +10,10 @@ class FollowJoystick(Command):
     def __init__(self):
         Command.__init__(self, "Follow Joystick")
 
-        self.requires(self.getRobot().motor)
+        self.requires(subsystems.team1757Subsystems.singleMotor)
 
     def execute(self):
-        self.getRobot().motor.setSpeed(self.getRobot().oi.joystick.getY())
+        subsystems.team1757Subsystems.singleMotor.setSpeed(self.getRobot().oi.joystick.getY())
 
     def isFinished(self):
         return False
