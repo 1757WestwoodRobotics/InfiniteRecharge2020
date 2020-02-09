@@ -1,12 +1,17 @@
 #!/usr/bin/env python3
 
 import wpilib
+
 from wpilib.command import Command
 from commandbased import CommandBasedRobot
 
 from subsystems import singlemotor
 import oi
 from commands.autonomous import AutonomousProgram
+
+# Team 1757 stuff
+import subsystems.team1757Subsystems
+import commands.team1757TestColorSensor
 
 
 class Robot(CommandBasedRobot):
@@ -19,14 +24,16 @@ class Robot(CommandBasedRobot):
     """
 
     def robotInit(self):
-        """
-        This is a good place to set up your subsystems and anything else that
-        you will need to access later.
-        """
 
         ###### Singleton magic - ignore for now
         Command.getRobot = lambda x=0: self
         ###### Stop ignoring ##################
+
+        """
+        This is a good place to set up your subsystems and anything else that
+        you will need to access later.
+        """
+        subsystems.team1757Subsystems.init()
 
         self.motor = singlemotor.SingleMotor()
 
@@ -37,6 +44,7 @@ class Robot(CommandBasedRobot):
         OI must be initialized after subsystems.
         """
         self.oi = oi.OI(self)
+        self.colorSensorTester = commands.team1757TestColorSensor.Team1757TestColorSensorCommand()
 
     def autonomousInit(self):
         """
@@ -47,6 +55,10 @@ class Robot(CommandBasedRobot):
         """
 
         self.autonomousProgram.start()
+
+    def teleopInit(self):
+        self.colorSensorTester.start()
+
 
 
 if __name__ == "__main__":
