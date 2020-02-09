@@ -1,6 +1,5 @@
 from wpilib.command import TimedCommand
 
-
 class SetSpeed(TimedCommand):
     """
     Spins the motor at the given power for a given number of seconds, then
