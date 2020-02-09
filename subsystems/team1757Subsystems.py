@@ -17,14 +17,17 @@
 
 import subsystems.colorsensor
 import subsystems.singlemotor
-
+import subsystems.ballCollector
 
 revColorSensor = None
 singleMotor = None
+ballCollector = None
 
 def init():
     global revColorSensor
     global singleMotor
+    global ballCollector
 
     revColorSensor = subsystems.colorsensor.ColorSensorSubsystem()
     singleMotor = subsystems.singlemotor.SingleMotor()
+    ballCollector = subsystems.ballCollector.BallCollector()
