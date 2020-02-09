@@ -16,10 +16,15 @@
 #      but we can always revisit this later.
 
 import subsystems.colorsensor
+import subsystems.singlemotor
+
 
 revColorSensor = None
+singleMotor = None
 
 def init():
     global revColorSensor
+    global singleMotor
 
     revColorSensor = subsystems.colorsensor.ColorSensorSubsystem()
+    singleMotor = subsystems.singlemotor.SingleMotor()

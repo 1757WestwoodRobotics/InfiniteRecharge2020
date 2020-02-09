@@ -1,18 +1,16 @@
 #!/usr/bin/env python3
 
 import wpilib
-
 from wpilib.command import Command
 from commandbased import CommandBasedRobot
 
-from subsystems import singlemotor
-import oi
-from commands.autonomous import AutonomousProgram
-
 # Team 1757 stuff
+import oi
+# subsystems
 import subsystems.team1757Subsystems
+# commands
 import commands.team1757TestColorSensor
-
+import commands.autonomous
 
 class Robot(CommandBasedRobot):
     """
@@ -24,27 +22,28 @@ class Robot(CommandBasedRobot):
     """
 
     def robotInit(self):
-
-        ###### Singleton magic - ignore for now
+        """
+        Creates the robot singleton
+        """
         Command.getRobot = lambda x=0: self
-        ###### Stop ignoring ##################
 
         """
-        This is a good place to set up your subsystems and anything else that
-        you will need to access later.
+        Subsystems are instantiated in the global init
         """
         subsystems.team1757Subsystems.init()
-
-        self.motor = singlemotor.SingleMotor()
-
-        self.autonomousProgram = AutonomousProgram()
 
         """
         Since OI instantiates commands and commands need access to subsystems,
         OI must be initialized after subsystems.
         """
         self.oi = oi.OI(self)
+
+        """
+        Commands used directly by the robot program 
+        All other commands are instatiated in OI
+        """
         self.colorSensorTester = commands.team1757TestColorSensor.Team1757TestColorSensorCommand()
+        self.autonomousProgram = commands.autonomous.AutonomousProgram()
 
     def autonomousInit(self):
         """
@@ -53,7 +52,6 @@ class Robot(CommandBasedRobot):
         example. You can also use a SendableChooser to have the autonomous
         program chosen from the SmartDashboard.
         """
-
         self.autonomousProgram.start()
 
     def teleopInit(self):
