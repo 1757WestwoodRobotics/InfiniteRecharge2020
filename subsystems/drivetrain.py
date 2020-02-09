@@ -4,6 +4,7 @@ from ctre import WPI_TalonSRX
 from wpilib.interfaces import GenericHID
 from robotmap import *
 from wpilib.command import Subsystem
+from commands.drive import Drive
 
 class Drivetrain(Subsystem):
     
@@ -25,3 +26,6 @@ class Drivetrain(Subsystem):
 
     def tankDrive(self, leftSpeed, rightSpeed):
         self.differentialDrive.tankDrive(leftSpeed, rightSpeed, True)
+
+    def initDefaultCommand(self):
+        self.setDefaultCommand(Drive())
