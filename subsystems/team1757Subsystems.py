@@ -17,14 +17,17 @@
 
 import subsystems.colorsensor
 import subsystems.singlemotor
-
+import subsystems.drivetrain
 
 revColorSensor = None
 singleMotor = None
+drivetrain = None
 
 def init():
     global revColorSensor
     global singleMotor
+    global drivetrain
 
     revColorSensor = subsystems.colorsensor.ColorSensorSubsystem()
     singleMotor = subsystems.singlemotor.SingleMotor()
+    drivetrain = subsystems.drivetrain.Drivetrain()
