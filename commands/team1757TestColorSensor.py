@@ -5,33 +5,31 @@
 
 import wpilib
 from wpilib.command import Command
-import subsystems
+from subsystems import team1757Subsystems
 
 class Team1757TestColorSensorCommand(Command):
 
     def __init__(self):
         Command.__init__(self)
-        print("Team1757TestColorSensorCommand init called")
 
-        self.requires(subsystems.team1757Subsystems.revColorSensor)
+        self.requires(team1757Subsystems.revColorSensor)
         
-
+    # This just repeatedly samples the color sensor and prints out the results.
     def execute(self):
-        print("Team1757TestColorSensorCommand execute called")
-        theSensor = subsystems.team1757Subsystems.revColorSensor
+        theSensor = team1757Subsystems.revColorSensor
         # Get the sensor attributes
         color = theSensor.color
         ir = theSensor.ir
 
         # Get the individual components of the color
-        red = color.red
-        blue = color.blue
-        green = color.green
+        red = theSensor.red
+        blue = theSensor.blue
+        green = theSensor.green
 
         # Get the approximate proximity of an object
         proximity = theSensor.proximity
 
-        print("Color: {}, IR: {}, Red: {}, Blue: {}, Green: {}, Prox: {}".format(color, ir, red, blue, green, proximity))
+        print("IR: {}, Red: {}, Blue: {}, Green: {}, Prox: {}".format(ir, red, blue, green, proximity))
 
     def isFinished(self):
         return False

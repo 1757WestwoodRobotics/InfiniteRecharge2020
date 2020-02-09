@@ -10,7 +10,6 @@ from wpilib.command import Subsystem
 class ColorSensorSubsystem(Subsystem):
     def __init__(self):
         Subsystem.__init__(self, name="ColorSensorSubsystem")
-        print("ColorSensorSubsystem init called")
         
         self.__colorSensor = ColorSensorV3(wpilib.I2C.Port.kOnboard)
 
@@ -21,6 +20,18 @@ class ColorSensorSubsystem(Subsystem):
     @property
     def ir(self):
         return self.__colorSensor.getIR()
+
+    @property
+    def red(self):
+        return self.color.red
+
+    @property
+    def green(self):
+        return self.color.green
+
+    @property
+    def blue(self):
+        return self.color.blue
 
     @property
     def proximity(self):
