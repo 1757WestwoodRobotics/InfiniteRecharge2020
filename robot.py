@@ -4,7 +4,7 @@ import wpilib
 from wpilib.command import Command
 from commandbased import CommandBasedRobot
 
-from subsystems import singlemotor
+from subsystems import singlemotor, drivetrain
 import oi
 from commands.autonomous import AutonomousProgram
 
@@ -29,6 +29,8 @@ class Robot(CommandBasedRobot):
         ###### Stop ignoring ##################
 
         self.motor = singlemotor.SingleMotor()
+
+        self.drivetrain = drivetrain.Drivetrain()
 
         self.autonomousProgram = AutonomousProgram()
 
