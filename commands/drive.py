@@ -9,5 +9,7 @@ class Drive(Command):
 
         self.requires(self.getRobot().drivetrain)
 
-    # def execute(self):
-    #     self.getRobot
+    def execute(self):
+        self.speed = self.getRobot().oi.xboxController.getY()
+
+        self.getRobot().drivetrain.arcadeDrive()
