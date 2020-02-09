@@ -1,4 +1,4 @@
-from wpilib import Joystick
+from wpilib import Joystick, XboxController
 from wpilib.command import JoystickButton
 
 from commands.example import Example
@@ -7,6 +7,7 @@ class OI:
     def __init__(self, robot):
         super().__init__()
         self.robot = robot
+        self.xboxController = XboxController(1)
         self.joystick = Joystick(0)
         self.trigger = JoystickButton(self.joystick, 1)
         self.trigger.whenPressed(Example())
