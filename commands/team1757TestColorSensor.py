@@ -22,7 +22,6 @@ class Team1757TestColorSensorCommand(Command):
     def execute(self):
         theSensor = team1757Subsystems.revColorSensor
         # Get the sensor attributes
-        color = theSensor.color
         ir = theSensor.ir
 
         # Get the individual components of the color
