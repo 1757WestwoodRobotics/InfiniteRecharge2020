@@ -5,10 +5,13 @@
 
 from wpilib.command import Command
 
+# Team 1757 stuff
+import subsystems.team1757Subsystems
 
 class Team1757TestColorSensorCommand(Command):
 
     def __init__(self):
+        Command.__init__(self, "Team1757TestColorSensorCommand")
         self.requires(subsystems.team1757Subsystems.revColorSensor)
 
     def execute(self):

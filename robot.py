@@ -11,7 +11,7 @@ from commands.autonomous import AutonomousProgram
 
 # Team 1757 stuff
 import subsystems.team1757Subsystems
-import commands.team1757TestColorSensor
+from commands.team1757TestColorSensor import Team1757TestColorSensorCommand
 
 
 class Robot(CommandBasedRobot):
@@ -35,7 +35,7 @@ class Robot(CommandBasedRobot):
         """
         subsystems.team1757Subsystems.init()
 
-        self.colorSensorTester = Team1757TestColorSensor()
+        self.colorSensorTester = Team1757TestColorSensorCommand()
 
         self.motor = singlemotor.SingleMotor()
 
