@@ -5,9 +5,9 @@
 
 import wpilib
 from wpilib.command import Command
-<<<<<<< HEAD
 
 # Team 1757 stuff
+import subsystems
 from subsystems import team1757Subsystems
 
 class Team1757TestColorSensorCommand(Command):
