@@ -2,14 +2,14 @@
 # 2020
 
 # Color sensor subsystem wrapper around the REV Robotics ColorSensorV3 sensor.
-
+import wpilib
 from rev.color import ColorSensorV3
 from wpilib.command import Subsystem
 
 
 class ColorSensorSubsystem(Subsystem):
     def __init__(self):
-        Subsystem.__init__(name=ColorSensorSubsystem)
+        Subsystem.__init__(self, name="ColorSensorSubsystem")
         
         self.__colorSensor = ColorSensorV3(wpilib.I2C.Port.kOnboard)
 
@@ -23,15 +23,15 @@ class ColorSensorSubsystem(Subsystem):
 
     @property
     def red(self):
-        return self.__colorSensor.red
+        return self.color.red
 
     @property
     def green(self):
-        return self.__colorSensor.green
+        return self.color.green
 
     @property
     def blue(self):
-        return self.__colorSensor.blue
+        return self.color.blue
 
     @property
     def proximity(self):

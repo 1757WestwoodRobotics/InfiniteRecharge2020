@@ -3,10 +3,12 @@
 
 # Simple Command class for testing the REV Robotics ColorSensorV3
 
+import wpilib
 from wpilib.command import Command
+<<<<<<< HEAD
 
 # Team 1757 stuff
-import subsystems.team1757Subsystems
+from subsystems import team1757Subsystems
 
 class Team1757TestColorSensorCommand(Command):
 
@@ -14,8 +16,11 @@ class Team1757TestColorSensorCommand(Command):
         Command.__init__(self, "Team1757TestColorSensorCommand")
         self.requires(subsystems.team1757Subsystems.revColorSensor)
 
+        self.requires(team1757Subsystems.revColorSensor)
+        
+    # This just repeatedly samples the color sensor and prints out the results.
     def execute(self):
-        theSensor = subsystems.team1757Subsystems.revColorSensor
+        theSensor = team1757Subsystems.revColorSensor
         # Get the sensor attributes
         color = theSensor.color
         ir = theSensor.ir
@@ -28,4 +33,7 @@ class Team1757TestColorSensorCommand(Command):
         # Get the approximate proximity of an object
         proximity = theSensor.proximity
 
-        print("Color: {0}, IR: {1}, Red: {2}, Blue: {3}, Green: {4}, Prox: {5}", color, ir, red, blue, green, proximity)
+        print("IR: {}, Red: {}, Blue: {}, Green: {}, Prox: {}".format(ir, red, blue, green, proximity))
+
+    def isFinished(self):
+        return False
