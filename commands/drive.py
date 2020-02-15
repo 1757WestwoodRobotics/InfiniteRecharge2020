@@ -6,7 +6,7 @@ import subsystems
 class Drive(Command):
 
     def __init__(self):
-        Command.__init__(name=Drive, subsystem=Drivetrain)
+        Command.__init__(self, "Drive")
 
         self.requires(subsystems.team1757Subsystems.drivetrain)
 
