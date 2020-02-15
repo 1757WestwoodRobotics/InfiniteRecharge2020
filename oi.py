@@ -10,9 +10,10 @@ class OI:
     def __init__(self, robot):
         super().__init__()
         self.robot = robot
-        self.xboxController = XboxController(1)
-        self.joystick = Joystick(0)
-        self.trigger = JoystickButton(self.joystick, 2)
+        self.xboxController = XboxController(0)
+        self.leftStick = Joystick(1)
+        self.rightStick = Joystick(2)
+        self.trigger = JoystickButton(self.leftStick, 2)
         self.trigger.whileHeld(commands.rotate_turret.RotateTurret(active=True))
 
         SmartDashboard.putNumber("turret_kp", 20)
@@ -26,4 +27,4 @@ class OI:
         Assign commands to button actions, and publish your joysticks so you
         can read values from them later.
         """
-        return self.joystick
+        return self.xboxController
