@@ -16,35 +16,23 @@
 #      but we can always revisit this later.
 
 import subsystems.colorsensor
-import subsystems.singlemotor
-<<<<<<< HEAD
 import subsystems.drivetrain
-
-revColorSensor = None
-singleMotor = None
-drivetrain = None
-=======
+import subsystems.singlemotor
 import subsystems.turret
 
 
 revColorSensor = None
 singleMotor = None
 turret = None
->>>>>>> master
+drivetrain = None
 
 def init():
     global revColorSensor
     global singleMotor
-<<<<<<< HEAD
+    global turret
     global drivetrain
 
     revColorSensor = subsystems.colorsensor.ColorSensorSubsystem()
-    singleMotor = subsystems.singlemotor.SingleMotor()
     drivetrain = subsystems.drivetrain.Drivetrain()
-=======
-    global turret
-
-    revColorSensor = subsystems.colorsensor.ColorSensorSubsystem()
     singleMotor = subsystems.singlemotor.SingleMotor()
     turret = subsystems.turret.Turret()
->>>>>>> master
