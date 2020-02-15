@@ -10,17 +10,11 @@ class OI:
     def __init__(self, robot):
         super().__init__()
         self.robot = robot
-<<<<<<< HEAD
-        self.joystick = Joystick(0)
-        self.trigger = JoystickButton(self.joystick, 2) #X on a PS4 controller
-        self.trigger.whileHeld(commands.rotate_turret_to_angle.RotateTurretToAngle(active=True))
-=======
         self.xboxController = XboxController(0)
         self.leftStick = Joystick(1)
         self.rightStick = Joystick(2)
         self.trigger = JoystickButton(self.leftStick, 2)
         self.trigger.whileHeld(commands.rotate_turret.RotateTurret(active=True))
->>>>>>> CommandBasedDrive-v1.0.0
 
         SmartDashboard.putNumber(commands.rotate_turret_to_angle.RotateTurretToAngle.dashboard_kp, 0.015)
         SmartDashboard.putNumber(commands.rotate_turret_to_angle.RotateTurretToAngle.dashboard_ki, 0)
