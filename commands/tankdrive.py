@@ -12,8 +12,8 @@ class TankDrive(Command):
         self.requires(subsystems.team1757Subsystems.drivetrain)
 
     def execute(self):
-        self.leftSpeed = -self.getRobot().oi.xboxController.getRawAxis(1)
-        self.rightSpeed = -self.getRobot().oi.xboxController.getRawAxis(5)
+        self.leftSpeed = -self.getRobot().oi.leftStick.getY()
+        self.rightSpeed = -self.getRobot().oi.rightStick.getY()
 
         subsystems.team1757Subsystems.drivetrain.tankDrive(self.leftSpeed, self.rightSpeed)
 
