@@ -20,7 +20,7 @@ class DriveForward(Command):
         self.time = self.timer.get()
         
         if self.time <= self.timeout:
-            subsystems.team1757Subsystems.drivetrain.arcadeDrive(self.output)
+            subsystems.team1757Subsystems.drivetrain.arcadeDrive(self.output, 0)
 
     def isFinished(self):
         return False
