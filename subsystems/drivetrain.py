@@ -3,7 +3,7 @@ from wpilib import RobotDrive, SpeedControllerGroup, drive
 from ctre import WPI_TalonSRX
 from wpilib.interfaces import GenericHID
 from robotmap import *
-from wpilib.command.subsystem import Subsystem
+from wpilib.command import Subsystem
 
 class Drivetrain(Subsystem):
     
