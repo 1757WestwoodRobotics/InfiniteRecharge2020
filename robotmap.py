@@ -29,4 +29,4 @@ colors = {
 #    "coast": 1,
 #    "brake": 2
 #}
-NeutralModes = collection.namedtuple("_", "Coast Brake") (*range(2))
+NeutralModes = collections.namedtuple("_", "Coast Brake") (*range(2))
