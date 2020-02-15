@@ -9,7 +9,7 @@ from commands.drive import Drive
 class Drivetrain(Subsystem):
     
     def __init__(self):
-        Subsystem.__init__(name=Drivetrain)
+        Subsystem.__init__(self, "Drivetrain")
 
         self.leftFront = WPI_TalonSRX(Can.LeftFront)
         self.rightFront = WPI_TalonSRX(Can.RightFront)
