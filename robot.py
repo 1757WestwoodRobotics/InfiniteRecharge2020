@@ -2,6 +2,7 @@
 
 import wpilib
 from wpilib.command import Command
+from wpilib.command import Scheduler
 from commandbased import CommandBasedRobot
 
 # Team 1757 stuff
@@ -9,7 +10,6 @@ import oi
 # subsystems
 import subsystems.team1757Subsystems
 # commands
-import commands.team1757TestColorSensor
 import commands.autonomous
 
 class Robot(CommandBasedRobot):
@@ -42,7 +42,6 @@ class Robot(CommandBasedRobot):
         Commands used directly by the robot program 
         All other commands are instatiated in OI
         """
-        self.colorSensorTester = commands.team1757TestColorSensor.Team1757TestColorSensorCommand()
         self.autonomousProgram = commands.autonomous.AutonomousProgram()
 
     def autonomousInit(self):
@@ -53,11 +52,6 @@ class Robot(CommandBasedRobot):
         program chosen from the SmartDashboard.
         """
         self.autonomousProgram.start()
-
-    def teleopInit(self):
-        self.colorSensorTester.start()
-
-
 
 if __name__ == "__main__":
     wpilib.run(Robot)
