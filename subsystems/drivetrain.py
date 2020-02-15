@@ -4,17 +4,18 @@ from ctre import WPI_TalonSRX
 from wpilib.interfaces import GenericHID
 from robotmap import *
 from wpilib.command import Subsystem
-from commands.drive import Drive
+from commands.arcadedrive import ArcadeDrive
+from commands.tankdrive import TankDrive
 
 class Drivetrain(Subsystem):
     
     def __init__(self):
         Subsystem.__init__(self, "Drivetrain")
 
-        self.leftFront = WPI_TalonSRX(Can.LeftFront)
-        self.rightFront = WPI_TalonSRX(Can.RightFront)
-        self.leftBack = WPI_TalonSRX(Can.LeftBack)
-        self.rightBack = WPI_TalonSRX(Can.RightBack)
+        self.leftFront = WPI_TalonSRX(Can.leftFront)
+        self.rightFront = WPI_TalonSRX(Can.rightFront)
+        self.leftBack = WPI_TalonSRX(Can.leftBack)
+        self.rightBack = WPI_TalonSRX(Can.rightBack)
 
         self.rightDrive = SpeedControllerGroup(self.rightFront, self.rightBack)
         self.leftDrive = SpeedControllerGroup(self.leftFront, self.leftBack)
@@ -28,4 +29,6 @@ class Drivetrain(Subsystem):
         self.differentialDrive.tankDrive(leftSpeed, rightSpeed, True)
 
     def initDefaultCommand(self):
-        self.setDefaultCommand(Drive())
+
+        # NOTE: To switch between arcade drive and tank drive, switch the default command
+        self.setDefaultCommand(ArcadeDrive())
