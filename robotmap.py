@@ -15,7 +15,7 @@ import collections
 # They are truly constant.  Also, the syntax for using the values is cleaner than for a dictionary, e.g.
 # value = Can.LeftFront
 # Code style point: Capitalizing the first letter also makes them stand out in your code as constants.
-Can = collections.namedtuple("_", "LeftFront RightFront LeftBack RightBack BallShooter1 BallShooter2 ControlPanel") (*range(7))
+Can = collections.namedtuple("_", "leftFront rightFront leftBack rightBack collector ballholder1 ballholder2 ballShooterLower ballShooterUpper turret controlPanel lift1 lift2") (*range(13))
 
 
 colors = {
@@ -29,4 +29,4 @@ colors = {
 #    "coast": 1,
 #    "brake": 2
 #}
-NeutralModes = collection.namedtuple("_", "Coast Brake") (*range(2))
+NeutralModes = collections.namedtuple("_", "Coast Brake") (*range(2))

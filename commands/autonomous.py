@@ -1,7 +1,6 @@
 from wpilib.command import CommandGroup
 
 from wpilib.command import WaitCommand
-from commands.setspeed import SetSpeed
 
 
 class AutonomousProgram(CommandGroup):
@@ -13,6 +12,6 @@ class AutonomousProgram(CommandGroup):
     def __init__(self):
         CommandGroup.__init__(self, "Autonomous Program")
 
-        self.addSequential(SetSpeed(power=0.7, timeoutInSeconds=2))
-        self.addSequential(WaitCommand(timeout=1))
-        self.addSequential(SetSpeed(power=-0.7, timeoutInSeconds=2))
+        # self.addSequential(SetSpeed(power=0.7, timeoutInSeconds=2))
+        # self.addSequential(WaitCommand(timeout=1))
+        # self.addSequential(SetSpeed(power=-0.7, timeoutInSeconds=2))
