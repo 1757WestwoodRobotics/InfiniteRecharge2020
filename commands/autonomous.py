@@ -1,7 +1,6 @@
 from wpilib.command import CommandGroup
 
 from wpilib.command import WaitCommand
-from commands.setspeed import SetSpeed
 
 
 class AutonomousProgram(CommandGroup):
