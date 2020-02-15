@@ -1,5 +1,5 @@
 import wpilib
-from wpilib import RobotDrive, SpeedControllerGroup, drive
+from wpilib import drive, SpeedControllerGroup, drive
 from ctre import WPI_TalonSRX
 from wpilib.interfaces import GenericHID
 from robotmap import *
