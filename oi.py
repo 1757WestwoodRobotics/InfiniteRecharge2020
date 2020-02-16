@@ -14,7 +14,7 @@ class OI:
         self.leftStick = Joystick(1)
         self.rightStick = Joystick(2)
         self.trigger = JoystickButton(self.leftStick, 2)
-        self.trigger.whileHeld(commands.rotate_turret.RotateTurret(active=True))
+        self.trigger.whileHeld(commands.rotate_turret_to_angle.RotateTurretToAngle(active=True))
 
         SmartDashboard.putNumber(commands.rotate_turret_to_angle.RotateTurretToAngle.dashboard_kp, 0.015)
         SmartDashboard.putNumber(commands.rotate_turret_to_angle.RotateTurretToAngle.dashboard_ki, 0)
