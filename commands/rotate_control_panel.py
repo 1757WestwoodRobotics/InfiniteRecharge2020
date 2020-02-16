@@ -8,7 +8,6 @@ from wpilib import SmartDashboard
 from wpilib.command import Command
 import subsystems
 from subsystems import controlpanel
-from robotmap import ColorPanelConst
 
 
 class RotateControlPanel(Command):

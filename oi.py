@@ -32,8 +32,7 @@ class OI:
         # Control Panel
         self.controlPanelTrigger = JoystickButton(self.leftStick, 3)
         self.controlPanelTrigger.whileHeld(commands.rotate_control_panel.RotateControlPanel(active=True))
-        SmartDashboard.setFlags((commands.rotate_control_panel.RotateControlPanel.DashboardControlPanelTargetColorKey,
-                                 ColorPanelConst.PanelColors.Red))
+        SmartDashboard.setFlags(commands.rotate_control_panel.RotateControlPanel.DashboardControlPanelTargetColorKey, ColorPanelConst.PanelColors.Red)
 
 
     def getJoystick(self):
