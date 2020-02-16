@@ -65,16 +65,16 @@ class RotateTurretToAngle(Command):
         tolerance = SmartDashboard.getNumber(RotateTurretToAngle.dashboard_tolerance, 0)
         self.controller.setTolerance(tolerance)
         target_position = SmartDashboard.getNumber(RotateTurretToAngle.dashboard_target_position, 0)
-        lower_limit = subsystems.team1757Subsystems.turret.getLowerLimitDegrees()
-        upper_limit = subsystems.team1757Subsystems.turret.getUpperLimitDegrees()
-        target_position = min(max(target_position, lower_limit), upper_limit)
+        #lower_limit = subsystems.team1757Subsystems.turret.getLowerLimitDegrees()
+        #upper_limit = subsystems.team1757Subsystems.turret.getUpperLimitDegrees()
+        #target_position = min(max(target_position, lower_limit), upper_limit)
         if (self.active):
             controller_output = self.controller.calculate(actual_position, target_position)
-            if (((controller_output < 0) 
-                    and (actual_position < lower_limit))
-                or ((controller_output > 0)
-                    and (actual_position > upper_limit))):
-                controller_output = 0
+            # if (((controller_output < 0) 
+            #         and (actual_position < lower_limit))
+            #     or ((controller_output > 0)
+            #         and (actual_position > upper_limit))):
+            #     controller_output = 0
             subsystems.team1757Subsystems.turret.setSpeed(controller_output)
             SmartDashboard.putNumber(RotateTurretToAngle.dashboard_controller_output, controller_output)
             SmartDashboard.putBoolean(RotateTurretToAngle.dashboard_at_position, self.controller.atSetpoint())
