@@ -40,7 +40,7 @@ class Robot(CommandBasedRobot):
 
         """
         Commands used directly by the robot program 
-        All other commands are instatiated in OI
+        All other commands are instantiated in OI
         """
         self.autonomousProgram = commands.autonomous.AutonomousProgram()
 

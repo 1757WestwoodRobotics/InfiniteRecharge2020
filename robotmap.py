@@ -26,7 +26,7 @@ Can = collections.namedtuple("_", ("leftFront "
 #    PanelColors: the four colors, accessed like this: ColorPanelConst.PanelColors.Red
 #    Threshold: Minimum R, G, B or (R and G) value to indicate Red, Green, Blue or Yellow detected.
 #               (this is pretty simplistic and can be replaced with something better later)
-#    RotationSense: Should be +/-1  (easy way to switch positive and negative rotation)
+#    RotationSense: Should be +/-1  (easy way to switch positive and negative rotation conventions)
 ColorPanelConst = (collections.namedtuple("_", ("PanelColors "
                                                "Threshold "
                                                "RotationSense"))

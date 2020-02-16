@@ -13,12 +13,12 @@ class Team1757TestColorSensorCommand(Command):
         Command.__init__(self)
         print("Team1757TestColorSensorCommand init called")
 
-        self.requires(subsystems.team1757Subsystems.revColorSensor)
+        self.requires(subsystems.team1757Subsystems.gREVColorSensor)
         
 
     def execute(self):
         print("Team1757TestColorSensorCommand execute called")
-        theSensor = subsystems.team1757Subsystems.revColorSensor
+        theSensor = subsystems.team1757Subsystems.gREVColorSensor
         # Get the sensor attributes
         color = theSensor.color
         ir = theSensor.ir
