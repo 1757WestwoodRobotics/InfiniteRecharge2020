@@ -2,6 +2,9 @@ import math
 import wpilib
 from ctre import WPI_TalonSRX, ControlMode
 from wpilib.command import Subsystem
+
+# Team 1757 stuff
+from robotmap import Can
 from commands.rotate_turret_to_angle import RotateTurretToAngle
 
 class Turret(Subsystem):
@@ -12,7 +15,7 @@ class Turret(Subsystem):
     def __init__(self):
         """Instantiates the motor object."""
         Subsystem.__init__(self, "Turret")
-        self.motor = WPI_TalonSRX(1)
+        self.motor = WPI_TalonSRX(Can.turret)
         self.encoder = AS5600EncoderPwm(self.motor.getSensorCollection())
         self.lower_limit = -(180 - 45)/360.0
         self.upper_limit =  (180 - 45)/360.0

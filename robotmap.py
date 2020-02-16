@@ -21,11 +21,18 @@ Can = collections.namedtuple("_", ("leftFront "
                                    "lift2")) (*range(13))
 
 
-colors = {
-    "red": 0,
-    "green": 1,
-    "blue": 2,
-    "yellow": 3
-}
+# Constants required by /associated with the ControlPanel subsystem and command.
+# Members:
+#    PanelColors: the four colors, accessed like this: ColorPanelConst.PanelColors.Red
+#    Threshold: Minimum R, G, B or (R and G) value to indicate Red, Green, Blue or Yellow detected.
+#               (this is pretty simplistic and can be replaced with something better later)
+#    RotationSense: Should be +/-1  (easy way to switch positive and negative rotation)
+ColorPanelConst = (collections.namedtuple("_", ("PanelColors "
+                                               "Threshold "
+                                               "RotationSense"))
+                                               (collections.namedtuple("_", "Red Green Blue Yellow") (*range(4)),
+                                               0.5,
+                                               1))
+
 
 NeutralModes = collections.namedtuple("_", "Coast Brake") (*range(2))

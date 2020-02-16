@@ -2,7 +2,9 @@ import wpilib
 from wpilib import drive, SpeedControllerGroup, drive
 from ctre import WPI_TalonSRX
 from wpilib.interfaces import GenericHID
-from robotmap import *
+
+# Team 1757 stuff
+from robotmap import Can
 from wpilib.command import Subsystem
 from commands.arcadedrive import ArcadeDrive
 from commands.tankdrive import TankDrive
