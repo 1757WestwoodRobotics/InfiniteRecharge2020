@@ -5,7 +5,7 @@ from wpilib.command import Subsystem
 
 # Team 1757 stuff
 from robotmap import Can
-from commands.rotate_turret_to_angle import RotateTurretToAngle
+from commands.rotate_turret_by_angle import RotateTurretByAngle
 
 class Turret(Subsystem):
     """
@@ -37,4 +37,4 @@ class Turret(Subsystem):
         self.motor.set(speed)
 
     def initDefaultCommand(self):
-        self.setDefaultCommand(RotateTurretToAngle())
+        self.setDefaultCommand(RotateTurretByAngle())
