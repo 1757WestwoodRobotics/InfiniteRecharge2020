@@ -5,6 +5,7 @@ from wpilib import XboxController
 from wpilib.command import JoystickButton
 
 import commands.rotate_turret_to_angle
+import commands.lock_on
 
 class OI:
     def __init__(self, robot):
@@ -15,6 +16,10 @@ class OI:
         self.rightStick = Joystick(2)
         self.trigger = JoystickButton(self.leftStick, 2)
         self.trigger.whileHeld(commands.rotate_turret_to_angle.RotateTurretToAngle(active=True))
+
+        #temporary vision code
+        self.lock_on_button = JoystickButton(self.xboxController, 1)
+        self.lock_on_button.whenPressed(commands.lock_on.lock_on(active=True))
 
         SmartDashboard.putNumber(commands.rotate_turret_to_angle.RotateTurretToAngle.dashboard_kp, 0.015)
         SmartDashboard.putNumber(commands.rotate_turret_to_angle.RotateTurretToAngle.dashboard_ki, 0)

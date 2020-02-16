@@ -25,6 +25,9 @@ colors = {
     "yellow": 3
 }
 
+# Vision incoming information list
+max_info_list_length = 20
+
 #neutralModes = {
 #    "coast": 1,
 #    "brake": 2

@@ -18,17 +18,21 @@
 import subsystems.colorsensor
 import subsystems.drivetrain
 import subsystems.turret
+import subsystems.vision
 
 
 revColorSensor = None
 turret = None
 drivetrain = None
+vision = None
 
 def init():
     global revColorSensor
     global turret
     global drivetrain
+    global vision
 
     revColorSensor = subsystems.colorsensor.ColorSensorSubsystem()
     drivetrain = subsystems.drivetrain.Drivetrain()
     turret = subsystems.turret.Turret()
+    vision = subsystems.vision.Vision()
