@@ -5,7 +5,7 @@
 import wpilib
 from rev.color import ColorSensorV3
 from wpilib.command import Subsystem
-
+from commands.team1757TestColorSensor import Team1757TestColorSensorCommand
 
 class ColorSensorSubsystem(Subsystem):
     def __init__(self):
@@ -25,4 +25,8 @@ class ColorSensorSubsystem(Subsystem):
     @property
     def proximity(self):
         return self.__colorSensor.getProximity()
+
+    def initDefaultCommand(self):
+        self.setDefaultCommand(Team1757TestColorSensorCommand())
+
 
