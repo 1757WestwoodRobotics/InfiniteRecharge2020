@@ -4,6 +4,7 @@ import wpilib
 from wpilib.command import Command
 from wpilib.command import Scheduler
 from commandbased import CommandBasedRobot
+from networktables import NetworkTables
 
 # Team 1757 stuff
 import oi
@@ -43,6 +44,10 @@ class Robot(CommandBasedRobot):
         All other commands are instantiated in OI
         """
         self.autonomousProgram = commands.autonomous.AutonomousProgram()
+        """
+        NetworkTables
+        """
+        NetworkTables.initialize(server="10.17.57.2")
 
     def autonomousInit(self):
         """
