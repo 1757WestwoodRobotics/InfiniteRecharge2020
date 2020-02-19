@@ -2,6 +2,7 @@ import wpilib
 from wpilib import SmartDashboard
 from wpilib.command import Command
 from wpilib.controller import PIDController
+from networktables import NetworkTables
 import subsystems
 
 class RotateTurretVision(Command):
@@ -28,6 +29,7 @@ class RotateTurretVision(Command):
 
     def __init__(self, active=False):
         Command.__init__(self, "Rotate Turret Using Vision")
+        self.limelight = NetworkTables.getTable("limelight")
         self.kp_last = 0
         self.ki_last = 0
         self.kd_last = 0
@@ -70,7 +72,7 @@ class RotateTurretVision(Command):
             self.integrator_max_last = integrator_max
         tolerance = SmartDashboard.getNumber(RotateTurretVision.dashboard_tolerance, 0)
         self.controller.setTolerance(tolerance)
-        target_position = self.original_position + SmartDashboard.getNumber("target_bearing", 0)
+        target_position = self.original_position + self.limelight.getNumber("tx", 0) * -1 # SmartDashboard.getNumber("target_bearing", 0)
         #lower_limit = subsystems.team1757Subsystems.turret.getLowerLimitDegrees()
         #upper_limit = subsystems.team1757Subsystems.turret.getUpperLimitDegrees()
         #target_position = min(max(target_position, lower_limit), upper_limit)
