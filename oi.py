@@ -7,6 +7,7 @@ from wpilib.command import JoystickButton
 # Team 1757 stuff
 import commands.rotate_turret_by_angle
 import commands.rotate_turret_to_angle
+import commands.rotate_turret_vision
 import commands.rotate_control_panel
 from robotmap import ColorPanelConst
 
@@ -22,6 +23,7 @@ class OI:
         # Turret
         self.trigger = JoystickButton(self.xboxController, 2)
         self.toTrigger = JoystickButton(self.xboxController, 3)
+        self.visionTrigger = JoystickButton(self.xboxController, 4)
         self.trigger.whenPressed(commands.rotate_turret_by_angle.RotateTurretByAngle(active=True))
         SmartDashboard.putNumber(commands.rotate_turret_by_angle.RotateTurretByAngle.dashboard_kp, 0.015)
         SmartDashboard.putNumber(commands.rotate_turret_by_angle.RotateTurretByAngle.dashboard_ki, 0)
@@ -38,6 +40,13 @@ class OI:
         SmartDashboard.putNumber(commands.rotate_turret_to_angle.RotateTurretToAngle.dashboard_integrator_max,  0.015)
         SmartDashboard.putNumber(commands.rotate_turret_to_angle.RotateTurretToAngle.dashboard_tolerance, 0)
         SmartDashboard.putNumber(commands.rotate_turret_to_angle.RotateTurretToAngle.dashboard_target_position, 0)
+        self.visionTrigger.whenPressed(commands.rotate_turret_vision.RotateTurretVision(active=True))
+        SmartDashboard.putNumber(commands.rotate_turret_vision.RotateTurretVision.dashboard_kp, 0.015)
+        SmartDashboard.putNumber(commands.rotate_turret_vision.RotateTurretVision.dashboard_ki, 0)
+        SmartDashboard.putNumber(commands.rotate_turret_vision.RotateTurretVision.dashboard_kd, 0)
+        SmartDashboard.putNumber(commands.rotate_turret_vision.RotateTurretVision.dashboard_integrator_min, -0.015)
+        SmartDashboard.putNumber(commands.rotate_turret_vision.RotateTurretVision.dashboard_integrator_max,  0.015)
+        SmartDashboard.putNumber(commands.rotate_turret_vision.RotateTurretVision.dashboard_tolerance, 0)
 
         # Control Panel
         self.controlPanelTrigger = JoystickButton(self.leftStick, 3)

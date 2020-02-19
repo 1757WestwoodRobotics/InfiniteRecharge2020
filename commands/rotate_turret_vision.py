@@ -12,14 +12,14 @@ class RotateTurretVision(Command):
     dashboard_tolerance = "rotate_turret_to_angle_tolerance"
     dashboard_integrator_min = "rotate_turret_to_angle_integrator_min"
     dashboard_integrator_max = "rotate_turret_to_angle_integrator_max"
-    dashboard_target_position = "rotate_turret_by_angle_target_position"
+    # dashboard_target_position = "rotate_turret_by_angle_target_position"
 
     '''outputs'''
-    dashboard_actual_position = "rotate_turret_by_angle_actual_position"
-    dashboard_active = "rotate_turret_by_angle_active"
-    dashboard_controller_output = "rotate_turret_by_angle_controller_output"
-    dashboard_at_position = "rotate_turret_by_angle_at_position"
-    dashboard_position_error = "rotate_turret_by_angle_position_error"
+    dashboard_actual_position = "rotate_turret_vision_actual_position"
+    dashboard_active = "rotate_turret_vision_active"
+    dashboard_controller_output = "rotate_turret_vision_controller_output"
+    dashboard_at_position = "rotate_turret_vision_at_position"
+    dashboard_position_error = "rotate_turret_vision_position_error"
 
     """
     This command will rotate the turret to the value
@@ -43,7 +43,7 @@ class RotateTurretVision(Command):
         if self.controller.atSetpoint():
             self.isDone = False
         if self.isDone == False:
-            self.original_position = SmartDashboard.getNumber("target_bearing", 0)
+            self.original_position = subsystems.team1757Subsystems.turret.getPositionDegrees()
             self.isDone = True
         actual_position = subsystems.team1757Subsystems.turret.getPositionDegrees()
         SmartDashboard.putNumber(RotateTurretVision.dashboard_actual_position, actual_position)
@@ -70,7 +70,7 @@ class RotateTurretVision(Command):
             self.integrator_max_last = integrator_max
         tolerance = SmartDashboard.getNumber(RotateTurretVision.dashboard_tolerance, 0)
         self.controller.setTolerance(tolerance)
-        target_position = self.original_position + SmartDashboard.getNumber(RotateTurretVision.dashboard_target_position, 0)
+        target_position = self.original_position + SmartDashboard.getNumber("target_bearing", 0)
         #lower_limit = subsystems.team1757Subsystems.turret.getLowerLimitDegrees()
         #upper_limit = subsystems.team1757Subsystems.turret.getUpperLimitDegrees()
         #target_position = min(max(target_position, lower_limit), upper_limit)
