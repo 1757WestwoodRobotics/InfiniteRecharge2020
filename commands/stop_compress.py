@@ -4,16 +4,16 @@ from wpilib.command import Command
 from wpilib.interfaces import GenericHID
 import subsystems
 
-class Compress(Command):
+class StopCompress(Command):
 
     def __init__(self):
-        Command.__init__(self, "Compress")
+        Command.__init__(self, "Stop Compress")
 
         self.requires(subsystems.team1757Subsystems.pneumatics)
 
     def execute(self):
-        print("Compressing")
-        subsystems.team1757Subsystems.pneumatics.setCompressor(True)
+        subsystems.team1757Subsystems.pneumatics.setCompressor(False)
+        print("STOP COMPRESS IS EXECUTING")
 
     def isFinished(self):
         return False

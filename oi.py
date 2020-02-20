@@ -10,6 +10,7 @@ import commands.rotate_turret_to_angle
 import commands.rotate_turret_vision
 import commands.rotate_control_panel
 from commands.compress import Compress
+from commands.stop_compress import StopCompress
 from robotmap import ColorPanelConst
 
 
@@ -23,7 +24,7 @@ class OI:
 
         #Pneumatics
         self.a = JoystickButton(self.xboxController, 1)
-        self.a.toggleWhenPressed(Compress())
+        # self.a.toggleWhenPressed(StopCompress())
     
         # Turret
         self.trigger = JoystickButton(self.xboxController, 2)
