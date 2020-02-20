@@ -8,6 +8,8 @@ from commands.stop_compress import StopCompress
 class Pneumatics(Subsystem):
     
     def __init__(self):
+        Subsystem.__init__(self, "Pneumatics")
+        
         self.compressor = Compressor(PCM1.Compressor)
         self.discbrake = DoubleSolenoid(PCM1.DiscBrakeF, PCM1.DiscBrakeB)
         self.ballRelease1 = DoubleSolenoid(PCM1.BallRelease1F, PCM1.BallRelease1B)
@@ -21,5 +23,4 @@ class Pneumatics(Subsystem):
             self.compressor.stop()
 
     def initDefaultCommand(self):
-        
         self.setDefaultCommand(Compress())
