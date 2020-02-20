@@ -12,7 +12,6 @@ class Compress(Command):
         self.requires(subsystems.team1757Subsystems.pneumatics)
 
     def execute(self):
-        print("Compressing")
         subsystems.team1757Subsystems.pneumatics.setCompressor(True)
 
     def isFinished(self):
