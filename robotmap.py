@@ -20,6 +20,8 @@ Can = collections.namedtuple("_", ("leftFront "
                                    "lift1 "
                                    "lift2")) (*range(13))
 
+xboxButtons = collections.namedtuple("_", "A B X Y LB RB Back Start LStick RStick") (1,2,3,4,5,6,7,8,9,10)
+
 
 # Constants required by /associated with the ControlPanel subsystem and command.
 # Members:
