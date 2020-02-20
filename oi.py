@@ -11,7 +11,7 @@ import commands.rotate_turret_vision
 import commands.rotate_control_panel
 from commands.compress import Compress
 from commands.stop_compress import StopCompress
-from robotmap import ColorPanelConst
+from robotmap import ColorPanelConst, xboxButtons
 
 
 class OI:
@@ -23,13 +23,13 @@ class OI:
         self.rightStick = Joystick(2)
 
         #Pneumatics
-        self.a = JoystickButton(self.xboxController, 1)
-        self.a.toggleWhenPressed(StopCompress())
+        JoystickButton(self.xboxController, xboxButtons.A).toggleWhenPressed(StopCompress())
+
     
         # Turret
-        self.trigger = JoystickButton(self.xboxController, 2)
-        self.toTrigger = JoystickButton(self.xboxController, 3)
-        self.visionTrigger = JoystickButton(self.xboxController, 4)
+        self.trigger = JoystickButton(self.xboxController, xboxButtons.B)
+        self.toTrigger = JoystickButton(self.xboxController, xboxButtons.X)
+        self.visionTrigger = JoystickButton(self.xboxController, xboxButtons.Y)
         self.trigger.whenPressed(commands.rotate_turret_by_angle.RotateTurretByAngle(active=True))
         SmartDashboard.putNumber(commands.rotate_turret_by_angle.RotateTurretByAngle.dashboard_kp, 0.015)
         SmartDashboard.putNumber(commands.rotate_turret_by_angle.RotateTurretByAngle.dashboard_ki, 0)
