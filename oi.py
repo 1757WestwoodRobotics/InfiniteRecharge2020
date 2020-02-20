@@ -22,7 +22,7 @@ class OI:
         self.rightStick = Joystick(2)
 
         #Pneumatics
-        self.a = JoystickButton(XboxController, 0)
+        self.a = JoystickButton(self.xboxController, 1)
         self.a.toggleWhenPressed(Compress())
     
         # Turret
