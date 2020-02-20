@@ -24,7 +24,7 @@ class OI:
 
         #Pneumatics
         self.a = JoystickButton(self.xboxController, 1)
-        # self.a.toggleWhenPressed(StopCompress())
+        self.a.toggleWhenPressed(StopCompress())
     
         # Turret
         self.trigger = JoystickButton(self.xboxController, 2)
