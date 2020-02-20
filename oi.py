@@ -3,15 +3,18 @@ from wpilib import SmartDashboard
 from wpilib import Joystick
 from wpilib import XboxController
 from wpilib.command import JoystickButton
+from wpilib import DoubleSolenoid
 
 # Team 1757 stuff
 import commands.rotate_turret_by_angle
 import commands.rotate_turret_to_angle
 import commands.rotate_turret_vision
 import commands.rotate_control_panel
-from commands.compress import Compress
 from commands.stop_compress import StopCompress
+from commands.set_solenoid import SetSolenoid
+from commands.set_solenoid_loop import SetSolenoidLoop
 from robotmap import ColorPanelConst, xboxButtons
+import subsystems
 
 
 class OI:
@@ -24,6 +27,8 @@ class OI:
 
         #Pneumatics
         JoystickButton(self.xboxController, xboxButtons.A).toggleWhenPressed(StopCompress())
+        JoystickButton(self.xboxController, xboxButtons.Start).toggleWhenPressed(
+            SetSolenoidLoop(subsystems.team1757Subsystems.pneumatics.discbrake))
 
     
         # Turret
