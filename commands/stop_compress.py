@@ -13,7 +13,6 @@ class StopCompress(Command):
 
     def execute(self):
         subsystems.team1757Subsystems.pneumatics.setCompressor(False)
-        print("STOP COMPRESS IS EXECUTING")
 
     def isFinished(self):
         return False
