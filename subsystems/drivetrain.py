@@ -22,11 +22,11 @@ class Drivetrain(Subsystem):
 
         self.differentialDrive = drive.DifferentialDrive(self.leftDrive, self.rightDrive)
 
-    def arcadeDrive(self, speed, rotation):
-        self.differentialDrive.arcadeDrive(speed, rotation, True)
+    def arcadeDrive(self, speed, rotation, SquaredInputs):
+        self.differentialDrive.arcadeDrive(speed, rotation, SquaredInputs)
 
-    def tankDrive(self, leftSpeed, rightSpeed):
-        self.differentialDrive.tankDrive(leftSpeed, rightSpeed, True)
+    def tankDrive(self, leftSpeed, rightSpeed, SquaredInputs):
+        self.differentialDrive.tankDrive(leftSpeed, rightSpeed, SquaredInputs)
 
     def initDefaultCommand(self):
 

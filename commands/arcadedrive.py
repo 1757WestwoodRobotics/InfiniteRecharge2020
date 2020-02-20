@@ -6,16 +6,18 @@ import subsystems
 
 class ArcadeDrive(Command):
 
-    def __init__(self):
+    def __init__(self, SquaredInputs = True):
         Command.__init__(self, "ArcadeDrive")
 
         self.requires(subsystems.team1757Subsystems.drivetrain)
+
+        self.squaredInputs = SquaredInputs
 
     def execute(self):
         self.speed = -self.getRobot().oi.xboxController.getRawAxis(1)
         self.rotation = self.getRobot().oi.xboxController.getRawAxis(4)
 
-        subsystems.team1757Subsystems.drivetrain.arcadeDrive(self.speed, self.rotation)
+        subsystems.team1757Subsystems.drivetrain.arcadeDrive(self.speed, self.rotation, self.squaredInputs)
 
     def isFinished(self):
         return False
