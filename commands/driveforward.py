@@ -6,14 +6,12 @@ import subsystems
 
 class DriveForward(TimedCommand):
 
-    def __init__(self, timeout = 0, output = 1):
-        TimedCommand.__init__(self, "DriveForward", timeout)
-
+    def __init__(self, output = 1, timeout = 0):
+        TimedCommand.__init__(self, "Drive Forward", timeout)
         self.requires(subsystems.team1757Subsystems.drivetrain)
+
+        self.output = output
 
     def execute(self):
         
         subsystems.team1757Subsystems.drivetrain.arcadeDrive(self.output, 0, False)
-
-    def isFinished(self):
-        return False
