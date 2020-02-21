@@ -43,9 +43,9 @@ PCM1 = collections.namedtuple("_", ("DiscBrakeF "
                                     "Indexer2F "
                                     "Indexer2R "
                                     "ControlPanelF "
-                                    "ControlPanelR "
-                                    "CollectorF "
-                                    "CollectorR")) (*range(10))
+                                    "ControlPanelR")) (*range(8))
+
+# PCM2 = collections.namedtuple("_", "CollectorF CollectorR") (*range(2))
                                     
 
                                                
