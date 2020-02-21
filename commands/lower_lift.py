@@ -15,11 +15,11 @@ class LowerLift(Command):
         # self.rotation = self.getRobot()
     
         while (value < self.lowerlimitvalue):
-            subsystems.team1757Subsystems.Lift.setSpeed(self.speed, self.rotation)
+            subsystems.team1757Subsystems.Lift.set(self.speed, self.rotation)
         else:
             self.speed=0
             self.rotation=0
-            subsystems.team1757Subsystems.Lift.setSpeed(self.speed, self.rotation)
+            subsystems.team1757Subsystems.Lift.set(self.speed, self.rotation)
             self.done = True
 
     def isFinished(self):

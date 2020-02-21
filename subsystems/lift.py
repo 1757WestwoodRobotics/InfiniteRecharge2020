@@ -8,38 +8,37 @@ class Lift(Subsystem):
     def __init__(self):
         Subsystem.__init__(self, "Lift")
 
-        self.falconmotor = WPI_TalonSRX(Can.falconmotor)
-        # self.motor = wpilib.Talon(1)
+        self.lift1 = WPI_TalonSRX(Can.lift1)
+        # lift1=motor
         self.reverseLimitSwitch = wpilib.DigitalInput(1)
-        # self.upperlimitvalue=   need to measure these
-        # self.lowerlimitvalue=
+        # 20 arbitrary value
+        self.upperlimitvalue= 21
+        self.lowerlimitvalue= 0
+        # configReverseLimitSwitchSource()
+        self.x = self.lift1.isFwdLimitSwitchClosed()
+        self.y = self.lift1.isRevLimitSwitchClosed()
+        #isFwdLimitSwitchClosed get the status of limit switch (returns an int??)
+    def periodic(self):
+        Subsystem.periodic(self, "Lift")
+        
+        
+        print(self.x)
+        print(self.y)
+   
 
     def setSpeed(self, speed):
-        self.falconmotor.set(speed)
+        self.lift1.set(speed)
 
 #used to read the upper limit switch value from the motor
-    def isAtUpperLimit(self, upperlimitvalue, value, output):
+    def isAtUpperLimit(self, value, output):
         if value >= self.upperlimitvalue:
             if self.reverseLimitSwitch.get():
                 output = max(0, output)
-                return self.falconmotor.set(output)
+                return self.lift1.set(output)
 
 #used to read the lower limit switch value from the motor
-    def isAtLowerLimit(self, lowerlimitvalue, value, output):
-        if value >= self.lowerlimitvalue:
+    def isAtLowerLimit(self, value, output):
+        if value <= self.lowerlimitvalue:
             if self.reverseLimitSwitch.get():
                 output = max(0, output)
-                return self.falconmotor.set(output)
-
-
-# For programming the Falcon 500 motor, the TalonSRX class is used_Looking at the page, 
-# we can see that it has _as its base class. 
-# Consider using the methods "isFwdLimitSwitchClosed" and "isRevLimitSwitchClosed" to get the status.
-
-'''
-notes for later:
-why is there 2 drives in "from wpilib import drive, SpeedControllerGroup, drive" in drivetrain subsystem
-what is lift 1 and lift 2 in robotmap
-need values for upper and lower limits
--Tif
-'''
+                return self.lift1.set(output)
