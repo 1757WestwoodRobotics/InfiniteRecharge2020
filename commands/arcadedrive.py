@@ -17,13 +17,10 @@ class ArcadeDrive(Command):
         self.testmotor = WPI_TalonSRX(1)
 
     def execute(self):
-        # self.speed = -self.getRobot().oi.xboxController.getRawAxis(1)
-        # self.rotation = self.getRobot().oi.xboxController.getRawAxis(4)
+        self.speed = -self.getRobot().oi.xboxController.getRawAxis(1)
+        self.rotation = self.getRobot().oi.xboxController.getRawAxis(4)
 
-        # subsystems.team1757Subsystems.drivetrain.arcadeDrive(self.speed, self.rotation, self.squaredInputs)
-
-        print("Executing")
-        self.testmotor.set(.2)
+        subsystems.team1757Subsystems.drivetrain.arcadeDrive(self.speed, self.rotation, self.squaredInputs)
 
     def isFinished(self):
         return False
