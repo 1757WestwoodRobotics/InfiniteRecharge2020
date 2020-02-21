@@ -145,6 +145,7 @@ class Team1757TestColorSensorCommand(Command):
             pass
             #Team1757TestColorSensorCommand.loops = 0
             #color_expected = 
+            pass
         
         #more timer stuff
         self.color_timer.stop()

@@ -3,13 +3,18 @@ from wpilib import SmartDashboard
 from wpilib import Joystick
 from wpilib import XboxController
 from wpilib.command import JoystickButton
+from wpilib import DoubleSolenoid
 
 # Team 1757 stuff
 import commands.rotate_turret_by_angle
 import commands.rotate_turret_to_angle
 import commands.rotate_turret_vision
 import commands.rotate_control_panel
-from robotmap import ColorPanelConst
+from commands.stop_compress import StopCompress
+from commands.set_solenoid import SetSolenoid
+from commands.set_solenoid_loop import SetSolenoidLoop
+from robotmap import ColorPanelConst, xboxButtons
+import subsystems
 
 
 class OI:
@@ -20,10 +25,16 @@ class OI:
         self.leftStick = Joystick(1)
         self.rightStick = Joystick(2)
 
+        #Pneumatics
+        JoystickButton(self.xboxController, xboxButtons.A).toggleWhenPressed(StopCompress())
+        JoystickButton(self.xboxController, xboxButtons.Start).toggleWhenPressed(
+            SetSolenoidLoop(subsystems.team1757Subsystems.pneumatics.discbrake))
+
+    
         # Turret
-        self.trigger = JoystickButton(self.xboxController, 2)
-        self.toTrigger = JoystickButton(self.xboxController, 3)
-        self.visionTrigger = JoystickButton(self.xboxController, 4)
+        self.trigger = JoystickButton(self.xboxController, xboxButtons.B)
+        self.toTrigger = JoystickButton(self.xboxController, xboxButtons.X)
+        self.visionTrigger = JoystickButton(self.xboxController, xboxButtons.Y)
         self.trigger.whenPressed(commands.rotate_turret_by_angle.RotateTurretByAngle(active=True))
         SmartDashboard.putNumber(commands.rotate_turret_by_angle.RotateTurretByAngle.dashboard_kp, 0.015)
         SmartDashboard.putNumber(commands.rotate_turret_by_angle.RotateTurretByAngle.dashboard_ki, 0)

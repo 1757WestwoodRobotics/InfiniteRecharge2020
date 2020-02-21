@@ -15,7 +15,7 @@ class TankDrive(Command):
         self.leftSpeed = -self.getRobot().oi.leftStick.getY()
         self.rightSpeed = -self.getRobot().oi.rightStick.getY()
 
-        subsystems.team1757Subsystems.drivetrain.tankDrive(self.leftSpeed, self.rightSpeed)
+        subsystems.team1757Subsystems.drivetrain.tankDrive(self.leftSpeed, self.rightSpeed, True)
 
     def isFinished(self):
         return False
