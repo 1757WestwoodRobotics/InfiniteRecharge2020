@@ -17,8 +17,7 @@ Can = collections.namedtuple("_", ("leftFront "
                                    "ballShooterUpper "
                                    "turret "
                                    "controlPanel "
-                                   "lift1 "
-                                   "lift2")) (*range(13))
+                                   "lift1 ")) (*range(12))
 
 
 # Constants required by /associated with the ControlPanel subsystem and command.
