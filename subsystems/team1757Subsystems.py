@@ -20,6 +20,7 @@ import subsystems.drivetrain
 import subsystems.turret
 import subsystems.pneumatics
 import subsystems.controlpanel
+import subsystems.lift
 
 
 gREVColorSensor = None
@@ -27,6 +28,7 @@ turret = None
 drivetrain = None
 gControlPanel = None
 pneumatics = None
+lift = None
 
 def init():
     global gREVColorSensor
@@ -34,9 +36,11 @@ def init():
     global drivetrain
     global gControlPanel
     global pneumatics
+    global lift
 
     gREVColorSensor = subsystems.colorsensor.ColorSensorSubsystem()
     drivetrain = subsystems.drivetrain.Drivetrain()
     turret = subsystems.turret.Turret()
     gControlPanel = subsystems.controlpanel.ControlPanel()
     pneumatics = subsystems.pneumatics.Pneumatics()
+    lift = subsystems.lift.Lift()
