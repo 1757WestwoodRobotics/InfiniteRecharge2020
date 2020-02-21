@@ -1,5 +1,6 @@
 import wpilib
 from wpilib import SmartDashboard
+from ctre import WPI_TalonSRX
 from wpilib.command import Command
 from wpilib.interfaces import GenericHID
 import subsystems
@@ -13,11 +14,16 @@ class ArcadeDrive(Command):
 
         self.squaredInputs = SquaredInputs
 
-    def execute(self):
-        self.speed = -self.getRobot().oi.xboxController.getRawAxis(1)
-        self.rotation = self.getRobot().oi.xboxController.getRawAxis(4)
+        self.testmotor = WPI_TalonSRX(1)
 
-        subsystems.team1757Subsystems.drivetrain.arcadeDrive(self.speed, self.rotation, self.squaredInputs)
+    def execute(self):
+        # self.speed = -self.getRobot().oi.xboxController.getRawAxis(1)
+        # self.rotation = self.getRobot().oi.xboxController.getRawAxis(4)
+
+        # subsystems.team1757Subsystems.drivetrain.arcadeDrive(self.speed, self.rotation, self.squaredInputs)
+
+        print("Executing")
+        self.testmotor.set(.2)
 
     def isFinished(self):
         return False
