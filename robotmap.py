@@ -34,5 +34,17 @@ ColorPanelConst = (collections.namedtuple("_", ("PanelColors "
                                                0.5,
                                                1))
 
+PCM1 = (collections.namedtuple("_", ("Compressor"
+                                                "DiscBrake"
+                                                "BallRelease1"
+                                                "BallRelease2"
+                                                #"FrontRakeDeploy" Add to pcm2
+                                                ))
+
+                                                (0, # Compressor PCM id
+                                                 [1,2] # Disc Brake PCM ids
+                                                 [3,4] # BallRelease1 PCM ids
+                                                 [5,6] # BallRelease2 PCM ids 
+                                                ))
 
 NeutralModes = collections.namedtuple("_", "Coast Brake") (*range(2))
