@@ -36,13 +36,16 @@ ColorPanelConst = (collections.namedtuple("_", ("PanelColors "
                                                0.5,
                                                1))
 
-PCM1 = collections.namedtuple("_", ("Compressor " 
-                                    "DiscBrakeF "
-                                    "DiscBrakeB "
-                                    "BallRelease1F "
-                                    "BallRelease1B "
-                                    "BallRelease2F "
-                                    "BallRelease2B")) (*range(7))
+PCM1 = collections.namedtuple("_", ("DiscBrakeF "
+                                    "DiscBrakeR "
+                                    "Indexer1F "
+                                    "Indexer1R "
+                                    "Indexer2F "
+                                    "Indexer2R "
+                                    "ControlPanelF "
+                                    "ControlPanelR "
+                                    "CollectorF "
+                                    "CollectorR")) (*range(10))
                                     
 
                                                

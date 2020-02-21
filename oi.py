@@ -28,7 +28,7 @@ class OI:
         #Pneumatics
         JoystickButton(self.xboxController, xboxButtons.A).toggleWhenPressed(StopCompress())
         JoystickButton(self.xboxController, xboxButtons.Start).toggleWhenPressed(
-            SetSolenoidLoop(subsystems.team1757Subsystems.pneumatics.discbrake))
+            SetSolenoidLoop(subsystems.team1757Subsystems.pneumatics.discBrake))
 
     
         # Turret

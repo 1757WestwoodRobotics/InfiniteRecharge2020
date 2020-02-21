@@ -9,12 +9,13 @@ class Pneumatics(Subsystem):
     def __init__(self):
         Subsystem.__init__(self, "Pneumatics")
 
-        self.compressor = Compressor(PCM1.Compressor)
-        
-        self.discbrake = DoubleSolenoid(PCM1.DiscBrakeF, PCM1.DiscBrakeB)
-        self.ballRelease1 = DoubleSolenoid(PCM1.BallRelease1F, PCM1.BallRelease1B)
-        self.ballRelease2 = DoubleSolenoid(PCM1.BallRelease2F, PCM1.BallRelease2B)
-        #self.frontRakeDeploy = wpilib.DoubleSolenoid(PneumaticsConst.FrontRakeDeploy[0], PneumaticsConst.FrontRakeDeploy[1])
+        self.compressor = Compressor(Compressor)
+
+        self.controlPanel = DoubleSolenoid(PCM1.ControlPanelF, PCM1.ControlPanelR)
+        self.collector = DoubleSolenoid(PCM1.CollectorF, PCM1.CollectorR)
+        self.discBrake = DoubleSolenoid(PCM1.DiscBrakeF, PCM1.DiscBrakeR)
+        self.indexer1 = DoubleSolenoid(PCM1.Indexer1F, PCM1.Indexer1R)
+        self.indexer2 = DoubleSolenoid(PCM1.Indexer2F, PCM1.Indexer2R)
     
     def setCompressor(self, enabled):
         if enabled:
