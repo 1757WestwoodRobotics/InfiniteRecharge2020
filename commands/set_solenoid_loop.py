@@ -20,10 +20,10 @@ class SetSolenoidLoop(Command):
         self.solenoid = solenoid
 
     def initialize(self):
-        subsystems.team1757Subsystems.pneumatics.setSolenoid(self.solenoid, DoubleSolenoid.Value.kForward)
+        subsystems.team1757Subsystems.pneumatics.setSolenoid(self.solenoid, True)
 
     def end(self):
-        subsystems.team1757Subsystems.pneumatics.setSolenoid(self.solenoid, DoubleSolenoid.Value.kReverse)
+        subsystems.team1757Subsystems.pneumatics.setSolenoid(self.solenoid, False)
 
     def isFinished(self):
         return False
