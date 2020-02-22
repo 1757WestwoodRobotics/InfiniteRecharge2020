@@ -18,7 +18,8 @@
 import subsystems.colorsensor
 import subsystems.drivetrain
 import subsystems.turret
-import subsystems.pneumatics
+import subsystems.pneumaticsbase
+import subsystems.indexer
 import subsystems.controlpanel
 
 
@@ -26,17 +27,20 @@ gREVColorSensor = None
 turret = None
 drivetrain = None
 gControlPanel = None
-pneumatics = None
+pneumaticsBase = None
+indexer = None
 
 def init():
     global gREVColorSensor
     global turret
     global drivetrain
     global gControlPanel
-    global pneumatics
+    global pneumaticsBase
+    global indexer
 
     gREVColorSensor = subsystems.colorsensor.ColorSensorSubsystem()
     drivetrain = subsystems.drivetrain.Drivetrain()
     turret = subsystems.turret.Turret()
     gControlPanel = subsystems.controlpanel.ControlPanel()
-    pneumatics = subsystems.pneumatics.Pneumatics()
+    pneumaticsBase = subsystems.pneumaticsbase.PneumaticsBase()
+    indexer = subsystems.indexer.Indexer()

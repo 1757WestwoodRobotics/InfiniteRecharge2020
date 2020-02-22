@@ -11,11 +11,7 @@ class PneumaticsBase(Subsystem):
 
         self.compressor = Compressor()
 
-        # self.controlPanel = Solenoid(Can.PCM, PCM.ControlPanel)
         # self.collectorDeploy = Solenoid(Can.PCM, PCM.Collector)
-        # self.discBrake = Solenoid(Can.PCM, PCM.DiscBrake)
-        # self.indexer1 = Solenoid(Can.PCM, PCM.Indexer1)
-        # self.indexer2 = Solenoid(Can.PCM, PCM.Indexer2)
 
     def setCompressor(self, enabled):
         if enabled:
