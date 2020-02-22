@@ -39,9 +39,9 @@ ColorPanelConst = (collections.namedtuple("_", ("PanelColors "
                                                0.5,
                                                1))
 
-PCM = collections.namedtuple("_", ("DiscBrake "
-                                    "Indexer1 "
+PCM = collections.namedtuple("_", ("Indexer1 "
                                     "Indexer2 "
+                                    "DiscBrake "
                                     "ControlPanel "
                                     "Collector")) (*range(5))
                                     
