@@ -30,11 +30,11 @@ xboxButtons = collections.namedtuple("_", "A B X Y LB RB Back Start LStick RStic
 #               (this is pretty simplistic and can be replaced with something better later)
 #    RotationSense: Should be +/-1  (easy way to switch positive and negative rotation conventions)
 ColorPanelConst = (collections.namedtuple("_", ("PanelColors "
-                                               "Threshold "
-                                               "RotationSense"))
-                                               (collections.namedtuple("_", "Red Green Blue Yellow") (*range(4)),
-                                               0.5,
-                                               1))
+                                                "Threshold "
+                                                "RotationSense"))
+                                                (collections.namedtuple("_", "Red Green Blue Yellow") (*range(4)),
+                                                0.5,
+                                                1))
 
 PCM1 = collections.namedtuple("_", ("Compressor " 
                                     "DiscBrakeF "

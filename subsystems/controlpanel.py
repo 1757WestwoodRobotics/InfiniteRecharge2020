@@ -56,11 +56,12 @@ class ControlPanel(Subsystem):
     def seek(self):
         
         if (self.found()):
+            self.__motor.set(0.0)
             return
-
-        bestDirection = self.getBestDirection()
-
-        speed = 0.1  # Here temporarily.  Should be in a central location
-        self.__motor.set(ColorPanelConst.RotationSense*bestDirection*speed)
+        else:
+            bestDirection = self.getBestDirection()
+            
+            speed = 0.1  # Here temporarily.  Should be in a central location
+            self.__motor.set(ColorPanelConst.RotationSense*bestDirection*speed)
 
 
