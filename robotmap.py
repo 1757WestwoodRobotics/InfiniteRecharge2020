@@ -18,7 +18,8 @@ Can = collections.namedtuple("_", ("leftFront "
                                    "turret "
                                    "controlPanel "
                                    "lift1 "
-                                   "lift2")) (*range(13))
+                                   "lift2 "
+                                   "PCM")) (*range(14))
 
 xboxButtons = collections.namedtuple("_", "A B X Y LB RB Back Start LStick RStick") (1,2,3,4,5,6,7,8,9,10)
 
