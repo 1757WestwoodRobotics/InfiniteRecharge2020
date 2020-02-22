@@ -10,6 +10,3 @@ class Indexer(Subsystem):
 
         self.indexer1 = Solenoid(Can.PCM, PCM.Indexer1)
         self.indexer2 = Solenoid(Can.PCM, PCM.Indexer2)
-
-    def setSolenoid(self, solenoid, enabled):
-        solenoid.set(enabled)
