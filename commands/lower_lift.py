@@ -2,25 +2,28 @@
 import wpilib
 from wpilib.command import Command
 import subsystems
+from ctre import WPI_TalonSRX
+from robotmap import Can
 
 class LowerLift(Command):
 
-    def __init__(self):
+    def __init__(self, speed):
         Command.__init__(self, "LowerLift")
 
         self.requires(subsystems.team1757Subsystems.Lift)
+        self.reverseLimitSwitch = wpilib.DigitalInput(2)
+        
+        self.lift1 = WPI_TalonSRX(Can.lift1)
+        self.speed = speed
 
     def execute(self):
-        # self.speed = self.getRobot()
-        # self.rotation = self.getRobot()
-    
-        while (value < self.lowerlimitvalue):
-            subsystems.team1757Subsystems.Lift.set(self.speed, self.rotation)
-        else:
-            self.speed=0
-            self.rotation=0
-            subsystems.team1757Subsystems.Lift.set(self.speed, self.rotation)
-            self.done = True
+        
+        while (self.revstatus < self.lowerlimitvalue):  
+            subsystems.team1757Subsystems.Lift.setSpeed(self.speed)
+            
+        self.speed = 0
+        subsystems.team1757Subsystems.Lift.setSpeed(self.speed)
+        self.done = True
 
     def isFinished(self):
         if  self.done == True:
