@@ -5,6 +5,7 @@ from wpilib.command import Command
 import subsystems
 from ctre import WPI_TalonSRX
 from robotmap import Can
+from subsystems.lift import Lift
 
 class RaiseLift(Command):
 
@@ -19,7 +20,7 @@ class RaiseLift(Command):
 
     def execute(self):
         # if button is pressed (in oi.py), motors will run when upper limit value is not reached, if it is, motors will stop
-        while (self.fwdstatus < self.upperlimitvalue):  
+        while (Lift.fwdstatus < self.upperlimitvalue):  
             subsystems.team1757Subsystems.Lift.setSpeed(self.speed)
             
         self.speed = 0
