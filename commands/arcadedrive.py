@@ -1,8 +1,6 @@
 import wpilib
-from wpilib import SmartDashboard
 from ctre import WPI_TalonSRX
 from wpilib.command import Command
-from wpilib.interfaces import GenericHID
 import subsystems
 
 class ArcadeDrive(Command):

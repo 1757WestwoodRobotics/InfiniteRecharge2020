@@ -1,5 +1,4 @@
 import wpilib
-from wpilib import SmartDashboard
 from wpilib.command import InstantCommand
 import subsystems
 

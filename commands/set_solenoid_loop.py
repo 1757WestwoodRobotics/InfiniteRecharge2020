@@ -1,5 +1,5 @@
 import wpilib
-from wpilib import SmartDashboard, DoubleSolenoid
+from wpilib import DoubleSolenoid
 from wpilib.command import Command
 import subsystems
 
