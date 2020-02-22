@@ -36,7 +36,7 @@ class OI:
         #Pneumatics
         JoystickButton(self.xboxController, xboxButtons.A).toggleWhenPressed(StopCompress())
         JoystickButton(self.xboxController, xboxButtons.Start).toggleWhenPressed(
-            SetSolenoidLoop(subsystems.team1757Subsystems.pneumatics.controlPanel))
+            SetSolenoidLoop(subsystems.team1757Subsystems.indexer.indexer1))
     
         # Turret
         self.trigger = JoystickButton(self.xboxController, xboxButtons.B)
