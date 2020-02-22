@@ -21,10 +21,10 @@ class RaiseLift(Command):
     def execute(self):
         # if button is pressed (in oi.py), motors will run when upper limit value is not reached, if it is, motors will stop
         while (Lift.fwdstatus < self.upperlimitvalue):  
-            subsystems.team1757Subsystems.Lift.setSpeed(self.speed)
+            subsystems.team1757Subsystems.lift.setSpeed(self.speed)
             
         self.speed = 0
-        subsystems.team1757Subsystems.Lift.setSpeed(self.speed)
+        subsystems.team1757Subsystems.lift.setSpeed(self.speed)
         self.done = True
 
     def isFinished(self):

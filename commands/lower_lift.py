@@ -20,10 +20,10 @@ class LowerLift(Command):
     def execute(self):
         
         while (Lift.revstatus < self.lowerlimitvalue):  
-            subsystems.team1757Subsystems.Lift.setSpeed(self.speed)
+            subsystems.team1757Subsystems.lift.setSpeed(self.speed)
             
         self.speed = 0
-        subsystems.team1757Subsystems.Lift.setSpeed(self.speed)
+        subsystems.team1757Subsystems.lift.setSpeed(self.speed)
         self.done = True
 
     def isFinished(self):
