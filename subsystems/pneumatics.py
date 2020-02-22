@@ -1,7 +1,6 @@
 import wpilib
-from wpilib import Compressor, DoubleSolenoid
-from robotmap import PCM1
-# from robotmap import PCM2
+from wpilib import Compressor, Solenoid
+from robotmap import PCM
 from wpilib.command import Subsystem
 from commands.stop_compress import StopCompress
 
@@ -12,17 +11,17 @@ class Pneumatics(Subsystem):
 
         self.compressor = Compressor()
 
-        self.controlPanel = DoubleSolenoid(PCM1.ControlPanelF, PCM1.ControlPanelR)
-        # self.collectordeploy = DoubleSolenoid(PCM2.CollectorF, PCM2.CollectorR)
-        self.discBrake = DoubleSolenoid(PCM1.DiscBrakeF, PCM1.DiscBrakeR)
-        self.indexer1 = DoubleSolenoid(PCM1.Indexer1F, PCM1.Indexer1R)
-        self.indexer2 = DoubleSolenoid(PCM1.Indexer2F, PCM1.Indexer2R)
-    
+        self.controlPanel = Solenoid(PCM.ControlPanel)
+        self.collectorDeploy = Solenoid(PCM.Collector)
+        self.discBrake = Solenoid(PCM.DiscBrake)
+        self.indexer1 = Solenoid(PCM.Indexer1)
+        self.indexer2 = Solenoid(PCM.Indexer2)
+
     def setCompressor(self, enabled):
         if enabled:
             self.compressor.start()
         else:
             self.compressor.stop()
 
-    def setSolenoid(self, solenoid, position):
-        solenoid.set(position)
+    def setSolenoid(self, solenoid, enabled):
+        solenoid.set(enabled)
