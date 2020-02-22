@@ -4,7 +4,6 @@ from wpilib.command import Command
 import subsystems
 from ctre import WPI_TalonSRX
 from robotmap import Can
-from subsystems.lift import Lift
 
 class LowerLift(Command):
 
@@ -19,15 +18,14 @@ class LowerLift(Command):
 
     def execute(self):
         
-        while (Lift.revstatus < self.lowerlimitvalue):  
+        if subsystems.team1757Subsystems.lift.revstatus > subsystems.team1757Subsystems.lift.lowerlimitvalue:
             subsystems.team1757Subsystems.lift.setSpeed(self.speed)
-            
-        self.speed = 0
-        subsystems.team1757Subsystems.lift.setSpeed(self.speed)
-        self.done = True
+        else:    
+            self.speed = 0
+            subsystems.team1757Subsystems.lift.setSpeed(self.speed)
+    
+    def end(self):
+        subsystems.team1757Subsystems.lift.setSpeed(0)
 
     def isFinished(self):
-        if  self.done == True:
-            return True
-        else:
-            return False
+        return False

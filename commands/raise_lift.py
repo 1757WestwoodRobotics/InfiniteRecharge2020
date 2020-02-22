@@ -1,11 +1,9 @@
-# so instead of using a while loop to check the limit switches consider doing the check in "isFinished" without a while loop.
 #  Uses the Lifter subsystem to raise the lifter until the upper limit is reached (and keep it there)
 import wpilib
 from wpilib.command import Command
 import subsystems
 from ctre import WPI_TalonSRX
 from robotmap import Can
-from subsystems.lift import Lift
 
 class RaiseLift(Command):
 
@@ -20,15 +18,14 @@ class RaiseLift(Command):
 
     def execute(self):
         # if button is pressed (in oi.py), motors will run when upper limit value is not reached, if it is, motors will stop
-        while (Lift.fwdstatus < self.upperlimitvalue):  
+        if subsystems.team1757Subsystems.lift.fwdstatus < subsystems.team1757Subsystems.lift.upperlimitvalue:
             subsystems.team1757Subsystems.lift.setSpeed(self.speed)
-            
-        self.speed = 0
-        subsystems.team1757Subsystems.lift.setSpeed(self.speed)
-        self.done = True
+        else:    
+            self.speed = 0
+            subsystems.team1757Subsystems.lift.setSpeed(self.speed)
+    
+    def end(self):
+        subsystems.team1757Subsystems.lift.setSpeed(0)
 
     def isFinished(self):
-        if  self.done == True:
-            return True
-        else:
-            return False
+        return False
