@@ -19,7 +19,7 @@ class RaiseLift(Command):
         if subsystems.team1757Subsystems.lift.fwdstatus:
             self.speed = 1
             subsystems.team1757Subsystems.lift.setSpeed(self.speed)
-            
+
         else:    
             self.speed = 0
             subsystems.team1757Subsystems.lift.setSpeed(self.speed)
@@ -35,3 +35,10 @@ class RaiseLift(Command):
 
     def isFinished(self):
         return False
+
+'''lift:
+disengage brake
+set speed(up)
+when up limit
+setspeed(0)
+engage brake'''
