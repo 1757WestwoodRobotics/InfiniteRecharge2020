@@ -1,6 +1,6 @@
 import wpilib
 from wpilib import drive, SpeedControllerGroup, drive
-from ctre import WPI_TalonSRX
+from ctre import WPI_TalonSRX, NeutralMode
 from wpilib.interfaces import GenericHID
 
 # Team 1757 stuff
@@ -29,6 +29,18 @@ class Drivetrain(Subsystem):
 
     def tankDrive(self, leftSpeed, rightSpeed, SquaredInputs):
         self.differentialDrive.tankDrive(leftSpeed, rightSpeed, SquaredInputs)
+
+    def setNeutralMode(self, braking):
+        if braking:
+            self.leftFront.setNeutralMode(NeutralMode.Brake)
+            self.rightFront.setNeutralMode(NeutralMode.Brake)
+            self.leftBack.setNeutralMode(NeutralMode.Brake)
+            self.rightBack.setNeutralMode(NeutralMode.Brake)
+        else:
+            self.leftFront.setNeutralMode(NeutralMode.Coast)
+            self.rightFront.setNeutralMode(NeutralMode.Coast)
+            self.leftBack.setNeutralMode(NeutralMode.Coast)
+            self.rightBack.setNeutralMode(NeutralMode.Coast)
 
     def initDefaultCommand(self):
 
