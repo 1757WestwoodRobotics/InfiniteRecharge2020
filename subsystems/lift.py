@@ -40,5 +40,5 @@ class Lift(Subsystem):
 
         if fwdstatus:
             print(self.fwdstatus)
-        if revstatus:
+        elif revstatus:
             print(self.revstatus)
