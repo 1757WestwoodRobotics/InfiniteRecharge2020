@@ -50,19 +50,19 @@ class Team1757TestColorSensorCommand(Command):
     #color_expected = 5
 
     # 1 is clockwise, -1 is counterclockwise
-    rotation =  1
-    loops = 0
+    #rotation =  1
+    #loops = 0
 
     def __init__(self):
         Command.__init__(self)
         self.requires(subsystems.team1757Subsystems.gREVColorSensor)
-        self.color_timer = Timer()
+        #self.color_timer = Timer()
 
     def execute(self):
-
+        '''
         #timer stuff
         self.color_timer.reset()
-        self.color_timer.start()
+        self.color_timer.start()'''
 
         threshold = 3
 
@@ -88,8 +88,8 @@ class Team1757TestColorSensorCommand(Command):
         distance_to_redRef = (red - Team1757TestColorSensorCommand.redRef[0])**2 + (green - Team1757TestColorSensorCommand.redRef[1])**2 + (blue - Team1757TestColorSensorCommand.redRef[2])**2
         minDist = distance_to_redRef
         color = 0
-        color_expected_index = (color + Team1757TestColorSensorCommand.rotation) % len(Team1757TestColorSensorCommand.colors)
-        color_expected = Team1757TestColorSensorCommand.colors[color_expected_index]
+        '''color_expected_index = (color + Team1757TestColorSensorCommand.rotation) % len(Team1757TestColorSensorCommand.colors)
+        color_expected = Team1757TestColorSensorCommand.colors[color_expected_index]'''
         
 
         distance_to_greenRef = (red - Team1757TestColorSensorCommand.greenRef[0])**2 + (green - Team1757TestColorSensorCommand.greenRef[1])**2 + (blue - Team1757TestColorSensorCommand.greenRef[2])**2
@@ -118,7 +118,7 @@ class Team1757TestColorSensorCommand(Command):
 
 
         if (minDist >= 0.03*(Team1757TestColorSensorCommand.yg_distance)):
-            #SmartDashboard.putNumber(Team1757TestColorSensorCommand.dashboard_color_sensor_detected_color, color)
+            SmartDashboard.putNumber(Team1757TestColorSensorCommand.dashboard_color_sensor_detected_color, color)
             color = 4
 
         if (color == Team1757TestColorSensorCommand.color_prev):
@@ -138,21 +138,20 @@ class Team1757TestColorSensorCommand(Command):
         if ((Team1757TestColorSensorCommand.color_count >= threshold) and Team1757TestColorSensorCommand.color_prev != Team1757TestColorSensorCommand.color_out):
             SmartDashboard.putNumber(Team1757TestColorSensorCommand.dashboard_color_sensor_detected_color, color)
             Team1757TestColorSensorCommand.color_out = color
-            if (Team1757TestColorSensorCommand.color_expected == color):
-                Team1757TestColorSensorCommand.loops += .125
-            #print(color)
-        else:
-            pass
+            '''if (Team1757TestColorSensorCommand.color_expected == color):
+                #Team1757TestColorSensorCommand.loops += .125
+            #print(color)'''
+        #else:
             #Team1757TestColorSensorCommand.loops = 0
             #color_expected = 
-            pass
+            
         
         #more timer stuff
-        self.color_timer.stop()
+        ''''self.color_timer.stop()
         time = self.color_timer.get()
         print(time)
         print(color)
-        print(color_expected)
+        print(color_expected)'''
 
         #outputs
         SmartDashboard.putNumber(Team1757TestColorSensorCommand.dashboard_color_sensor_loops, Team1757TestColorSensorCommand.loops)
