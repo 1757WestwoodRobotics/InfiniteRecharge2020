@@ -11,7 +11,7 @@ class LowerLift(Command):
     def __init__(self, speed):
         Command.__init__(self, "LowerLift")
 
-        self.requires(subsystems.team1757Subsystems.Lift)
+        self.requires(subsystems.team1757Subsystems.lift)
         self.reverseLimitSwitch = wpilib.DigitalInput(2)
         
         self.lift1 = WPI_TalonSRX(Can.lift1)

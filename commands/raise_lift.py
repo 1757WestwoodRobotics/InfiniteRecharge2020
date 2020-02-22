@@ -12,7 +12,7 @@ class RaiseLift(Command):
     def __init__(self, speed):
         Command.__init__(self, "RaiseLift")
 
-        self.requires(subsystems.team1757Subsystems.Lift)
+        self.requires(subsystems.team1757Subsystems.lift)
         self.forwardLimitSwitch = wpilib.DigitalInput(1)
         
         self.lift1 = WPI_TalonSRX(Can.lift1)
