@@ -21,14 +21,14 @@ class Lift(Subsystem):
         Subsystem.__init__(self, "Lift")
         # lift1 = motor 11
         self.lift1 = WPI_TalonSRX(Can.lift1)
-        self.upperlimitvalue = inches_to_encodercounts_factor
+        self.upperlimitvalue = 21 * Lift.inches_to_encodercounts_factor 
         self.lowerlimitvalue = 0
 
     def setSpeed(self, speed):
         self.lift1.set(speed)
 
     def setPosition(self, position_in_inches):
-        position_in_encoder_counts = position_in_inches * inches_to_encodercounts_factor
+        position_in_encoder_counts = position_in_inches * Lift.inches_to_encodercounts_factor
         self.lift1.set(ControlMode.Position, position_in_encoder_counts)
         
     def periodic(self):
@@ -38,7 +38,7 @@ class Lift(Subsystem):
         self.revstatus = self.lift1.isRevLimitSwitchClosed()
         #get the status of limit switch (returns an int)
 
-        if fwdstatus:
+        if self.fwdstatus:
             print(self.fwdstatus)
-        elif revstatus:
+        elif self.revstatus:
             print(self.revstatus)

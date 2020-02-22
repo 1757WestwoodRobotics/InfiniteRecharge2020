@@ -10,18 +10,19 @@ class RaiseLift(Command):
         Command.__init__(self, "RaiseLift")
 
         self.requires(subsystems.team1757Subsystems.lift)
-        
+    # need pneumatic subsystem bc of discbrake
         self.lift1 = WPI_TalonSRX(Can.lift1)
         self.speed = speed
 
     def execute(self):
         
         if subsystems.team1757Subsystems.lift.fwdstatus:
-            self.speed = 0.5
+            self.speed = 1
             subsystems.team1757Subsystems.lift.setSpeed(self.speed)
         else:    
             self.speed = 0
             subsystems.team1757Subsystems.lift.setSpeed(self.speed)
+        
         # if self.fwdstatus():
         #     speed = min(0, speed)
         # elif self.revstatus():
@@ -32,12 +33,5 @@ class RaiseLift(Command):
 
     def isFinished(self):
         return False
-
-'''
-configure motor controller to turn on limit switch checking
-
-if limit/target position not yet reached, motors run at a set speed
-
-encoder counts is read as a position, multiply factor by position in inches
-'''
-    
+# check in isfinished
+# if limit/target position not yet reached, motors run at a set speed    
