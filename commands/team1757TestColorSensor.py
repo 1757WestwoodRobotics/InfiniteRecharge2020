@@ -96,24 +96,24 @@ class Team1757TestColorSensorCommand(Command):
         if ( distance_to_greenRef < minDist ):
             minDist = distance_to_greenRef
             color = 1
-            color_expected_index = (color + Team1757TestColorSensorCommand.rotation) % len(Team1757TestColorSensorCommand.colors)
-            color_expected = Team1757TestColorSensorCommand.colors[color_expected_index]
+            # color_expected_index = (color + Team1757TestColorSensorCommand.rotation) % len(Team1757TestColorSensorCommand.colors)
+            # color_expected = Team1757TestColorSensorCommand.colors[color_expected_index]
         
 
         distance_to_blueRef = (red - Team1757TestColorSensorCommand.blueRef[0])**2 + (green - Team1757TestColorSensorCommand.blueRef[1])**2 + (blue - Team1757TestColorSensorCommand.blueRef[2])**2
         if ( distance_to_blueRef < minDist ):
             minDist = distance_to_blueRef
             color = 2
-            color_expected_index = (color + Team1757TestColorSensorCommand.rotation) % len(Team1757TestColorSensorCommand.colors)
-            color_expected = Team1757TestColorSensorCommand.colors[color_expected_index]
+            #color_expected_index = (color + Team1757TestColorSensorCommand.rotation) % len(Team1757TestColorSensorCommand.colors)
+            #color_expected = Team1757TestColorSensorCommand.colors[color_expected_index]
         
 
         distance_to_yellowRef = (red - Team1757TestColorSensorCommand.yellowRef[0])**2 + (green - Team1757TestColorSensorCommand.yellowRef[1])**2 + (blue - Team1757TestColorSensorCommand.yellowRef[2])**2
         if ( distance_to_yellowRef < minDist ):
             minDist = distance_to_yellowRef
             color = 3
-            color_expected_index = (color + Team1757TestColorSensorCommand.rotation) % len(Team1757TestColorSensorCommand.colors)
-            color_expected = Team1757TestColorSensorCommand.colors[color_expected_index]
+            # color_expected_index = (color + Team1757TestColorSensorCommand.rotation) % len(Team1757TestColorSensorCommand.colors)
+            #color_expected = Team1757TestColorSensorCommand.colors[color_expected_index]
         
 
 
@@ -136,8 +136,9 @@ class Team1757TestColorSensorCommand(Command):
             threshold = 3
 
         if ((Team1757TestColorSensorCommand.color_count >= threshold) and Team1757TestColorSensorCommand.color_prev != Team1757TestColorSensorCommand.color_out):
-            SmartDashboard.putNumber(Team1757TestColorSensorCommand.dashboard_color_sensor_detected_color, color)
+            SmartDashboard.putNumber("Team1757TestColorSensorCommand.dashboard_color_sensor_detected_color", color)
             Team1757TestColorSensorCommand.color_out = color
+            print(color)
             '''if (Team1757TestColorSensorCommand.color_expected == color):
                 #Team1757TestColorSensorCommand.loops += .125
             #print(color)'''
@@ -154,7 +155,7 @@ class Team1757TestColorSensorCommand(Command):
         print(color_expected)'''
 
         #outputs
-        SmartDashboard.putNumber(Team1757TestColorSensorCommand.dashboard_color_sensor_loops, Team1757TestColorSensorCommand.loops)
+        # SmartDashboard.putNumber(Team1757TestColorSensorCommand.dashboard_color_sensor_loops, Team1757TestColorSensorCommand.loops)
         '''SmartDashboard.putNumber(Team1757TestColorSensorCommand.dashboard_color_sensor_distance_from_point_to_redRef, distance_to_redRef)
         SmartDashboard.putNumber(Team1757TestColorSensorCommand.dashboard_color_sensor_distance_from_point_to_greenRef, distance_to_greenRef)
         SmartDashboard.putNumber(Team1757TestColorSensorCommand.dashboard_color_sensor_distance_from_point_to_blueRef, distance_to_blueRef)
