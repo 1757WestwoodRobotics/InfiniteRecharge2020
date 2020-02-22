@@ -17,9 +17,12 @@ Can = collections.namedtuple("_", ("leftFront "
                                    "ballShooterUpper "
                                    "turret "
                                    "controlPanel "
-                                   "lift1 ")) (*range(12))
+                                   "lift1 "
+                                   "PCM")) (*range(13))
 
 xboxButtons = collections.namedtuple("_", "A B X Y LB RB Back Start LStick RStick") (1,2,3,4,5,6,7,8,9,10)
+
+xboxAxes = collections.namedtuple("_", "LSX LSY LT RT RSX RSY") (*range(6))
 
 
 # Constants required by /associated with the ControlPanel subsystem and command.
@@ -35,13 +38,11 @@ ColorPanelConst = (collections.namedtuple("_", ("PanelColors "
                                                0.5,
                                                1))
 
-PCM1 = collections.namedtuple("_", ("Compressor " 
-                                    "DiscBrakeF "
-                                    "DiscBrakeB "
-                                    "BallRelease1F "
-                                    "BallRelease1B "
-                                    "BallRelease2F "
-                                    "BallRelease2B")) (*range(7))
+PCM = collections.namedtuple("_", ("Indexer1 "
+                                    "Indexer2 "
+                                    "DiscBrake "
+                                    "ControlPanel "
+                                    "Collector")) (*range(5))
                                     
 
                                                

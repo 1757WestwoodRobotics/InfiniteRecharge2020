@@ -6,6 +6,8 @@ from wpilib.command import JoystickButton
 from wpilib import DoubleSolenoid
 
 # Team 1757 stuff
+import subsystems
+from robotmap import ColorPanelConst, xboxButtons, xboxAxes
 import commands.rotate_turret_by_angle
 import commands.rotate_turret_to_angle
 import commands.rotate_turret_vision
@@ -15,10 +17,8 @@ from commands.set_solenoid import SetSolenoid
 from commands.set_solenoid_loop import SetSolenoidLoop
 from commands.raise_lift import RaiseLift
 from commands.lower_lift import LowerLift
-
-from robotmap import ColorPanelConst, xboxButtons
-import subsystems
-
+from commands.brake import Brake
+from commands.test import Test
 
 class OI:
     def __init__(self, robot):
@@ -27,11 +27,16 @@ class OI:
         self.xboxController = XboxController(0)
         self.leftStick = Joystick(1)
         self.rightStick = Joystick(2)
+        self.xboxController2 = XboxController(3)
 
+        self.LT = self.xboxController.getRawAxis(xboxAxes.LT)
+        self.RT = self.xboxController.getRawAxis(xboxAxes.RT)
+
+        #Drivetrain
+        JoystickButton(self.xboxController2, xboxButtons.LB).whileHeld(Brake())
+        
         #Pneumatics
         JoystickButton(self.xboxController, xboxButtons.A).toggleWhenPressed(StopCompress())
-        JoystickButton(self.xboxController, xboxButtons.Start).toggleWhenPressed(
-            SetSolenoidLoop(subsystems.team1757Subsystems.pneumatics.discbrake))
 
         # lift
         self.raiselift = JoystickButton(self.xboxController, xboxButtons.RB)
