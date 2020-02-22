@@ -1,8 +1,9 @@
 import wpilib
+from wpilib import Solenoid
 from ctre import WPI_TalonSRX
 from ctre import ControlMode
 from ctre import TalonSRXConfiguration
-from robotmap import Can
+from robotmap import Can, PCM
 from wpilib.command import Subsystem
 from math import pi
 
@@ -27,6 +28,8 @@ class Lift(Subsystem):
         configObject = TalonSRXConfiguration()
         self.lift1.getAllConfigs(configObject)
         configObject.set
+
+        self.discBrake = Solenoid(Can.PCM, PCM.DiscBrake)
 
     def setSpeed(self, speed):
         self.lift1.set(speed)
