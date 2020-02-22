@@ -1,6 +1,7 @@
 import wpilib
 from ctre import WPI_TalonSRX
 from ctre import ControlMode
+from ctre import TalonSRXConfiguration
 from robotmap import Can
 from wpilib.command import Subsystem
 from math import pi
@@ -23,6 +24,9 @@ class Lift(Subsystem):
         self.lift1 = WPI_TalonSRX(Can.lift1)
         self.upperlimitvalue = 21 * Lift.inches_to_encodercounts_factor 
         self.lowerlimitvalue = 0
+        configObject = TalonSRXConfiguration()
+        self.lift1.getAllConfigs(configObject)
+        configObject.set
 
     def setSpeed(self, speed):
         self.lift1.set(speed)
