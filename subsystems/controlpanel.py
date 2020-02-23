@@ -47,9 +47,19 @@ class ControlPanel(Subsystem):
         return self.__colorSensor.getColor()
 
 
-    # Incorporates Sam's research
+    # Gets the current official color, *without* doing an update
     @property
     def currentPanelColor(self):
+        return self.__cachedPanelColor
+
+
+    def currentColorIsValid(self):
+        return self.currentPanelColor != ColorPanelConst.PanelColors.Junk and \
+               self.currentPanelColor != ColorPanelConst.PanelColors.Reset
+
+
+    # Incorporates Sam's research.  Updates our internally cached current color.
+    def updatePanelColor(self):
         sensorRGB = self.sensorColor
         sensorColorVec = Vector(sensorRGB.red, sensorRGB.green, sensorRGB.blue)
 
@@ -86,10 +96,8 @@ class ControlPanel(Subsystem):
         if (currentColor == ColorPanelConst.PanelColors.Junk):
             threshold = 10
 
-        if (self.__colorCount >= threshold and currentColor != self.__cachedPanelColor):
-            self.__cachedPanelColor = currentColor
-
-        return self.__cachedPanelColor
+        if (self.__colorCount >= threshold and currentColor != self.currentPanelColor):
+            self.currentPanelColor = currentColor
 
 
     def getBestDirection(self):
@@ -104,7 +112,9 @@ class ControlPanel(Subsystem):
 
     def seek(self):
         
-        if (self.found()):
+        self.updatePanelColor()
+
+        if (self.found() or not self.currentColorIsValid()):
             self.__motor.set(0.0)
             return
         else:

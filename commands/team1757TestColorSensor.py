@@ -168,6 +168,7 @@ class Team1757TestColorSensorCommand(Command):
         # TO TEST THE SAME LOGIC IMPLEMENTED IN THE CONTROL PANEL SUBSYSTEM.
         # SEE ALSO __init__() METHOD
         #controlPanelSystem = subsystems.team1757Subsystems.gControlPanel
+        #controlPanelSystem.updatePanelColor()
         #currentColor = controlPanelSystem.currentPanelColor
         #print(currentColor)
         #SmartDashboard.putNumber("Team1757TestColorSensorCommand.dashboard_color_sensor_detected_color", currentColor)
