@@ -1,4 +1,3 @@
-#    Uses the Lifter subsystem to lower the lifter until the lower limit is reached (and keep it there)
 import wpilib
 from wpilib.command import Command
 import subsystems
@@ -21,6 +20,7 @@ class LowerLift(Command):
         if subsystems.team1757Subsystems.lift.revstatus > subsystems.team1757Subsystems.lift.lowerlimitvalue:
             subsystems.team1757Subsystems.lift.setSpeed(self.speed)
         else:    
+            # speed = max(0, speed)
             self.speed = 0
             subsystems.team1757Subsystems.lift.setSpeed(self.speed)
     

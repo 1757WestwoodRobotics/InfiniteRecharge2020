@@ -7,35 +7,31 @@ from robotmap import Can
 
 class RaiseLift(Command):
 
-    def __init__(self, speed):
+    def __init__(self):
         Command.__init__(self, "RaiseLift")
 
         self.requires(subsystems.team1757Subsystems.lift)
     # need pneumatic subsystem bc of discbrake
-        
-        self.speed = speed
+    # disengage brake
 
     def execute(self):
-        # if limit/target position not yet reached, motors run at a set speed    
 
-        # subsystems.team1757Subsystems.lift.lift1
-        
+        # if subsystems.team1757Subsystems.lift.fwdstatus:
+        #     subsystems.team1757Subsystems.lift.lift1.setSpeed(1)
+        # else:    
+        #     subsystems.team1757Subsystems.lift.lift1.setSpeed(0)
+
+        subsystems.team1757Subsystems.lift.lift1.setSpeed(1)
+            
         if subsystems.team1757Subsystems.lift.fwdstatus:
-            self.speed = 1
-            subsystems.team1757Subsystems.lift.lift1.setSpeed(self.speed)
+            subsystems.team1757Subsystems.lift.lift1.setSpeed(0)
 
-        else:    
-            self.speed = 0
-            subsystems.team1757Subsystems.lift.lift1.setSpeed(self.speed)
 
-    # alternative way to do it idk if either works though
-        # if self.fwdstatus():
-        #     speed = min(0, speed)
-        # elif self.revstatus():
-        #     speed = max(0, speed)
 
     def end(self):
         subsystems.team1757Subsystems.lift.lift1.setSpeed(0)
+
+        # engage brake *****make sure motors are never running while brake is on!
 
     def isFinished(self):
         return False
