@@ -1,5 +1,6 @@
 import collections
 
+from libs1757.vector import Vector
 
 # This is better way to set up constants, similar to an enum in Java or C++
 # Tuples are immutable, so you don't have to worry about someone accidentally overwriting their values.
@@ -30,11 +31,17 @@ xboxButtons = collections.namedtuple("_", "A B X Y LB RB Back Start LStick RStic
 #               (this is pretty simplistic and can be replaced with something better later)
 #    RotationSense: Should be +/-1  (easy way to switch positive and negative rotation conventions)
 ColorPanelConst = (collections.namedtuple("_", ("PanelColors "
-                                                "Threshold "
+                                                "ReferenceRed "
+                                                "ReferenceGreen "
+                                                "ReferenceBlue "
+                                                "ReferenceYellow "
                                                 "RotationSense"))
-                                                (collections.namedtuple("_", "Red Green Blue Yellow") (*range(4)),
-                                                0.5,
-                                                1))
+                                                (collections.namedtuple("_", "Red Green Blue Yellow Junk Reset") (*range(6)),
+                                                 Vector(0.512329,0.348755,0.139038),
+                                                 Vector(0.168579,0.574585,0.256958),
+                                                 Vector(0.127319,0.423462,0.449097),
+                                                 Vector(0.316284,0.556763,0.126831),
+                                                 1))
 
 PCM1 = collections.namedtuple("_", ("Compressor " 
                                     "DiscBrakeF "

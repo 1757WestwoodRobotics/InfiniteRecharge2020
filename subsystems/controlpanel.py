@@ -12,41 +12,90 @@ from ctre import WPI_TalonSRX, ControlMode
 # Team 1757 stuff
 from robotmap import Can
 from robotmap import ColorPanelConst
+from libs1757.vector import Vector
 
 
 class ControlPanel(Subsystem):
     def __init__(self):
         Subsystem.__init__(self, name="ControlPanel")
         
+        # hardware we are using
         self.__colorSensor = ColorSensorV3(wpilib.I2C.Port.kOnboard)
         self.__motor = WPI_TalonSRX(Can.controlPanel)
+
+        # handy working variables ---------------------------------------------------------------
+
+        # The "official" panel color that we are reporting
+        self.__cachedPanelColor = ColorPanelConst.PanelColors.Reset
+
+        # Working parameters used to determine "official" reported panel color
+        self.__previousColor = ColorPanelConst.PanelColors.Reset
+        self.__colorCount = 0
+        self.__GreenYellowDiff = (ColorPanelConst.ReferenceGreen - ColorPanelConst.ReferenceYellow).magnitude()**2
+
+        # default target color to seek
         self.__targetColor = ColorPanelConst.PanelColors.Red
+
 
     def setTargetColor(self, targetColor):
         self.__targetColor = targetColor
+
 
     # Not really needed for API, but might be handy for testing?
     @property
     def sensorColor(self):
         return self.__colorSensor.getColor()
 
-    # Kind of simplistic for now ...
+
+    # Incorporates Sam's research
     @property
     def currentPanelColor(self):
         sensorRGB = self.sensorColor
-        if (sensorRGB.blue > ColorPanelConst.Threshold):
-            return ColorPanelConst.PanelColors.Blue
-        elif (sensorRGB.red > ColorPanelConst.Threshold):
-            if (sensorRGB.green > ColorPanelConst.Threshold):
-                return ColorPanelConst.PanelColors.Yellow
-            else:
-                return ColorPanelConst.PanelColors.Red
+        sensorColorVec = Vector(sensorRGB.red, sensorRGB.green, sensorRGB.blue)
+
+        redDist = (sensorColorVec - ColorPanelConst.ReferenceRed).magnitude()
+        currentColor = ColorPanelConst.PanelColors.Red
+        minDist = redDist
+
+        greenDist = (sensorColorVec - ColorPanelConst.ReferenceGreen).magnitude()
+        if (greenDist < minDist):
+            currentColor = ColorPanelConst.PanelColors.Green
+            minDist = greenDist
+
+        blueDist = (sensorColorVec - ColorPanelConst.ReferenceBlue).magnitude()
+        if (blueDist < minDist):
+            currentColor = ColorPanelConst.PanelColors.Blue
+            minDist = blueDist
+
+        yellowDist = (sensorColorVec - ColorPanelConst.ReferenceYellow).magnitude()
+        if (yellowDist < minDist):
+            currentColor = ColorPanelConst.PanelColors.Yellow
+            minDist = blueDist
+
+        if (minDist**2 >= 0.03*self.__GreenYellowDiff):
+            currentColor = ColorPanelConst.PanelColors.Junk
+
+        if (currentColor == self.__previousColor):
+            self.__colorCount += 1
         else:
-            return ColorPanelConst.PanelColors.Green
+            self._colorCount = 0
+
+        self.__previousColor = currentColor
+
+        threshold = 3
+        if (currentColor == ColorPanelConst.PanelColors.Junk):
+            threshold = 10
+
+        if (self.__colorCount >= threshold and currentColor != self.__cachedPanelColor):
+            self.__cachedPanelColor = currentColor
+
+        return self.__cachedPanelColor
+
 
     def getBestDirection(self):
         currentColor = self.currentPanelColor
         return -1 if self.__targetColor - currentColor == -1 else 1
+
 
     @property
     def found(self):
