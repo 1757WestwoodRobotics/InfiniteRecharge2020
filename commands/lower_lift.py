@@ -1,4 +1,5 @@
 import wpilib
+from wpilib import Solenoid
 from wpilib.command import Command
 import subsystems
 from ctre import WPI_TalonSRX
@@ -6,26 +7,23 @@ from robotmap import Can
 
 class LowerLift(Command):
 
-    def __init__(self, speed):
+    def __init__(self):
         Command.__init__(self, "LowerLift")
 
         self.requires(subsystems.team1757Subsystems.lift)
-        self.reverseLimitSwitch = wpilib.DigitalInput(2)
-        
-        self.lift1 = WPI_TalonSRX(Can.lift1)
-        self.speed = speed
+    # need pneumatic subsystem bc of discbrake
+    # disengage brake
 
     def execute(self):
-        
-        if subsystems.team1757Subsystems.lift.revstatus > subsystems.team1757Subsystems.lift.lowerlimitvalue:
-            subsystems.team1757Subsystems.lift.setSpeed(self.speed)
-        else:    
-            # speed = max(0, speed)
-            self.speed = 0
-            subsystems.team1757Subsystems.lift.setSpeed(self.speed)
-    
+        subsystems.team1757Subsystems.lift.lift1.setSpeed(1)
+            
+        if subsystems.team1757Subsystems.lift.revstatus:
+            subsystems.team1757Subsystems.lift.lift1.setSpeed(0)
+
     def end(self):
-        subsystems.team1757Subsystems.lift.setSpeed(0)
+        subsystems.team1757Subsystems.lift.lift1.setSpeed(0)
+
+        # engage brake *****make sure motors are never running while brake is on!
 
     def isFinished(self):
         return False
