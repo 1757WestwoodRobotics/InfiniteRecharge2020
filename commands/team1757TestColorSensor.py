@@ -56,6 +56,8 @@ class Team1757TestColorSensorCommand(Command):
     def __init__(self):
         Command.__init__(self)
         self.requires(subsystems.team1757Subsystems.gREVColorSensor)
+        # COMMENT OUT LINE ABOVE, AND UNCOMMENT LINE BELOW TO TEST CONTROL PANEL
+        #self.requires(subsystems.team1757Subsystems.gControlPanel)
         #self.color_timer = Timer()
 
     def execute(self):
@@ -157,6 +159,15 @@ class Team1757TestColorSensorCommand(Command):
         '''
         SmartDashboard.putNumber(Team1757TestColorSensorCommand.dashboard_color_sensor_distance_from_point_to_yellowRef, distance_to_yellowRef)
         '''
+        
+        # COMMENT EVERYTHING ELSE OUT IN THIS METHOD, AND UNCOMMENT THE FOLLOWING FOUR LINES
+        # TO TEST THE SAME LOGIC IMPLEMENTED IN THE CONTROL PANEL SUBSYSTEM.
+        # SEE ALSO __init__() METHOD
+        #controlPanelSystem = subsystems.team1757Subsystems.gControlPanel
+        #controlPanelSystem.updatePanelColor()
+        #currentColor = controlPanelSystem.currentPanelColor
+        #print(currentColor)
+        #SmartDashboard.putNumber("Team1757TestColorSensorCommand.dashboard_color_sensor_detected_color", currentColor)
 
 
 
