@@ -15,6 +15,8 @@ import commands.rotate_control_panel
 from commands.stop_compress import StopCompress
 from commands.set_solenoid import SetSolenoid
 from commands.set_solenoid_loop import SetSolenoidLoop
+from commands.raise_lift import RaiseLift
+from commands.lower_lift import LowerLift
 from commands.brake import Brake
 from commands.test import Test
 
@@ -43,6 +45,13 @@ class OI:
         JoystickButton(self.xboxController2, xboxButtons.A).toggleWhenPressed(StopCompress())
         JoystickButton(self.xboxController2, xboxButtons.Start).toggleWhenPressed(
             SetSolenoidLoop(subsystems.team1757Subsystems.pneumatics.controlPanel))
+        JoystickButton(self.xboxController, xboxButtons.A).toggleWhenPressed(StopCompress())
+
+        #Lft
+        self.raiselift = JoystickButton(self.xboxController2, xboxButtons.RB)
+        self.lowerlift = JoystickButton(self.xboxController2, xboxButtons.LB)
+        self.raiselift.whileHeld(RaiseLift(.5))
+        self.lowerlift.whileHeld(LowerLift(.5))
     
         # Turret
         self.trigger = JoystickButton(self.xboxController2, xboxButtons.B)

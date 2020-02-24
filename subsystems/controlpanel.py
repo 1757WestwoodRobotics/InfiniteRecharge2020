@@ -5,18 +5,20 @@
 # and WPI_TalonSRX motor to rotate colored control panel disk to desired color.
 
 import wpilib
+from wpilib import Solenoid
 from wpilib.command import Subsystem
 from rev.color import ColorSensorV3
 from ctre import WPI_TalonSRX, ControlMode
 
 # Team 1757 stuff
-from robotmap import Can
-from robotmap import ColorPanelConst
+from robotmap import Can, ColorPanelConst, PCM
 
 
 class ControlPanel(Subsystem):
     def __init__(self):
         Subsystem.__init__(self, name="ControlPanel")
+
+        self.controlPanel = Solenoid(Can.PCM, PCM.ControlPanel)
         
         self.__colorSensor = ColorSensorV3(wpilib.I2C.Port.kOnboard)
         self.__motor = WPI_TalonSRX(Can.controlPanel)
