@@ -22,6 +22,12 @@ class OI:
     def __init__(self, robot):
         super().__init__()
         self.robot = robot
+        
+        ''' Joysticks:
+        xboxController is main Xbox Controller
+        left and right stick are the two flight sticks
+        xboxController2 is for testing commands in oi, to avoid overwriting the actual driver commands
+        '''
         self.xboxController = XboxController(0)
         self.leftStick = Joystick(1)
         self.rightStick = Joystick(2)
@@ -31,17 +37,17 @@ class OI:
         self.RT = self.xboxController.getRawAxis(xboxAxes.RT)
 
         #Drivetrain
-        JoystickButton(self.xboxController2, xboxButtons.LB).whileHeld(Brake())
+        JoystickButton(self.xboxController, xboxButtons.LB).whileHeld(Brake())
         
         #Pneumatics
-        JoystickButton(self.xboxController, xboxButtons.A).toggleWhenPressed(StopCompress())
-        JoystickButton(self.xboxController, xboxButtons.Start).toggleWhenPressed(
+        JoystickButton(self.xboxController2, xboxButtons.A).toggleWhenPressed(StopCompress())
+        JoystickButton(self.xboxController2, xboxButtons.Start).toggleWhenPressed(
             SetSolenoidLoop(subsystems.team1757Subsystems.pneumatics.controlPanel))
     
         # Turret
-        self.trigger = JoystickButton(self.xboxController, xboxButtons.B)
-        self.toTrigger = JoystickButton(self.xboxController, xboxButtons.X)
-        self.visionTrigger = JoystickButton(self.xboxController, xboxButtons.Y)
+        self.trigger = JoystickButton(self.xboxController2, xboxButtons.B)
+        self.toTrigger = JoystickButton(self.xboxController2, xboxButtons.X)
+        self.visionTrigger = JoystickButton(self.xboxController2, xboxButtons.Y)
         self.trigger.whenPressed(commands.rotate_turret_by_angle.RotateTurretByAngle(active=True))
         SmartDashboard.putNumber(commands.rotate_turret_by_angle.RotateTurretByAngle.dashboard_kp, 0.015)
         SmartDashboard.putNumber(commands.rotate_turret_by_angle.RotateTurretByAngle.dashboard_ki, 0)
@@ -77,4 +83,4 @@ class OI:
         Assign commands to button actions, and publish your joysticks so you
         can read values from them later.
         """
-        return self.xboxController
+        return self.xboxController2
