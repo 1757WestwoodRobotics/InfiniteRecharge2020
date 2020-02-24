@@ -43,8 +43,6 @@ PCM = collections.namedtuple("_", ("Indexer1 "
                                     "DiscBrake "
                                     "ControlPanel "
                                     "Collector")) (*range(5))
-                                    
-
                                                
 
 NeutralModes = collections.namedtuple("_", "Coast Brake") (*range(2))
