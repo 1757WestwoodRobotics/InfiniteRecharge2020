@@ -27,7 +27,7 @@ class Lift(Subsystem):
         self.lowerlimitvalue = 0
         configObject = TalonSRXConfiguration()
         self.lift1.getAllConfigs(configObject)
-        configObject.set
+        # configObject.set
 
         self.discBrake = Solenoid(Can.PCM, PCM.DiscBrake)
 

@@ -20,8 +20,8 @@ class RotateControlPanel(Command):
 
     def __init__(self, active=False):
         Command.__init__(self, "RotateControlPanel")
-        self.requires(subsystems.team1757Subsystems.gControlPanel)
-        self.__controlPanelSystem = subsystems.team1757Subsystems.gControlPanel
+        self.requires(subsystems.team1757Subsystems.controlPanel)
+        self.__controlPanelSystem = subsystems.team1757Subsystems.controlPanel
 
 
     def initialize(self):
