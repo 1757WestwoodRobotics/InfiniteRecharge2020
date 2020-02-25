@@ -19,8 +19,6 @@ class ArcadeDrive(Command):
 
         self.squaredInputs = SquaredInputs
 
-        self.testmotor = WPI_TalonSRX(1)
-
     def execute(self):
         self.speed = -self.getRobot().oi.xboxController.getRawAxis(1)
         self.rotation = self.getRobot().oi.xboxController.getRawAxis(4)
