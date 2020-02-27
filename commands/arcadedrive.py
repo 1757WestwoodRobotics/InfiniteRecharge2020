@@ -6,6 +6,13 @@ from wpilib.interfaces import GenericHID
 import subsystems
 
 class ArcadeDrive(Command):
+    '''
+    Command to drive robot using xbox controller arcade drive
+
+    Parameters:
+
+    Squared Inputs: If arcade drive should scale inputs exponentially to create more gradual acceleration; if not specified, defaults False
+    '''
 
     def __init__(self, SquaredInputs = True):
         Command.__init__(self, "ArcadeDrive")

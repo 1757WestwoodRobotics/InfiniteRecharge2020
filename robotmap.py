@@ -19,7 +19,8 @@ Can = collections.namedtuple("_", ("leftFront "
                                    "turret "
                                    "controlPanel "
                                    "lift1 "
-                                   "lift2")) (*range(13))
+                                   "lift2 "
+                                   "PCM")) (*range(14))
 
 xboxButtons = collections.namedtuple("_", "A B X Y LB RB Back Start LStick RStick") (1,2,3,4,5,6,7,8,9,10)
 
@@ -43,13 +44,11 @@ ColorPanelConst = (collections.namedtuple("_", ("PanelColors "
                                                  Vector(0.316284,0.556763,0.126831),
                                                  1))
 
-PCM1 = collections.namedtuple("_", ("Compressor " 
-                                    "DiscBrakeF "
-                                    "DiscBrakeB "
-                                    "BallRelease1F "
-                                    "BallRelease1B "
-                                    "BallRelease2F "
-                                    "BallRelease2B")) (*range(7))
+PCM = collections.namedtuple("_", ("DiscBrake "
+                                    "Indexer1 "
+                                    "Indexer2 "
+                                    "ControlPanel "
+                                    "Collector")) (*range(5))
                                     
 
                                                

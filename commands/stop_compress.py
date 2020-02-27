@@ -4,6 +4,12 @@ from wpilib.command import Command
 import subsystems
 
 class StopCompress(Command):
+    '''
+    Command for compressor to stop compressing air.
+    
+    The default state of the compress is enabled,
+    and when the command ends, the compressor is reenabled.
+    '''
 
     def __init__(self):
         Command.__init__(self, "Stop Compress")

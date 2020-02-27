@@ -15,7 +15,7 @@ class Drivetrain(Subsystem):
         Subsystem.__init__(self, "Drivetrain")
 
         self.leftFront = WPI_TalonSRX(Can.leftFront)
-        self.rightFront = WPI_TalonSRX(1)
+        self.rightFront = WPI_TalonSRX(Can.rightFront)
         self.leftBack = WPI_TalonSRX(Can.leftBack)
         self.rightBack = WPI_TalonSRX(Can.rightBack)
 
