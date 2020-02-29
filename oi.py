@@ -48,8 +48,8 @@ class OI:
         JoystickButton(self.xboxController, xboxButtons.A).toggleWhenPressed(StopCompress())
 
         #Lft
-        JoystickButton(self.xboxController, xboxButtons.Y).whileHeld(RaiseLift())
-        JoystickButton(self.xboxController, xboxButtons.A).whileHeld(LowerLift())
+        JoystickButton(self.xboxController, xboxButtons.Y).whileHeld(RaiseLift(.5))
+        JoystickButton(self.xboxController, xboxButtons.A).whileHeld(LowerLift(.5))
     
         # Turret
         self.trigger = JoystickButton(self.xboxController2, xboxButtons.B)
