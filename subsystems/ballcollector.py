@@ -3,6 +3,7 @@ from wpilib import DoubleSolenoid
 from ctre import WPI_TalonSRX
 from robotmap import Can, PCM
 from wpilib.command import Subsystem
+from commands.spin_ball_collector import SpinBallCollector
 
 class BallCollector(Subsystem):
     
@@ -15,5 +16,5 @@ class BallCollector(Subsystem):
     def spin(self, speed):
         self.collectormotor.set(speed)
 
-    def stopSpin(self):
-        self.collectormotor.set(0)
+    def initDefaultCommand(self):
+        self.setDefaultCommand(SpinBallCollector(1))
