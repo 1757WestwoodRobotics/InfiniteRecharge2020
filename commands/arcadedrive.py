@@ -1,5 +1,4 @@
 import wpilib
-from ctre import WPI_TalonSRX
 from wpilib.command import Command
 import subsystems
 
