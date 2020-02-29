@@ -30,7 +30,7 @@ class Drivetrain(Subsystem):
     def tankDrive(self, leftSpeed, rightSpeed, SquaredInputs):
         self.differentialDrive.tankDrive(leftSpeed, rightSpeed, SquaredInputs)
 
-    def setNeutralMode(self, braking):
+    def setBraking(self, braking):
         if braking:
             self.leftFront.setNeutralMode(NeutralMode.Brake)
             self.rightFront.setNeutralMode(NeutralMode.Brake)
