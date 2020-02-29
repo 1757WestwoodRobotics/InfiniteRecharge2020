@@ -15,6 +15,9 @@ from robotmap import Can
 from robotmap import ColorPanelConst
 from robotmap import PCM
 from libs1757.vector import Vector
+from commands.testControlPanelColor import TestControlPanelColor
+
+
 
 class ControlPanel(Subsystem):
     def __init__(self):
@@ -91,7 +94,7 @@ class ControlPanel(Subsystem):
         if (currentColor == self.__previousColor):
             self.__colorCount += 1
         else:
-            self._colorCount = 0
+            self.__colorCount = 0
 
         self.__previousColor = currentColor
 
@@ -127,3 +130,5 @@ class ControlPanel(Subsystem):
             self.__motor.set(ColorPanelConst.RotationSense*bestDirection*speed)
 
 
+    def initDefaultCommand(self):
+        self.setDefaultCommand(TestControlPanelColor())
