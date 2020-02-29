@@ -45,7 +45,6 @@ class OI:
         JoystickButton(self.xboxController2, xboxButtons.A).toggleWhenPressed(StopCompress())
         JoystickButton(self.xboxController2, xboxButtons.Start).toggleWhenPressed(
             SetSolenoidLoop(subsystems.team1757Subsystems.controlPanel.controlPanel))
-        JoystickButton(self.xboxController, xboxButtons.A).toggleWhenPressed(StopCompress())
 
         #Lft
         JoystickButton(self.xboxController, xboxButtons.Y).whileHeld(RaiseLift(.5))
