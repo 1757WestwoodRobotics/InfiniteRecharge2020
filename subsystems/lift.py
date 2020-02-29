@@ -45,7 +45,7 @@ class Lift(Subsystem):
         self.revstatus = self.lift1.isRevLimitSwitchClosed()
         #get the status of limit switch (returns an int)
 
-        if self.fwdstatus:
-            print(self.fwdstatus)
-        elif self.revstatus:
-            print(self.revstatus)
+        # if self.fwdstatus:
+        #     print(self.fwdstatus)
+        # elif self.revstatus:
+        #     print(self.revstatus)
