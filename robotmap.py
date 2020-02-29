@@ -28,9 +28,10 @@ xboxAxes = collections.namedtuple("_", "LSX LSY LT RT RSX RSY") (*range(6))
 
 # Constants required by /associated with the ControlPanel subsystem and command.
 # Members:
-#    PanelColors: the four colors, accessed like this: ColorPanelConst.PanelColors.Red
-#    Threshold: Minimum R, G, B or (R and G) value to indicate Red, Green, Blue or Yellow detected.
-#               (this is pretty simplistic and can be replaced with something better later)
+#    PanelColors: the four colors, plus two extra references, accessed like this: ColorPanelConst.PanelColors.Red
+#    ReferenceRed, ReferenceGreen, ReferenceBlue, ReferenceYellow: (R,G,B) vectors which hold the expected R,G,B
+#    values when the sensor is pointed at the Red, Green, Blue, Yellow octants on the control panel wheel.
+#    NOTE: THESE SHOULD BE ADJUSTED IN EACH NEW LIGHTING ENVIRONMENT!
 #    RotationSense: Should be +/-1  (easy way to switch positive and negative rotation conventions)
 ColorPanelConst = (collections.namedtuple("_", ("PanelColors "
                                                 "ReferenceRed "
@@ -50,6 +51,3 @@ PCM = collections.namedtuple("_", ("Indexer1 "
                                     "DiscBrake "
                                     "ControlPanel "
                                     "Collector")) (*range(5))
-                                               
-
-NeutralModes = collections.namedtuple("_", "Coast Brake") (*range(2))

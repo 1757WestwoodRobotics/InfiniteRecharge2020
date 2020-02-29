@@ -13,10 +13,10 @@ class Brake(Command):
         Command.__init__(self, "Brake")
 
     def initialize(self):
-        subsystems.team1757Subsystems.drivetrain.setNeutralMode(True)
+        subsystems.team1757Subsystems.drivetrain.setBraking(True)
 
     def end(self):
-        subsystems.team1757Subsystems.drivetrain.setNeutralMode(False)
+        subsystems.team1757Subsystems.drivetrain.setBraking(False)
 
     def isFinished(self):
         return False 
