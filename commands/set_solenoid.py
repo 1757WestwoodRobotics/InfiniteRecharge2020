@@ -11,7 +11,7 @@ class SetSolenoid(InstantCommand):
 
     Solenoid: The solenoid from the pneumatics subsystem that will be manipulated
 
-    Position: Position to set the solenoid to: DoubleSolenoid.Value.kForward/kReverse/kOff
+    Enabled: If true, the solenoid is extended, if false, the solenoid is retracted
     '''
 
     def __init__(self, solenoid, enabled):
