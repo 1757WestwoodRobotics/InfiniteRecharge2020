@@ -15,6 +15,9 @@ from robotmap import Can
 from robotmap import ColorPanelConst
 from robotmap import PCM
 from libs1757.vector import Vector
+from commands.testControlPanelColor import TestControlPanelColor
+
+
 
 class ControlPanel(Subsystem):
     def __init__(self):
@@ -127,3 +130,5 @@ class ControlPanel(Subsystem):
             self.__motor.set(ColorPanelConst.RotationSense*bestDirection*speed)
 
 
+    def initDefaultCommand(self):
+        self.setDefaultCommand(TestControlPanelColor())
