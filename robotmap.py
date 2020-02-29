@@ -46,10 +46,9 @@ ColorPanelConst = (collections.namedtuple("_", ("PanelColors "
                                                  1))
 
 PCM = collections.namedtuple("_", ("Indexer1 "
-                                    "Indexer2 "
                                     "DiscBrake "
                                     "ControlPanel "
-                                    "Collector")) (*range(5))
+                                    "Collector")) (*range(4))
                                                
 
 NeutralModes = collections.namedtuple("_", "Coast Brake") (*range(2))
