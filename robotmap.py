@@ -19,8 +19,7 @@ Can = collections.namedtuple("_", ("leftFront "
                                    "turret "
                                    "controlPanel "
                                    "lift1 "
-                                   "lift2 "
-                                   "PCM")) (*range(14))
+                                   "PCM")) (*range(13))
 
 xboxButtons = collections.namedtuple("_", "A B X Y LB RB Back Start LStick RStick") (1,2,3,4,5,6,7,8,9,10)
 
@@ -51,8 +50,6 @@ PCM = collections.namedtuple("_", ("Indexer1 "
                                     "DiscBrake "
                                     "ControlPanel "
                                     "Collector")) (*range(5))
-                                    
-
                                                
 
 NeutralModes = collections.namedtuple("_", "Coast Brake") (*range(2))

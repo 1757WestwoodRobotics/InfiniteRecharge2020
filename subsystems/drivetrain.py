@@ -1,5 +1,5 @@
 import wpilib
-from wpilib import drive, SpeedControllerGroup, drive
+from wpilib import drive, SpeedControllerGroup
 from ctre import WPI_TalonSRX, NeutralMode
 from wpilib.interfaces import GenericHID
 
