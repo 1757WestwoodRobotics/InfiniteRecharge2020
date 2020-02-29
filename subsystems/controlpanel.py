@@ -16,7 +16,6 @@ from robotmap import ColorPanelConst
 from robotmap import PCM
 from libs1757.vector import Vector
 
-
 class ControlPanel(Subsystem):
     def __init__(self):
         Subsystem.__init__(self, name="ControlPanel")
