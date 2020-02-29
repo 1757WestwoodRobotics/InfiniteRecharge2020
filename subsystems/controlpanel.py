@@ -5,7 +5,7 @@
 # and WPI_TalonSRX motor to rotate colored control panel disk to desired color.
 
 import wpilib
-from wpilib import Solenoid
+from wpilib import DoubleSolenoid
 from wpilib.command import Subsystem
 from rev.color import ColorSensorV3
 from ctre import WPI_TalonSRX, ControlMode
@@ -20,7 +20,7 @@ class ControlPanel(Subsystem):
     def __init__(self):
         Subsystem.__init__(self, name="ControlPanel")
 
-        self.controlPanel = Solenoid(Can.PCM, PCM.ControlPanel)
+        self.controlPanel = DoubleSolenoid(Can.PCM, PCM.ControlPanelF, PCM.ControlPanelR)
         
         # hardware we are using
         self.__colorSensor = ColorSensorV3(wpilib.I2C.Port.kOnboard)
