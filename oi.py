@@ -15,6 +15,8 @@ import commands.rotate_control_panel
 from commands.stop_compress import StopCompress
 from commands.set_solenoid import SetSolenoid
 from commands.set_solenoid_loop import SetSolenoidLoop
+from commands.set_double_solenoid import SetDoubleSolenoid
+from commands.set_double_solenoid_loop import SetDoubleSolenoidLoop
 from commands.raise_lift import RaiseLift
 from commands.lower_lift import LowerLift
 from commands.brake import Brake
@@ -44,15 +46,15 @@ class OI:
         #Pneumatics
         JoystickButton(self.xboxController2, xboxButtons.A).toggleWhenPressed(StopCompress())
         JoystickButton(self.xboxController2, xboxButtons.Start).toggleWhenPressed(
-            SetSolenoidLoop(subsystems.team1757Subsystems.controlPanel.controlPanel))
+            SetDoubleSolenoidLoop(subsystems.team1757Subsystems.controlPanel.controlPanel))
 
         #Lift
         JoystickButton(self.xboxController, xboxButtons.Y).whileHeld(RaiseLift(.5))
         JoystickButton(self.xboxController, xboxButtons.A).whileHeld(LowerLift(.5))
         JoystickButton(self.xboxController, xboxButtons.B).whenPressed(
-            SetSolenoid(subsystems.team1757Subsystems.lift.discBrake, True))
+            SetDoubleSolenoid(subsystems.team1757Subsystems.lift.discBrake, DoubleSolenoid.Value.kForward))
         JoystickButton(self.xboxController, xboxButtons.Back).whenPressed(
-            SetSolenoid(subsystems.team1757Subsystems.lift.discBrake, False))
+            SetDoubleSolenoid(subsystems.team1757Subsystems.lift.discBrake, DoubleSolenoid.Value.kReverse))
     
         # Turret
         self.trigger = JoystickButton(self.xboxController2, xboxButtons.B)
