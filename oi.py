@@ -39,8 +39,6 @@ class OI:
 
         #Drivetrain
         JoystickButton(self.xboxController, xboxButtons.LB).whileHeld(Brake())
-
-        #Ball Collector
         
         #Pneumatics
         JoystickButton(self.xboxController2, xboxButtons.A).toggleWhenPressed(StopCompress())
