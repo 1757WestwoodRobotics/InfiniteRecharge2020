@@ -24,4 +24,4 @@ class SetSolenoid(InstantCommand):
         self.solenoid.set(self.enabled)
 
     def isFinished(self):
-        return False
+        return True
