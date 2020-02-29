@@ -88,7 +88,7 @@ class ControlPanel(Subsystem):
         if (currentColor == self.__previousColor):
             self.__colorCount += 1
         else:
-            self._colorCount = 0
+            self.__colorCount = 0
 
         self.__previousColor = currentColor
 
