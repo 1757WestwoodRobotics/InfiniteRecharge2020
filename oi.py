@@ -37,11 +37,10 @@ class OI:
         self.rightStick = Joystick(2)
         self.xboxController2 = XboxController(3)
 
-        self.LT = self.xboxController.getRawAxis(xboxAxes.LT)
-        self.RT = self.xboxController.getRawAxis(xboxAxes.RT)
-
         #Drivetrain
         JoystickButton(self.xboxController, xboxButtons.LB).whileHeld(Brake())
+
+        #Ball Collector
         
         #Pneumatics
         JoystickButton(self.xboxController2, xboxButtons.A).toggleWhenPressed(StopCompress())
@@ -56,7 +55,7 @@ class OI:
         JoystickButton(self.xboxController, xboxButtons.Back).whenPressed(
             SetDoubleSolenoid(subsystems.team1757Subsystems.lift.discBrake, DoubleSolenoid.Value.kReverse))
     
-        # Turret
+        #Turret
         self.trigger = JoystickButton(self.xboxController2, xboxButtons.B)
         self.toTrigger = JoystickButton(self.xboxController2, xboxButtons.X)
         self.visionTrigger = JoystickButton(self.xboxController2, xboxButtons.Y)
@@ -84,7 +83,7 @@ class OI:
         SmartDashboard.putNumber(commands.rotate_turret_vision.RotateTurretVision.dashboard_integrator_max,  0.015)
         SmartDashboard.putNumber(commands.rotate_turret_vision.RotateTurretVision.dashboard_tolerance, 0)
 
-        # Control Panel
+        #Control Panel
         self.controlPanelTrigger = JoystickButton(self.leftStick, 3)
         self.controlPanelTrigger.whileHeld(commands.rotate_control_panel.RotateControlPanel(active=True))
         SmartDashboard.setFlags(commands.rotate_control_panel.RotateControlPanel.DashboardControlPanelTargetColorKey, ColorPanelConst.PanelColors.Red)
