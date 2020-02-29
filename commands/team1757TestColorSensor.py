@@ -2,6 +2,15 @@
 # 2020
 
 # Simple Command class for testing the REV Robotics ColorSensorV3
+#
+# ATTENTION!!!!
+# THIS IS *TEST* CODE!  DO *NOT* DO DEVELOPMENT IN THIS FILE!
+# IT SHOULD ONLY BE USED FOR BASIC SANITY CHECKS ON THE COLOR SENSOR ITSELF,
+# PLUS WE WILL NEED IT TO CALIBRATE CONTROL PANEL REFERENCE COLORS ON 
+# COMPETITION DAY.
+#
+# Thank you.
+
 
 import wpilib
 from wpilib.command import Command
