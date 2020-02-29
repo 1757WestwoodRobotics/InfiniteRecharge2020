@@ -25,8 +25,8 @@ class Lift(Subsystem):
         self.lift1 = WPI_TalonSRX(Can.lift1)
         self.upperlimitvalue = 21 * Lift.inches_to_encodercounts_factor 
         self.lowerlimitvalue = 0
-        # configObject = TalonSRXConfiguration()
-        # self.lift1.getAllConfigs(configObject)
+        configObject = TalonSRXConfiguration()
+        self.lift1.getAllConfigs(configObject)
         # configObject.set
 
         self.discBrake = Solenoid(Can.PCM, PCM.DiscBrake)
@@ -45,7 +45,7 @@ class Lift(Subsystem):
         self.revstatus = self.lift1.isRevLimitSwitchClosed()
         #get the status of limit switch (returns an int)
 
-        if self.fwdstatus:
-            print(self.fwdstatus)
-        elif self.revstatus:
-            print(self.revstatus)
+        # if self.fwdstatus:
+        #     print(self.fwdstatus)
+        # elif self.revstatus:
+        #     print(self.revstatus)
