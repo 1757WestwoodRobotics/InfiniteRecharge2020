@@ -1,7 +1,10 @@
 # Westwood FRC Team 1757
 # 2020
 
-# Simple Command class for testing the REV Robotics ColorSensorV3
+# Simple Command class for working out the control panel color detection algorithm.
+# This algorithm has been re-factored and pushed down into the controlpanel subsystem,
+# so this command should be retired in favor of TestControlPanelColor2, which is a
+# Command class that uses the controlpanel subsystem.
 
 import wpilib
 from wpilib import SmartDashboard
