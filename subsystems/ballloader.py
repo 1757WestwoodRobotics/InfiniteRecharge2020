@@ -13,9 +13,9 @@ class BallLoader(Subsystem):
         self.upper = WPI_TalonSRX(Can.ballShooterUpper)
         self.lower = WPI_TalonSRX(Can.ballShooterLower)
 
-    def spin(self, speed):
-        self.upper.set(speed)
-        self.lower.set(speed)
+    def spin(self, lowerSpeed, upperSpeed):
+        self.upper.set(upperSpeed)
+        self.lower.set(lowerSpeed)
 
     def stopSpin(self):
         self.upper.set(0)
