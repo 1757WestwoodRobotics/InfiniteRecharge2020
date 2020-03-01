@@ -16,6 +16,7 @@ from robotmap import ColorPanelConst
 from robotmap import PCM
 from libs1757.vector import Vector
 from commands.testControlPanelColor import TestControlPanelColor
+from commands.testControlPanelColor2 import TestControlPanelColor2
 
 
 
@@ -133,3 +134,4 @@ class ControlPanel(Subsystem):
 
     def initDefaultCommand(self):
         self.setDefaultCommand(TestControlPanelColor())
+        #self.setDefaultCommand(TestControlPanelColor2())
