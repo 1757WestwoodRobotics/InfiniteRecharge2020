@@ -6,7 +6,7 @@ class StopCompress(Command):
     '''
     Command for compressor to stop compressing air.
     
-    The default state of the compress is enabled,
+    The default state of the compressor is enabled,
     and when the command ends, the compressor is reenabled.
     '''
 
