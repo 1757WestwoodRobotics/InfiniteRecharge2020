@@ -11,7 +11,6 @@ from robotmap import ColorPanelConst, xboxButtons, xboxAxes, ControlSystem
 import commands.rotate_turret_by_angle
 import commands.rotate_turret_to_angle
 import commands.rotate_turret_vision
-import commands.rotate_control_panel
 from commands.stop_compress import StopCompress
 from commands.set_solenoid import SetSolenoid
 from commands.set_solenoid_loop import SetSolenoidLoop
@@ -21,7 +20,6 @@ from commands.raise_lift import RaiseLift
 from commands.lower_lift import LowerLift
 from commands.brake import Brake
 from commands.test import Test
-from commands.rotate_control_panel_manual import RotateControlPanelManual
 from commands.spin_ball_loader import SpinBallLoader
 from commands.shooter_spin import ShooterSpin
 from commands.rotate_turret_vision import RotateTurretVision
@@ -73,12 +71,6 @@ class OI:
         
         #Pneumatics
         JoystickButton(self.controlSystem, ControlSystem.Switch5).whileHeld(StopCompress())
-
-        #Control Panel
-        # JoystickButton(self.controlSystem, ControlSystem.Switch6).whileHeld(
-        #     SetDoubleSolenoidLoop(subsystems.team1757Subsystems.controlPanel.controlPanel))
-        # JoystickButton(self.controlSystem, ControlSystem.Button9).whileHeld(
-        #     RotateControlPanelManual(.5))  
 
         #Ball Loader
         JoystickButton(self.controlSystem, ControlSystem.Switch1).whileHeld(

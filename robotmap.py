@@ -17,9 +17,8 @@ Can = collections.namedtuple("_", ("leftFront "
                                    "ballShooterLower "
                                    "ballShooterUpper "
                                    "turret "
-                                   "controlPanel "
                                    "lift1 "
-                                   "PCM")) (*range(13))
+                                   "PCM")) (*range(12))
 
 xboxButtons = collections.namedtuple("_", "A B X Y LB RB Back Start LStick RStick") (*range(1, 11))
 
@@ -50,10 +49,8 @@ PCM = collections.namedtuple("_", ("IndexerF "
                                     "IndexerR "
                                     "DiscBrakeF "
                                     "DiscBrakeR "
-                                    "ControlPanelF "
-                                    "ControlPanelR "
                                     "CollectorF "
-                                    "CollectorR")) (*range(8))
+                                    "CollectorR")) (*range(6))
 
 ControlSystem = collections.namedtuple("_", (   "Switch1 " 
                                                 "Switch2 "
