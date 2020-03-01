@@ -39,7 +39,8 @@ class OI:
         self.controlSystem = Joystick(3)
         self.xboxController2 = XboxController(4)
 
-        #---Xbox Controller---#
+        
+        # |---Xbox Controller---|
 
         #Drivetrain
         JoystickButton(self.xboxController, xboxButtons.LB).whileHeld(Brake())
@@ -56,6 +57,24 @@ class OI:
         JoystickButton(self.xboxController2, xboxButtons.A).toggleWhenPressed(StopCompress())
         JoystickButton(self.xboxController2, xboxButtons.Start).toggleWhenPressed(
             SetDoubleSolenoidLoop(subsystems.team1757Subsystems.controlPanel.controlPanel))
+
+        #Ball Collector - NOTE: RT is bound to spin inwards, LT is bound to spin outwards
+
+        
+        # |---Control System---|
+
+        #Ball Collector
+        JoystickButton(self.controlSystem, 1).whileHeld(
+            SetDoubleSolenoidLoop(subsystems.team1757Subsystems.ballCollector.collectorSolenoid))
+        
+        #Pneumatics
+        JoystickButton(self.controlSystem, 2).whileHeld(StopCompress())
+
+        #Control Panel
+        JoystickButton(self.controlSystem, 3).whileHeld(
+            SetDoubleSolenoidLoop(subsystems.team1757Subsystems.controlPanel.controlPanel))
+
+        # |---Xbox Controller 2---|
     
         #Turret
         self.trigger = JoystickButton(self.xboxController2, xboxButtons.B)
@@ -96,4 +115,4 @@ class OI:
         Assign commands to button actions, and publish your joysticks so you
         can read values from them later.
         """
-        return self.xboxController2
+        return self.xboxController
