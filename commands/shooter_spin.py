@@ -1,10 +1,10 @@
 from wpilib.command import Command
 import subsystems
 
-class SpinUp(Command):
+class ShooterSpin(Command):
 
     def __init__(self):
-        Command.__init__(self, "Spin Shooter")
+        Command.__init__(self, "Shooter Spin")
         self.requires(subsystems.team1757Subsystems.shooter)
 
     def execute(self):
