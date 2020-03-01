@@ -1,11 +1,16 @@
 import wpilib
-from wpilib import SmartDashboard
 from ctre import WPI_TalonSRX
 from wpilib.command import Command
-from wpilib.interfaces import GenericHID
 import subsystems
 
 class ArcadeDrive(Command):
+    '''
+    Command to drive robot using xbox controller arcade drive
+
+    Parameters:
+
+    Squared Inputs: If arcade drive should scale inputs exponentially to create more gradual acceleration; if not specified, defaults False
+    '''
 
     def __init__(self, SquaredInputs = True):
         Command.__init__(self, "ArcadeDrive")
@@ -13,8 +18,6 @@ class ArcadeDrive(Command):
         self.requires(subsystems.team1757Subsystems.drivetrain)
 
         self.squaredInputs = SquaredInputs
-
-        self.testmotor = WPI_TalonSRX(1)
 
     def execute(self):
         self.speed = -self.getRobot().oi.xboxController.getRawAxis(1)

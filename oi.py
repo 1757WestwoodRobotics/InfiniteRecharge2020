@@ -6,6 +6,8 @@ from wpilib.command import JoystickButton
 from wpilib import DoubleSolenoid
 
 # Team 1757 stuff
+import subsystems
+from robotmap import ColorPanelConst, xboxButtons, xboxAxes
 import commands.rotate_turret_by_angle
 import commands.rotate_turret_to_angle
 import commands.rotate_turret_vision
@@ -13,28 +15,45 @@ import commands.rotate_control_panel
 from commands.stop_compress import StopCompress
 from commands.set_solenoid import SetSolenoid
 from commands.set_solenoid_loop import SetSolenoidLoop
-from robotmap import ColorPanelConst, xboxButtons
-import subsystems
-
+from commands.raise_lift import RaiseLift
+from commands.lower_lift import LowerLift
+from commands.brake import Brake
+from commands.test import Test
 
 class OI:
     def __init__(self, robot):
         super().__init__()
         self.robot = robot
+        
+        ''' Joysticks:
+        xboxController is main Xbox Controller
+        left and right stick are the two flight sticks
+        xboxController2 is for testing commands in oi, to avoid overwriting the actual driver commands
+        '''
         self.xboxController = XboxController(0)
         self.leftStick = Joystick(1)
         self.rightStick = Joystick(2)
+        self.xboxController2 = XboxController(3)
 
+        self.LT = self.xboxController.getRawAxis(xboxAxes.LT)
+        self.RT = self.xboxController.getRawAxis(xboxAxes.RT)
+
+        #Drivetrain
+        JoystickButton(self.xboxController, xboxButtons.LB).whileHeld(Brake())
+        
         #Pneumatics
-        JoystickButton(self.xboxController, xboxButtons.A).toggleWhenPressed(StopCompress())
-        JoystickButton(self.xboxController, xboxButtons.Start).toggleWhenPressed(
-            SetSolenoidLoop(subsystems.team1757Subsystems.pneumatics.discbrake))
+        JoystickButton(self.xboxController2, xboxButtons.A).toggleWhenPressed(StopCompress())
+        JoystickButton(self.xboxController2, xboxButtons.Start).toggleWhenPressed(
+            SetSolenoidLoop(subsystems.team1757Subsystems.controlPanel.controlPanel))
 
+        #Lft
+        JoystickButton(self.xboxController, xboxButtons.Y).whileHeld(RaiseLift(.5))
+        JoystickButton(self.xboxController, xboxButtons.A).whileHeld(LowerLift(.5))
     
         # Turret
-        self.trigger = JoystickButton(self.xboxController, xboxButtons.B)
-        self.toTrigger = JoystickButton(self.xboxController, xboxButtons.X)
-        self.visionTrigger = JoystickButton(self.xboxController, xboxButtons.Y)
+        self.trigger = JoystickButton(self.xboxController2, xboxButtons.B)
+        self.toTrigger = JoystickButton(self.xboxController2, xboxButtons.X)
+        self.visionTrigger = JoystickButton(self.xboxController2, xboxButtons.Y)
         self.trigger.whenPressed(commands.rotate_turret_by_angle.RotateTurretByAngle(active=True))
         SmartDashboard.putNumber(commands.rotate_turret_by_angle.RotateTurretByAngle.dashboard_kp, 0.015)
         SmartDashboard.putNumber(commands.rotate_turret_by_angle.RotateTurretByAngle.dashboard_ki, 0)
@@ -70,4 +89,4 @@ class OI:
         Assign commands to button actions, and publish your joysticks so you
         can read values from them later.
         """
-        return self.xboxController
+        return self.xboxController2

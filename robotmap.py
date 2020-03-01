@@ -19,16 +19,19 @@ Can = collections.namedtuple("_", ("leftFront "
                                    "turret "
                                    "controlPanel "
                                    "lift1 "
-                                   "lift2")) (*range(13))
+                                   "PCM")) (*range(13))
 
 xboxButtons = collections.namedtuple("_", "A B X Y LB RB Back Start LStick RStick") (1,2,3,4,5,6,7,8,9,10)
+
+xboxAxes = collections.namedtuple("_", "LSX LSY LT RT RSX RSY") (*range(6))
 
 
 # Constants required by /associated with the ControlPanel subsystem and command.
 # Members:
-#    PanelColors: the four colors, accessed like this: ColorPanelConst.PanelColors.Red
-#    Threshold: Minimum R, G, B or (R and G) value to indicate Red, Green, Blue or Yellow detected.
-#               (this is pretty simplistic and can be replaced with something better later)
+#    PanelColors: the four colors, plus two extra references, accessed like this: ColorPanelConst.PanelColors.Red
+#    ReferenceRed, ReferenceGreen, ReferenceBlue, ReferenceYellow: (R,G,B) vectors which hold the expected R,G,B
+#    values when the sensor is pointed at the Red, Green, Blue, Yellow octants on the control panel wheel.
+#    NOTE: THESE SHOULD BE ADJUSTED IN EACH NEW LIGHTING ENVIRONMENT!
 #    RotationSense: Should be +/-1  (easy way to switch positive and negative rotation conventions)
 ColorPanelConst = (collections.namedtuple("_", ("PanelColors "
                                                 "ReferenceRed "
@@ -43,15 +46,8 @@ ColorPanelConst = (collections.namedtuple("_", ("PanelColors "
                                                  Vector(0.316284,0.556763,0.126831),
                                                  1))
 
-PCM1 = collections.namedtuple("_", ("Compressor " 
-                                    "DiscBrakeF "
-                                    "DiscBrakeB "
-                                    "BallRelease1F "
-                                    "BallRelease1B "
-                                    "BallRelease2F "
-                                    "BallRelease2B")) (*range(7))
-                                    
-
-                                               
-
-NeutralModes = collections.namedtuple("_", "Coast Brake") (*range(2))
+PCM = collections.namedtuple("_", ("Indexer1 "
+                                    "Indexer2 "
+                                    "DiscBrake "
+                                    "ControlPanel "
+                                    "Collector")) (*range(5))

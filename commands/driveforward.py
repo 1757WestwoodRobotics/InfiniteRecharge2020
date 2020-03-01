@@ -12,7 +12,7 @@ class DriveForward(TimedCommand):
 
     Output: Motor output from -1 to 1; if not specified, default is 1
 
-    Timeout: Time in seconds that the command runs for ; if not specified, deafault is 2
+    Timeout: Time in seconds that the command runs for ; if not specified, deafault is 2 seconds
     '''
 
     def __init__(self, output = 1, timeout = 2):

@@ -1,10 +1,11 @@
 import wpilib
-from wpilib import SmartDashboard
 from wpilib.command import Command
-from wpilib.interfaces import GenericHID
 import subsystems
 
 class TankDrive(Command):
+    '''
+    Command to drive robot using two-joystick tank drive
+    '''
 
     def __init__(self):
         Command.__init__(self, "TankDrive")

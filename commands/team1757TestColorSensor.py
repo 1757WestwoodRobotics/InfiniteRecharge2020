@@ -2,72 +2,29 @@
 # 2020
 
 # Simple Command class for testing the REV Robotics ColorSensorV3
+#
+# ATTENTION!!!!
+# THIS IS *TEST* CODE!  DO *NOT* DO DEVELOPMENT IN THIS FILE!
+# IT SHOULD ONLY BE USED FOR BASIC SANITY CHECKS ON THE COLOR SENSOR ITSELF,
+# PLUS WE WILL NEED IT TO CALIBRATE CONTROL PANEL REFERENCE COLORS ON 
+# COMPETITION DAY.
+#
+# Thank you.
+
 
 import wpilib
-from wpilib import SmartDashboard
-from wpilib import Timer
 from wpilib.command import Command
 import subsystems
-import time
 
 class Team1757TestColorSensorCommand(Command):
-    '''outputs'''
-    dashboard_color_sensor_ir = "read_color_sensor_ir"
-    dashboard_color_sensor_red = "read_color_sensor_red"
-    dashboard_color_sensor_green = "read_color_sensor_green"
-    dashboard_color_sensor_blue = "read_color_sensor_blue"
-    dashboard_color_sensor_proximity = "read_color_sensor_proximity"
-    dashboard_color_sensor_detected_color = "read_color_detected_color"
-    dashboard_color_sensor_loops = "read_color_loops"
-    dashboard_color_sensor_distance_from_point_to_redRef = "read_color_distance_from_point_to_redRef"
-    dashboard_color_sensor_distance_from_point_to_greenRef = "read_color_distance_from_point_to_greenRef"
-    dashboard_color_sensor_distance_from_point_to_blueRef = "read_color_distance_from_point_to_blueRef"
-    dashboard_color_sensor_distance_from_point_to_yellowRef = "read_color_distance_from_point_to_yellowRef"
-    
-    #red
-    redRef = [0.512329,0.348755,0.139038] #Coordinate values that DO NOT CHANGE
-
-    #green
-    greenRef = [0.168579,0.574585,0.256958] #Coordinate values that DO NOT CHANGE
-
-    #blue
-    blueRef = [0.127319,0.423462,0.449097] #Coordinate values that DO NOT CHANGE
-
-    #yellow
-    yellowRef = [0.316284,0.556763,0.126831] #Coordinate values that DO NOT CHANGE  
-
-    #distance from yellow to green
-    yg_distance = (yellowRef[0] - greenRef[0])**2 + (yellowRef[1] - greenRef[1])**2 + (yellowRef[2] - greenRef[2])**2
-
-    color_prev = 5
-    color_count = 0
-    color_out = 5
-
-    # 0 = red, 1 = green, 2 = blue, 3 = yellow, 4 = garbage
-    colors = [0, 1, 2, 3]
-
-    # the next expected color, if not what it's supposed to be, the result is garbage
-    #color_expected = 5
-
-    # 1 is clockwise, -1 is counterclockwise
-    #rotation =  1
-    #loops = 0
 
     def __init__(self):
         Command.__init__(self)
+
         self.requires(subsystems.team1757Subsystems.gREVColorSensor)
-        # COMMENT OUT LINE ABOVE, AND UNCOMMENT LINE BELOW TO TEST CONTROL PANEL
-        #self.requires(subsystems.team1757Subsystems.gControlPanel)
-        #self.color_timer = Timer()
+        
 
     def execute(self):
-        '''
-        #timer stuff
-        self.color_timer.reset()
-        self.color_timer.start()'''
-
-        threshold = 3
-
         theSensor = subsystems.team1757Subsystems.gREVColorSensor
         # Get the sensor attributes
         color = theSensor.color
@@ -172,6 +129,7 @@ class Team1757TestColorSensorCommand(Command):
 
 
 
+        print("Color: {}, IR: {}, Red: {}, Blue: {}, Green: {}, Prox: {}".format(color, ir, red, blue, green, proximity))
 
     def isFinished(self):
         return False
