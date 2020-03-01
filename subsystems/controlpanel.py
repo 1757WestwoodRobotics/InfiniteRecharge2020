@@ -42,7 +42,6 @@ class ControlPanel(Subsystem):
         # default target color to seek
         self.__targetColor = ColorPanelConst.PanelColors.Red
 
-
     def setTargetColor(self, targetColor):
         self.__targetColor = targetColor
 
@@ -115,22 +114,21 @@ class ControlPanel(Subsystem):
     def found(self):
         return self.currentPanelColor == self.__targetColor
 
-
+    def setSpeed(self, speed):
+        self._motor.set(speed)
+    
     def seek(self):
         
         self.updatePanelColor()
 
         if (self.found() or not self.currentColorIsValid()):
-            self.__motor.set(0.0)
+            self.setSpeed(0.0)
             return
         else:
             bestDirection = self.getBestDirection()
             
             speed = 0.1  # Here temporarily.  Should be in a central location
-            self.__motor.set(ColorPanelConst.RotationSense*bestDirection*speed)
-
-        def setSpeed(self, speed):
-            self._motor.set(speed)
+            self.setSpeed(ColorPanelConst.RotationSense*bestDirection*speed)
 
 
     def initDefaultCommand(self):
