@@ -91,13 +91,26 @@ class OI:
         JoystickButton(self.controlSystem, ControlSystem.Button4).whenPressed(RotateTurretByAngle())
         JoystickButton(self.controlSystem, ControlSystem.Button5).whenPressed(RotateTurretToAngle())
 
+
         # |---Xbox Controller 2---|
     
-        #Turret
-        self.trigger = JoystickButton(self.xboxController2, xboxButtons.B)
-        self.toTrigger = JoystickButton(self.xboxController2, xboxButtons.X)
-        self.visionTrigger = JoystickButton(self.xboxController2, xboxButtons.Y)
-        self.trigger.whenPressed(commands.rotate_turret_by_angle.RotateTurretByAngle())
+        #Ball Intake
+        JoystickButton(self.xboxController2, xboxButtons.Start).toggleWhenPressed(
+            SetDoubleSolenoidLoop(subsystems.team1757Subsystems.ballCollector.collectorSolenoid))
+
+        #Pneumatics
+        JoystickButton(self.xboxController2, xboxButtons.Back).toggleWhenPressed(StopCompress())
+
+        #Ball Loader
+        JoystickButton(self.controlSystem, xboxButtons.X).toggleWhenPressed(
+            SetDoubleSolenoidLoop(subsystems.team1757Subsystems.ballLoader.indexer))
+        JoystickButton(self.controlSystem, xboxButtons.A).whileHeld(
+            SpinBallLoader(.75, .5))
+        JoystickButton(self.controlSystem, xboxButtons.B).whileHeld(
+            SpinBallLoader(-.75, -.25))
+
+
+        #|---Smart Dashboard---|
         SmartDashboard.putNumber(commands.rotate_turret_by_angle.RotateTurretByAngle.dashboard_kp, 0.015)
         SmartDashboard.putNumber(commands.rotate_turret_by_angle.RotateTurretByAngle.dashboard_ki, 0)
         SmartDashboard.putNumber(commands.rotate_turret_by_angle.RotateTurretByAngle.dashboard_kd, 0)
@@ -105,7 +118,6 @@ class OI:
         SmartDashboard.putNumber(commands.rotate_turret_by_angle.RotateTurretByAngle.dashboard_integrator_max,  0.015)
         SmartDashboard.putNumber(commands.rotate_turret_by_angle.RotateTurretByAngle.dashboard_tolerance, 0)
         SmartDashboard.putNumber(commands.rotate_turret_by_angle.RotateTurretByAngle.dashboard_target_position, 0)
-        self.toTrigger.whenPressed(commands.rotate_turret_to_angle.RotateTurretToAngle())
         SmartDashboard.putNumber(commands.rotate_turret_to_angle.RotateTurretToAngle.dashboard_kp, 0.015)
         SmartDashboard.putNumber(commands.rotate_turret_to_angle.RotateTurretToAngle.dashboard_ki, 0)
         SmartDashboard.putNumber(commands.rotate_turret_to_angle.RotateTurretToAngle.dashboard_kd, 0)
@@ -113,17 +125,12 @@ class OI:
         SmartDashboard.putNumber(commands.rotate_turret_to_angle.RotateTurretToAngle.dashboard_integrator_max,  0.015)
         SmartDashboard.putNumber(commands.rotate_turret_to_angle.RotateTurretToAngle.dashboard_tolerance, 0)
         SmartDashboard.putNumber(commands.rotate_turret_to_angle.RotateTurretToAngle.dashboard_target_position, 0)
-        self.visionTrigger.whileHeld(commands.rotate_turret_vision.RotateTurretVision())
         SmartDashboard.putNumber(commands.rotate_turret_vision.RotateTurretVision.dashboard_kp, 0.015)
         SmartDashboard.putNumber(commands.rotate_turret_vision.RotateTurretVision.dashboard_ki, 0)
         SmartDashboard.putNumber(commands.rotate_turret_vision.RotateTurretVision.dashboard_kd, 0)
         SmartDashboard.putNumber(commands.rotate_turret_vision.RotateTurretVision.dashboard_integrator_min, -0.015)
         SmartDashboard.putNumber(commands.rotate_turret_vision.RotateTurretVision.dashboard_integrator_max,  0.015)
         SmartDashboard.putNumber(commands.rotate_turret_vision.RotateTurretVision.dashboard_tolerance, 0)
-
-        #Control Panel
-        self.controlPanelTrigger = JoystickButton(self.leftStick, 3)
-        self.controlPanelTrigger.whileHeld(commands.rotate_control_panel.RotateControlPanel(active=True))
         SmartDashboard.setFlags(commands.rotate_control_panel.RotateControlPanel.DashboardControlPanelTargetColorKey, ColorPanelConst.PanelColors.Red)
 
 
