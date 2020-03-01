@@ -23,6 +23,8 @@ from commands.brake import Brake
 from commands.test import Test
 from commands.rotate_control_panel_manual import RotateControlPanelManual
 from commands.spin_ball_loader import SpinBallLoader
+from commands.shooter_spin import ShooterSpin
+from commands.rotate_turret_vision import RotateTurretVision
 
 class OI:
     def __init__(self, robot):
@@ -66,20 +68,20 @@ class OI:
         # |---Control System---|
 
         #Ball Collector
-        JoystickButton(self.controlSystem, ControlSystem.Switch1).whileHeld(
+        JoystickButton(self.controlSystem, ControlSystem.Switch4).whileHeld(
             SetDoubleSolenoidLoop(subsystems.team1757Subsystems.ballCollector.collectorSolenoid))
         
         #Pneumatics
-        JoystickButton(self.controlSystem, ControlSystem.Switch2).whileHeld(StopCompress())
+        JoystickButton(self.controlSystem, ControlSystem.Switch5).whileHeld(StopCompress())
 
         #Control Panel
-        JoystickButton(self.controlSystem, ControlSystem.Switch3).whileHeld(
-            SetDoubleSolenoidLoop(subsystems.team1757Subsystems.controlPanel.controlPanel))
-        JoystickButton(self.controlSystem, ControlSystem.Button1).whileHeld(
-            RotateControlPanelManual(.5))
+        # JoystickButton(self.controlSystem, ControlSystem.Switch6).whileHeld(
+        #     SetDoubleSolenoidLoop(subsystems.team1757Subsystems.controlPanel.controlPanel))
+        # JoystickButton(self.controlSystem, ControlSystem.Button9).whileHeld(
+        #     RotateControlPanelManual(.5)) 
 
         #Ball Loader
-        JoystickButton(self.controlSystem, ControlSystem.Switch4).whileHeld(
+        JoystickButton(self.controlSystem, ControlSystem.Switch1).whileHeld(
             SetDoubleSolenoidLoop(subsystems.team1757Subsystems.ballLoader.indexer))
         JoystickButton(self.controlSystem, ControlSystem.Button2).whileHeld(
             SpinBallLoader(.5))
@@ -87,6 +89,11 @@ class OI:
             SpinBallLoader(-.5))
 
         #Shooter
+        JoystickButton(self.controlSystem, ControlSystem.Switch5).whileHeld(
+            ShooterSpin())
+
+        #Turret
+        JoystickButton(self.controlSystem, ControlSystem.Switch3).whileHeld(RotateTurretVision())
 
         # |---Xbox Controller 2---|
     
