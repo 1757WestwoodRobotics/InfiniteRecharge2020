@@ -21,7 +21,7 @@ Can = collections.namedtuple("_", ("leftFront "
                                    "lift1 "
                                    "PCM")) (*range(13))
 
-xboxButtons = collections.namedtuple("_", "A B X Y LB RB Back Start LStick RStick") (1,2,3,4,5,6,7,8,9,10)
+xboxButtons = collections.namedtuple("_", "A B X Y LB RB Back Start LStick RStick") (*range(1, 11))
 
 xboxAxes = collections.namedtuple("_", "LSX LSY LT RT RSX RSY") (*range(6))
 
@@ -54,6 +54,22 @@ PCM = collections.namedtuple("_", ("IndexerF "
                                     "ControlPanelR "
                                     "CollectorF "
                                     "CollectorR")) (*range(8))
+
+ControlSystem = collections.namedtuple("_", (   "Switch1 " 
+                                                "Switch2 "
+                                                "Switch3 "
+                                                "Switch4 "
+                                                "Switch5 "
+                                                "Switch6 "
+                                                "Button1 "
+                                                "Button2 "
+                                                "Button3 "
+                                                "Button4 "
+                                                "Button5 "
+                                                "Button6 "
+                                                "Button7 "
+                                                "Button8 "
+                                                "Button9 ")) (*range(1, 16))
                                                
 
 NeutralModes = collections.namedtuple("_", "Coast Brake") (*range(2))
