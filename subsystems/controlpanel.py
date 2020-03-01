@@ -129,6 +129,9 @@ class ControlPanel(Subsystem):
             speed = 0.1  # Here temporarily.  Should be in a central location
             self.__motor.set(ColorPanelConst.RotationSense*bestDirection*speed)
 
+        def setSpeed(self, speed):
+            self._motor.set(speed)
+
 
     def initDefaultCommand(self):
         self.setDefaultCommand(TestControlPanelColor())
