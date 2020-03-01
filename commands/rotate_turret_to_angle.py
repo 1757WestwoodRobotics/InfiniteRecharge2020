@@ -26,7 +26,7 @@ class RotateTurretToAngle(Command):
     read from smartdashboard.
     """
 
-    def __init__(self, active=False):
+    def __init__(self):
         Command.__init__(self, "Rotate Turret To Angle")
         self.kp_last = 0
         self.ki_last = 0
@@ -35,13 +35,12 @@ class RotateTurretToAngle(Command):
         self.controller = PIDController(0, 0, 0)
         self.integrator_min_last = 0
         self.integrator_max_last = 0
-        self.active = active
         self.requires(subsystems.team1757Subsystems.turret)
 
     def execute(self):
         actual_position = subsystems.team1757Subsystems.turret.getPositionDegrees()
         SmartDashboard.putNumber(RotateTurretToAngle.dashboard_actual_position, actual_position)
-        SmartDashboard.putBoolean(RotateTurretToAngle.dashboard_active, self.active)
+        SmartDashboard.putBoolean(RotateTurretToAngle.dashboard_active, True)
         kp = SmartDashboard.getNumber(RotateTurretToAngle.dashboard_kp, 0)
         ki = SmartDashboard.getNumber(RotateTurretToAngle.dashboard_ki, 0)
         kd = SmartDashboard.getNumber(RotateTurretToAngle.dashboard_kd, 0)
@@ -68,25 +67,25 @@ class RotateTurretToAngle(Command):
         #lower_limit = subsystems.team1757Subsystems.turret.getLowerLimitDegrees()
         #upper_limit = subsystems.team1757Subsystems.turret.getUpperLimitDegrees()
         #target_position = min(max(target_position, lower_limit), upper_limit)
-        if (self.active):
-            controller_output = self.controller.calculate(actual_position, target_position)
-            # if (((controller_output < 0) 
-            #         and (actual_position < lower_limit))
-            #     or ((controller_output > 0)
-            #         and (actual_position > upper_limit))):
-            #     controller_output = 0
-            subsystems.team1757Subsystems.turret.setSpeed(controller_output)
-            SmartDashboard.putNumber(RotateTurretToAngle.dashboard_controller_output, controller_output)
-            SmartDashboard.putBoolean(RotateTurretToAngle.dashboard_at_position, self.controller.atSetpoint())
-            SmartDashboard.putNumber(RotateTurretToAngle.dashboard_position_error, self.controller.getPositionError())
-        else:
-            subsystems.team1757Subsystems.turret.setSpeed(0)
-            SmartDashboard.putNumber(RotateTurretToAngle.dashboard_controller_output, 0)
-            SmartDashboard.putBoolean(RotateTurretToAngle.dashboard_at_position, False)
-            SmartDashboard.putNumber(RotateTurretToAngle.dashboard_position_error, 0)
+        controller_output = self.controller.calculate(actual_position, target_position)
+        # if (((controller_output < 0) 
+        #         and (actual_position < lower_limit))
+        #     or ((controller_output > 0)
+        #         and (actual_position > upper_limit))):
+        #     controller_output = 0
+        subsystems.team1757Subsystems.turret.setSpeed(controller_output)
+        SmartDashboard.putNumber(RotateTurretToAngle.dashboard_controller_output, controller_output)
+        SmartDashboard.putBoolean(RotateTurretToAngle.dashboard_at_position, self.controller.atSetpoint())
+        SmartDashboard.putNumber(RotateTurretToAngle.dashboard_position_error, self.controller.getPositionError())
 
         if subsystems.team1757Subsystems.turret.leftstatus or subsystems.team1757Subsystems.turret.rightstatus:
             subsystems.team1757Subsystems.turret.setSpeed(0)
+
+    def end(self):
+        subsystems.team1757Subsystems.turret.setSpeed(0)
+        SmartDashboard.putNumber(RotateTurretToAngle.dashboard_controller_output, 0)
+        SmartDashboard.putBoolean(RotateTurretToAngle.dashboard_at_position, False)
+        SmartDashboard.putNumber(RotateTurretToAngle.dashboard_position_error, 0)
 
     def isFinished(self):
         return self.controller.atSetpoint()
