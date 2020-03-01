@@ -23,6 +23,10 @@ class Turret(Subsystem):
         Subsystem.__init__(self, "Turret")
         self.motor = WPI_TalonSRX(Can.turret)
         self.motor.setSensorPhase(True)
+    
+    def periodic(self):
+        self.leftstatus = self.motor.isFwdLimitSwitchClosed()
+        self.rightstatus = self.motor.isRevLimitSwitchClosed()
 
     def getPositionDegrees(self):
         return self.motor.getSelectedSensorPosition() * Turret.encoder_count_to_degree_factor
