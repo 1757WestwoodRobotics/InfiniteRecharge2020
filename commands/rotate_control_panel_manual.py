@@ -11,6 +11,8 @@ class RotateControlPanelManual(Command):
     def __init__(self, speed):
         Command.__init__(self, "Rotate Control Panel Manual")
 
+        self.requires(subsystems.team1757Subsystems.controlPanel)
+
         self.speed = speed
 
     def execute(self):
