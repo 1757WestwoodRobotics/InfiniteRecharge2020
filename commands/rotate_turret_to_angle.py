@@ -85,5 +85,8 @@ class RotateTurretToAngle(Command):
             SmartDashboard.putBoolean(RotateTurretToAngle.dashboard_at_position, False)
             SmartDashboard.putNumber(RotateTurretToAngle.dashboard_position_error, 0)
 
+        if subsystems.team1757Subsystems.turret.leftstatus or subsystems.team1757Subsystems.turret.rightstatus:
+            subsystems.team1757Subsystems.turret.setSpeed(0)
+
     def isFinished(self):
         return self.controller.atSetpoint()
