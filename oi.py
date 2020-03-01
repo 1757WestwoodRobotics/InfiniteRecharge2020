@@ -35,15 +35,14 @@ class OI:
         self.xboxController = XboxController(0)
         self.leftStick = Joystick(1)
         self.rightStick = Joystick(2)
-        self.xboxController2 = XboxController(3)
+        
+        self.controlSystem = Joystick(3)
+        self.xboxController2 = XboxController(4)
+
+        #---Xbox Controller---#
 
         #Drivetrain
         JoystickButton(self.xboxController, xboxButtons.LB).whileHeld(Brake())
-        
-        #Pneumatics
-        JoystickButton(self.xboxController2, xboxButtons.A).toggleWhenPressed(StopCompress())
-        JoystickButton(self.xboxController2, xboxButtons.Start).toggleWhenPressed(
-            SetDoubleSolenoidLoop(subsystems.team1757Subsystems.controlPanel.controlPanel))
 
         #Lift
         JoystickButton(self.xboxController, xboxButtons.Y).whileHeld(RaiseLift(.5))
@@ -52,6 +51,11 @@ class OI:
             SetDoubleSolenoid(subsystems.team1757Subsystems.lift.discBrake, DoubleSolenoid.Value.kForward))
         JoystickButton(self.xboxController, xboxButtons.Back).whenPressed(
             SetDoubleSolenoid(subsystems.team1757Subsystems.lift.discBrake, DoubleSolenoid.Value.kReverse))
+        
+        #Pneumatics
+        JoystickButton(self.xboxController2, xboxButtons.A).toggleWhenPressed(StopCompress())
+        JoystickButton(self.xboxController2, xboxButtons.Start).toggleWhenPressed(
+            SetDoubleSolenoidLoop(subsystems.team1757Subsystems.controlPanel.controlPanel))
     
         #Turret
         self.trigger = JoystickButton(self.xboxController2, xboxButtons.B)
