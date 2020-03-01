@@ -15,6 +15,7 @@
 import wpilib
 from wpilib.command import Command
 import subsystems
+from wpilib import SmartDashboard
 
 class Team1757TestColorSensorCommand(Command):
 
@@ -40,9 +41,9 @@ class Team1757TestColorSensorCommand(Command):
         '''
         SmartDashboard.putNumber(Team1757TestColorSensorCommand.dashboard_color_sensor_ir, ir)
         '''
-        SmartDashboard.putNumber(Team1757TestColorSensorCommand.dashboard_color_sensor_red, red)
-        SmartDashboard.putNumber(Team1757TestColorSensorCommand.dashboard_color_sensor_green, green)
-        SmartDashboard.putNumber(Team1757TestColorSensorCommand.dashboard_color_sensor_blue, blue)
+        SmartDashboard.putNumber('Team1757TestColorSensorCommand.dashboard_color_sensor_red', red)
+        SmartDashboard.putNumber('Team1757TestColorSensorCommand.dashboard_color_sensor_green', green)
+        SmartDashboard.putNumber('Team1757TestColorSensorCommand.dashboard_color_sensor_blue', blue)
         '''
         SmartDashboard.putNumber(Team1757TestColorSensorCommand.dashboard_color_sensor_proximity, proximity)
         '''
@@ -79,7 +80,7 @@ class Team1757TestColorSensorCommand(Command):
 
 
         if (minDist >= 0.03*(Team1757TestColorSensorCommand.yg_distance)):
-            SmartDashboard.putNumber(Team1757TestColorSensorCommand.dashboard_color_sensor_detected_color, color)
+            SmartDashboard.putNumber('Team1757TestColorSensorCommand.dashboard_color_sensor_detected_color', color)
             color = 4
 
         if (color == Team1757TestColorSensorCommand.color_prev):
