@@ -115,7 +115,7 @@ class ControlPanel(Subsystem):
         return self.currentPanelColor == self.__targetColor
 
     def setSpeed(self, speed):
-        self._motor.set(speed)
+        self.__motor.set(speed)
     
     def seek(self):
         

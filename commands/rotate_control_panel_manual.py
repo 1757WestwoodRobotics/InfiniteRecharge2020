@@ -17,3 +17,6 @@ class RotateControlPanelManual(Command):
 
     def execute(self):
         subsystems.team1757Subsystems.controlPanel.setSpeed(self.speed)
+
+    def isFinished(self):
+        return True
