@@ -34,12 +34,12 @@ class RotateControlPanel(Command):
         return SmartDashboard.getFlags(RotateControlPanel.DashboardControlPanelTargetColorKey)
 
 
-
     def execute(self):
-        currentPanelColor = self.__controlPanelSystem.currentPanelColor
-        SmartDashboard.setFlags(RotateControlPanel.DashboardControlPanelCurrentColorKey, currentPanelColor)
         if (self.active):
             self.__controlPanelSystem.seek()
+        currentPanelColor = self.__controlPanelSystem.currentPanelColor
+        SmartDashboard.setFlags(RotateControlPanel.DashboardControlPanelCurrentColorKey, currentPanelColor)
+
 
     def isFinished(self):
         return self.__controlPanelSystem.found()
