@@ -7,7 +7,7 @@ from wpilib import DoubleSolenoid
 
 # Team 1757 stuff
 import subsystems
-from robotmap import ColorPanelConst, xboxButtons, xboxAxes
+from robotmap import ColorPanelConst, xboxButtons, xboxAxes, ControlSystem
 import commands.rotate_turret_by_angle
 import commands.rotate_turret_to_angle
 import commands.rotate_turret_vision
@@ -21,6 +21,8 @@ from commands.raise_lift import RaiseLift
 from commands.lower_lift import LowerLift
 from commands.brake import Brake
 from commands.test import Test
+from commands.rotate_control_panel_manual import RotateControlPanelManual
+from commands.spin_ball_loader import SpinBallLoader
 
 class OI:
     def __init__(self, robot):
@@ -64,15 +66,27 @@ class OI:
         # |---Control System---|
 
         #Ball Collector
-        JoystickButton(self.controlSystem, 1).whileHeld(
+        JoystickButton(self.controlSystem, ControlSystem.Switch1).whileHeld(
             SetDoubleSolenoidLoop(subsystems.team1757Subsystems.ballCollector.collectorSolenoid))
         
         #Pneumatics
-        JoystickButton(self.controlSystem, 2).whileHeld(StopCompress())
+        JoystickButton(self.controlSystem, ControlSystem.Switch2).whileHeld(StopCompress())
 
         #Control Panel
-        JoystickButton(self.controlSystem, 3).whileHeld(
+        JoystickButton(self.controlSystem, ControlSystem.Switch3).whileHeld(
             SetDoubleSolenoidLoop(subsystems.team1757Subsystems.controlPanel.controlPanel))
+        JoystickButton(self.controlSystem, ControlSystem.Button1).whileHeld(
+            RotateControlPanelManual(.5))
+
+        #Ball Loader
+        JoystickButton(self.controlSystem, ControlSystem.Switch4).whileHeld(
+            SetDoubleSolenoidLoop(subsystems.team1757Subsystems.ballLoader.indexer))
+        JoystickButton(self.controlSystem, ControlSystem.Button2).whileHeld(
+            SpinBallLoader(.5))
+        JoystickButton(self.controlSystem, ControlSystem.Button3).whileHeld(
+            SpinBallLoader(-.5))
+
+        #Shooter
 
         # |---Xbox Controller 2---|
     
