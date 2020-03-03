@@ -12,9 +12,11 @@ class ShooterSpin(Command):
         self.requires(subsystems.team1757Subsystems.shooter)
 
     def execute(self):
+        subsystems.team1757Subsystems.shooter.spinning = True
         subsystems.team1757Subsystems.shooter.spinUp()
     
     def end(self):
+        subsystems.team1757Subsystems.shooter.spinning = False
         subsystems.team1757Subsystems.shooter.spinDown()
 
     def isFinished(self):
