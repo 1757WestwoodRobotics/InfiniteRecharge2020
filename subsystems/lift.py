@@ -29,8 +29,6 @@ class Lift(Subsystem):
         self.lift1.getAllConfigs(configObject)
         # configObject.set
 
-        self.discBrake = DoubleSolenoid(Can.PCM, PCM.DiscBrakeF, PCM.DiscBrakeR)
-
     def setSpeed(self, speed):
         self.lift1.set(speed)
 
@@ -44,8 +42,3 @@ class Lift(Subsystem):
         self.fwdstatus = self.lift1.isFwdLimitSwitchClosed()
         self.revstatus = self.lift1.isRevLimitSwitchClosed()
         #get the status of limit switch (returns an int)
-
-        # if self.fwdstatus:
-        #     print(self.fwdstatus)
-        # elif self.revstatus:
-        #     print(self.revstatus)
