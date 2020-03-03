@@ -3,7 +3,6 @@ from wpilib import SmartDashboard
 from wpilib import Joystick
 from wpilib import XboxController
 from wpilib.command import JoystickButton
-from wpilib import DoubleSolenoid
 
 # Team 1757 stuff
 import subsystems
@@ -51,12 +50,10 @@ class OI:
         # |---Control System---|
 
         #Ball Loader
-        JoystickButton(self.controlSystem, ControlSystem.Switch1).whileHeld(
-            SetDoubleSolenoidLoop(subsystems.team1757Subsystems.ballLoader.indexer))
         JoystickButton(self.controlSystem, ControlSystem.Button2).whileHeld(
-            SpinBallLoader(.5))
+            SpinBallLoader(.75, .5))
         JoystickButton(self.controlSystem, ControlSystem.Button3).whileHeld(
-            SpinBallLoader(-.5))
+            SpinBallLoader(-.75, -.25))
 
         #Shooter
         JoystickButton(self.controlSystem, ControlSystem.Switch5).whileHeld(
@@ -82,7 +79,7 @@ class OI:
 
         #|---Smart Dashboard---|
         #Shooter
-        SmartDashboard.putBoolean(subsystems.team1757Subsystems.shooter.spinning)
+        SmartDashboard.putBoolean("Shooter Spinning", subsystems.team1757Subsystems.shooter.spinning)
 
         #Turret
         SmartDashboard.putNumber(commands.rotate_turret_by_angle.RotateTurretByAngle.dashboard_kp, 0.015)
