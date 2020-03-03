@@ -1,5 +1,4 @@
 import wpilib
-from wpilib import DoubleSolenoid
 from ctre import WPI_TalonSRX
 from ctre import ControlMode
 from ctre import TalonSRXConfiguration

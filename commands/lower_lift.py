@@ -1,5 +1,4 @@
 import wpilib
-from wpilib import Solenoid
 from wpilib.command import Command
 import subsystems
 from ctre import WPI_TalonSRX

@@ -3,7 +3,6 @@ from wpilib import SmartDashboard
 from wpilib import Joystick
 from wpilib import XboxController
 from wpilib.command import JoystickButton
-from wpilib import DoubleSolenoid
 
 # Team 1757 stuff
 import subsystems
@@ -11,11 +10,6 @@ from robotmap import ColorPanelConst, xboxButtons, xboxAxes, ControlSystem
 import commands.rotate_turret_by_angle
 import commands.rotate_turret_to_angle
 import commands.rotate_turret_vision
-from commands.stop_compress import StopCompress
-from commands.set_solenoid import SetSolenoid
-from commands.set_solenoid_loop import SetSolenoidLoop
-from commands.set_double_solenoid import SetDoubleSolenoid
-from commands.set_double_solenoid_loop import SetDoubleSolenoidLoop
 from commands.raise_lift import RaiseLift
 from commands.lower_lift import LowerLift
 from commands.brake import Brake
@@ -52,35 +46,14 @@ class OI:
         #Lift
         JoystickButton(self.xboxController, xboxButtons.Y).whileHeld(RaiseLift(.5))
         JoystickButton(self.xboxController, xboxButtons.A).whileHeld(LowerLift(.5))
-        JoystickButton(self.xboxController, xboxButtons.B).whenPressed(
-            SetDoubleSolenoid(subsystems.team1757Subsystems.lift.discBrake, DoubleSolenoid.Value.kForward))
-        JoystickButton(self.xboxController, xboxButtons.Back).whenPressed(
-            SetDoubleSolenoid(subsystems.team1757Subsystems.lift.discBrake, DoubleSolenoid.Value.kReverse))
-        
-        #Pneumatics
-        JoystickButton(self.xboxController2, xboxButtons.A).toggleWhenPressed(StopCompress())
-        JoystickButton(self.xboxController2, xboxButtons.Start).toggleWhenPressed(
-            SetDoubleSolenoidLoop(subsystems.team1757Subsystems.controlPanel.controlPanel))
-
-        #Ball Collector - NOTE: RT is bound to spin inwards, LT is bound to spin outwards
-
         
         # |---Control System---|
 
-        #Ball Collector
-        JoystickButton(self.controlSystem, ControlSystem.Switch4).whileHeld(
-            SetDoubleSolenoidLoop(subsystems.team1757Subsystems.ballCollector.collectorSolenoid))
-        
-        #Pneumatics
-        JoystickButton(self.controlSystem, ControlSystem.Switch5).whileHeld(StopCompress())
-
         #Ball Loader
-        JoystickButton(self.controlSystem, ControlSystem.Switch1).whileHeld(
-            SetDoubleSolenoidLoop(subsystems.team1757Subsystems.ballLoader.indexer))
         JoystickButton(self.controlSystem, ControlSystem.Button2).whileHeld(
-            SpinBallLoader(.5))
+            SpinBallLoader(.75, .5))
         JoystickButton(self.controlSystem, ControlSystem.Button3).whileHeld(
-            SpinBallLoader(-.5))
+            SpinBallLoader(-.75, -.25))
 
         #Shooter
         JoystickButton(self.controlSystem, ControlSystem.Switch5).whileHeld(
@@ -93,24 +66,22 @@ class OI:
 
 
         # |---Xbox Controller 2---|
-    
-        #Ball Intake
-        JoystickButton(self.xboxController2, xboxButtons.Start).toggleWhenPressed(
-            SetDoubleSolenoidLoop(subsystems.team1757Subsystems.ballCollector.collectorSolenoid))
-
-        #Pneumatics
-        JoystickButton(self.xboxController2, xboxButtons.Back).toggleWhenPressed(StopCompress())
 
         #Ball Loader
-        JoystickButton(self.controlSystem, xboxButtons.X).toggleWhenPressed(
-            SetDoubleSolenoidLoop(subsystems.team1757Subsystems.ballLoader.indexer))
         JoystickButton(self.controlSystem, xboxButtons.A).whileHeld(
             SpinBallLoader(.75, .5))
         JoystickButton(self.controlSystem, xboxButtons.B).whileHeld(
             SpinBallLoader(-.75, -.25))
 
+        #Shooter
+        JoystickButton(self.xboxController2, xboxButtons.Y).toggleWhenPressed(ShooterSpin())
+
 
         #|---Smart Dashboard---|
+        #Shooter
+        SmartDashboard.putBoolean("Shooter Spinning", subsystems.team1757Subsystems.shooter.spinning)
+
+        #Turret
         SmartDashboard.putNumber(commands.rotate_turret_by_angle.RotateTurretByAngle.dashboard_kp, 0.015)
         SmartDashboard.putNumber(commands.rotate_turret_by_angle.RotateTurretByAngle.dashboard_ki, 0)
         SmartDashboard.putNumber(commands.rotate_turret_by_angle.RotateTurretByAngle.dashboard_kd, 0)
@@ -131,7 +102,6 @@ class OI:
         SmartDashboard.putNumber(commands.rotate_turret_vision.RotateTurretVision.dashboard_integrator_min, -0.015)
         SmartDashboard.putNumber(commands.rotate_turret_vision.RotateTurretVision.dashboard_integrator_max,  0.015)
         SmartDashboard.putNumber(commands.rotate_turret_vision.RotateTurretVision.dashboard_tolerance, 0)
-        SmartDashboard.setFlags(commands.rotate_control_panel.RotateControlPanel.DashboardControlPanelTargetColorKey, ColorPanelConst.PanelColors.Red)
 
 
     def getJoystick(self):

@@ -6,6 +6,7 @@ from robotmap import Can
 class Shooter(Subsystem):
     
     def __init__(self):
+        self.spinning = False
         Subsystem.__init__(self, "Shooter")
         wpilib.SmartDashboard.putNumber("Desired Shooter Velocity", 15000)
         self.topMotor = WPI_TalonSRX(Can.ballShooterUpper)
