@@ -7,15 +7,18 @@ from robotmap import Can
 
 class LowerLift(Command):
 
-    def __init__(self, speed):
+    def __init__(self):
         Command.__init__(self, "LowerLift")
 
         self.requires(subsystems.team1757Subsystems.lift)
+    # need pneumatic subsystem bc of discbrake
+    # disengage brake
 
-        self.speed = speed
-   
     def execute(self):
-        subsystems.team1757Subsystems.lift.setSpeed(-self.speed)
+
+        self.LT = (self.getRobot().oi.xboxController.getRawAxis(2))
+
+        subsystems.team1757Subsystems.lift.setSpeed(-self.LT)
             
         if subsystems.team1757Subsystems.lift.revstatus:
             subsystems.team1757Subsystems.lift.setSpeed(0)
