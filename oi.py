@@ -49,10 +49,10 @@ class OI:
         #Lift
         JoystickButton(self.xboxController, xboxButtons.Y).whileHeld(RaiseLift(.5))
         JoystickButton(self.xboxController, xboxButtons.A).whileHeld(LowerLift(.5))
-        JoystickButton(self.xboxController, xboxButtons.B).whenPressed(
-            SetSolenoid(subsystems.team1757Subsystems.lift.discBrake, True))
-        JoystickButton(self.xboxController, xboxButtons.Back).whenPressed(
-            SetSolenoid(subsystems.team1757Subsystems.lift.discBrake, False))
+        # JoystickButton(self.xboxController, xboxButtons.B).whenPressed(
+        #     SetSolenoid(subsystems.team1757Subsystems.lift.discBrake, True))
+        # JoystickButton(self.xboxController, xboxButtons.Back).whenPressed(
+        #     SetSolenoid(subsystems.team1757Subsystems.lift.discBrake, False))
     
         # Turret
         self.trigger = JoystickButton(self.xboxController2, xboxButtons.B)
