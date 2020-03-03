@@ -18,7 +18,6 @@ class RaiseLift(Command):
 
         self.RT = (self.getRobot().oi.xboxController.getRawAxis(3))
         
-
         subsystems.team1757Subsystems.lift.setSpeed(self.RT)
 
         if subsystems.team1757Subsystems.lift.fwdstatus:
