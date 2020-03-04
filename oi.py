@@ -6,7 +6,7 @@ from wpilib.command import JoystickButton
 
 # Team 1757 stuff
 import subsystems
-from robotmap import ColorPanelConst, xboxButtons, xboxAxes, ControlSystem
+from robotmap import ColorPanelConst, xboxButtons, ControlSystem
 import commands.rotate_turret_by_angle
 import commands.rotate_turret_to_angle
 import commands.rotate_turret_vision
@@ -31,39 +31,44 @@ class OI:
         xboxController2 is for testing commands in oi, to avoid overwriting the actual driver commands
         '''
         self.xboxController = XboxController(0)
-        self.leftStick = Joystick(1)
-        self.rightStick = Joystick(2)
+        self.leftStick = Joystick(3)
+        self.rightStick = Joystick(4)
         
-        self.controlSystem = Joystick(3)
-        self.xboxController2 = XboxController(4)
+        self.controlSystem = Joystick(1)
+        self.xboxController2 = XboxController(2)
 
         
         # |---Xbox Controller---|
 
-        #Drivetrain
+        #Drivetrain - NOTE: RT raises elevator, LT lowers elevator
         JoystickButton(self.xboxController, xboxButtons.LB).whileHeld(Brake())
 
-        #Lift
-        JoystickButton(self.xboxController, xboxButtons.Y).whileHeld(RaiseLift(1))
-        JoystickButton(self.xboxController, xboxButtons.A).whileHeld(LowerLift(1))
-        
         
         # |---Control System---|
 
         #Ball Loader
-        JoystickButton(self.controlSystem, ControlSystem.Button2).whileHeld(
+        JoystickButton(self.controlSystem, ControlSystem.BottomMiddle).whileHeld(
             SpinBallLoader(.75, .5))
-        JoystickButton(self.controlSystem, ControlSystem.Button3).whileHeld(
+        JoystickButton(self.controlSystem, ControlSystem.BottomRight).whileHeld(
             SpinBallLoader(-.75, -.25))
 
+        #Elevator
+        JoystickButton(self.controlSystem, ControlSystem.TopMiddle).whileHeld(
+            RaiseLift(1))
+        JoystickButton(self.controlSystem, ControlSystem.TopRight).whileHeld(
+            LowerLift(1))
+        
         #Shooter
-        JoystickButton(self.controlSystem, ControlSystem.Switch5).whileHeld(
+        JoystickButton(self.controlSystem, ControlSystem.SwitchA).whileHeld(
             ShooterSpin())
 
         #Turret
-        JoystickButton(self.controlSystem, ControlSystem.Switch3).whileHeld(RotateTurretVision())
-        JoystickButton(self.controlSystem, ControlSystem.Button4).whenPressed(RotateTurretByAngle())
-        JoystickButton(self.controlSystem, ControlSystem.Button5).whenPressed(RotateTurretToAngle())
+        JoystickButton(self.controlSystem, ControlSystem.SwitchB).whileHeld(
+            RotateTurretVision())
+        JoystickButton(self.controlSystem, ControlSystem.BottomLeft).whenPressed(
+            RotateTurretByAngle())
+        JoystickButton(self.controlSystem, ControlSystem.TopLeft).whenPressed(
+            RotateTurretToAngle())
 
 
         # |---Xbox Controller 2---|
@@ -75,7 +80,16 @@ class OI:
             SpinBallLoader(-.75, -.25))
 
         #Shooter
-        JoystickButton(self.xboxController2, xboxButtons.Y).toggleWhenPressed(ShooterSpin())
+        JoystickButton(self.xboxController2, xboxButtons.Y).toggleWhenPressed(
+            ShooterSpin())
+
+        #Turret
+        JoystickButton(self.xboxController2, xboxButtons.RS).whileHeld(
+            RotateTurretVision())
+        JoystickButton(self.xboxController2, xboxButtons.LB).whileHeld(
+            RotateTurretToAngle())
+        JoystickButton(self.xboxController2, xboxButtons.RB).whileHeld(
+            RotateTurretByAngle())
 
 
         #|---Smart Dashboard---|
