@@ -5,7 +5,13 @@ from ctre import WPI_TalonSRX
 from robotmap import Can
 
 class RaiseLift(Command):
+    '''
+    Command to raise the elevator
 
+    Parameters:
+
+    Speed: speed of the motors from 0 to 1
+    '''
     def __init__(self, speed):
         Command.__init__(self, "RaiseLift")
 

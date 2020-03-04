@@ -5,7 +5,15 @@ from ctre import WPI_TalonSRX
 from robotmap import Can
 
 class MoveLift(Command):
+    '''
+    Command to move the elevator up or down
 
+    Right Trigger raises the elevator
+
+    Left Trigger lowers the elevator
+
+    Default command of the lift subsystem
+    '''
     def __init__(self):
         Command.__init__(self, "Move Lift")
 
