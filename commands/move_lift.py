@@ -4,20 +4,24 @@ import subsystems
 from ctre import WPI_TalonSRX
 from robotmap import Can
 
-class RaiseLift(Command):
+class MoveLift(Command):
 
-    def __init__(self, speed):
-        Command.__init__(self, "RaiseLift")
+    def __init__(self):
+        Command.__init__(self, "Move Lift")
 
         self.requires(subsystems.team1757Subsystems.lift)
     # need pneumatic subsystem bc of discbrake
     # disengage brake
 
-        self.speed = speed
-
     def execute(self):
+
+        self.RT = (self.getRobot().oi.xboxController.getRawAxis(3))
+        self.LT = (self.getRobot().oi.xboxController.getRawAxis(2))
         
-        subsystems.team1757Subsystems.lift.setSpeed(self.speed)
+        if self.RT > self.LT:
+            subsystems.team1757Subsystems.lift.setSpeed(self.RT)
+        else:
+            subsystems.team1757Subsystems.lift.setSpeed(-self.LT)
 
         # if subsystems.team1757Subsystems.lift.fwdstatus:
         #     subsystems.team1757Subsystems.lift.setSpeed(0)

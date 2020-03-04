@@ -5,6 +5,7 @@ from ctre import TalonSRXConfiguration
 from robotmap import Can, PCM
 from wpilib.command import Subsystem
 from math import pi
+from commands.move_lift import MoveLift
 
 class Lift(Subsystem):
 
@@ -41,3 +42,6 @@ class Lift(Subsystem):
         self.fwdstatus = self.lift1.isFwdLimitSwitchClosed()
         self.revstatus = self.lift1.isRevLimitSwitchClosed()
         #get the status of limit switch (returns an int)
+
+    def initDefaultCommand(self):
+        self.setDefaultCommand(MoveLift())

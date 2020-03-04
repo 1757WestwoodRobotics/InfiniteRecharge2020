@@ -44,8 +44,9 @@ class OI:
         JoystickButton(self.xboxController, xboxButtons.LB).whileHeld(Brake())
 
         #Lift
-        JoystickButton(self.xboxController, xboxButtons.Y).whileHeld(RaiseLift(.5))
-        JoystickButton(self.xboxController, xboxButtons.A).whileHeld(LowerLift(.5))
+        JoystickButton(self.xboxController, xboxButtons.Y).whileHeld(RaiseLift(1))
+        JoystickButton(self.xboxController, xboxButtons.A).whileHeld(LowerLift(1))
+        
         
         # |---Control System---|
 
