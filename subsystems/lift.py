@@ -21,7 +21,6 @@ class Lift(Subsystem):
 
     def __init__(self):
         Subsystem.__init__(self, "Lift")
-        # lift1 = motor 11
         self.lift1 = WPI_TalonSRX(Can.lift1)
         self.brake = WPI_TalonSRX(Can.brake)
         self.upperlimitvalue = 21 * Lift.inches_to_encodercounts_factor 
@@ -44,7 +43,7 @@ class Lift(Subsystem):
         self.revstatus = self.lift1.isRevLimitSwitchClosed()
         #get the status of limit switch (returns an int)
     
-    def setLiftBrake(self, speed: int = 0):
+    def setLiftBrake(self, speed):
         self.brake.set(speed)
 
     def initDefaultCommand(self):
