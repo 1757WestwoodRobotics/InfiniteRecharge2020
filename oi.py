@@ -41,10 +41,10 @@ class OI:
         
         # |---Xbox Controller---|
 
-        #Drivetrain - NOTE: RT raises elevator, LT lowers elevator
+        #Drivetrain
         JoystickButton(self.xboxController, xboxButtons.LB).whileHeld(Brake())
 
-        # Elevator
+        # Elevator - NOTE: RT raises elevator, LT lowers elevator
         JoystickButton(self.xboxController, xboxButtons.A).whileHeld(SetLiftBrake(True))
         JoystickButton(self.xboxController, xboxButtons.B).whileHeld(SetLiftBrake(False))
 
@@ -58,10 +58,14 @@ class OI:
             SpinBallLoader(-.75, -.25))
 
         #Elevator
-        JoystickButton(self.controlSystem, ControlSystem.TopMiddle).whileHeld(
+        JoystickButton(self.controlSystem, ControlSystem.SwitchC).whileHeld(
             RaiseLift(1))
-        JoystickButton(self.controlSystem, ControlSystem.TopRight).whileHeld(
+        JoystickButton(self.controlSystem, ControlSystem.SwitchD).whileHeld(
             LowerLift(1))
+        JoystickButton(self.controlSystem, ControlSystem.TopMiddle).whileHeld(
+            SetLiftBrake(True))
+        JoystickButton(self.controlSystem, ControlSystem.TopRight).whileHeld(
+            SetLiftBrake(False))
         
         #Shooter
         JoystickButton(self.controlSystem, ControlSystem.SwitchA).whileHeld(
