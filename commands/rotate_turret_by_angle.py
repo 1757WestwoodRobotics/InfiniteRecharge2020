@@ -74,7 +74,7 @@ class RotateTurretByAngle(Command):
         #upper_limit = subsystems.team1757Subsystems.turret.getUpperLimitDegrees()
         #target_position = min(max(target_position, lower_limit), upper_limit)
         controller_output = self.controller.calculate(actual_position, target_position)
-        print(target_position)
+        #print(target_position)
         # if (((controller_output < 0) 
         #         and (actual_position < lower_limit))
         #     or ((controller_output > 0)
