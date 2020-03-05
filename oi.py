@@ -19,6 +19,7 @@ from commands.shooter_spin import ShooterSpin
 from commands.rotate_turret_vision import RotateTurretVision
 from commands.rotate_turret_by_angle import RotateTurretByAngle
 from commands.rotate_turret_to_angle import RotateTurretToAngle
+from commands.set_lift_brake import SetLiftBrake
 
 class OI:
     def __init__(self, robot):
@@ -42,6 +43,10 @@ class OI:
 
         #Drivetrain - NOTE: RT raises elevator, LT lowers elevator
         JoystickButton(self.xboxController, xboxButtons.LB).whileHeld(Brake())
+
+        # Elevator
+        JoystickButton(self.xboxController, xboxButtons.A).whileHeld(SetLiftBrake(True))
+        JoystickButton(self.xboxController, xboxButtons.B).whileHeld(SetLiftBrake(False))
 
         
         # |---Control System---|

@@ -23,6 +23,7 @@ class Lift(Subsystem):
         Subsystem.__init__(self, "Lift")
         # lift1 = motor 11
         self.lift1 = WPI_TalonSRX(Can.lift1)
+        self.brake = WPI_TalonSRX(Can.brake)
         self.upperlimitvalue = 21 * Lift.inches_to_encodercounts_factor 
         self.lowerlimitvalue = 0
         configObject = TalonSRXConfiguration()
@@ -42,6 +43,9 @@ class Lift(Subsystem):
         self.fwdstatus = self.lift1.isFwdLimitSwitchClosed()
         self.revstatus = self.lift1.isRevLimitSwitchClosed()
         #get the status of limit switch (returns an int)
+    
+    def setLiftBrake(self, speed: int = 0):
+        self.brake.set(speed)
 
     def initDefaultCommand(self):
         self.setDefaultCommand(MoveLift())
