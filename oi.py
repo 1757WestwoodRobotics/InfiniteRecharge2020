@@ -6,7 +6,7 @@ from wpilib.command import JoystickButton
 
 # Team 1757 stuff
 import subsystems
-from robotmap import ColorPanelConst, xboxButtons, ControlSystem
+from robotmap import xboxButtons, ControlSystem
 import commands.rotate_turret_by_angle
 import commands.rotate_turret_to_angle
 import commands.rotate_turret_vision
