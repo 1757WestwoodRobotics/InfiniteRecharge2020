@@ -1,6 +1,6 @@
 import wpilib
 from ctre import WPI_TalonSRX
-from robotmap import Can, PCM
+from robotmap import Can
 from wpilib.command import Subsystem
 
 class BallLoader(Subsystem):

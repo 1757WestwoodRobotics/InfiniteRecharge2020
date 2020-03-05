@@ -2,7 +2,7 @@ import wpilib
 from ctre import WPI_TalonSRX
 from ctre import ControlMode
 from ctre import TalonSRXConfiguration
-from robotmap import Can, PCM
+from robotmap import Can
 from wpilib.command import Subsystem
 from math import pi
 from commands.move_lift import MoveLift
