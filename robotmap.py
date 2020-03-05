@@ -16,21 +16,21 @@ Can = collections.namedtuple("_", ("leftFront "
                                    "ballShooterLower "
                                    "ballShooterUpper "
                                    "turret "
-                                   "lift1")) (*range(11))
+                                   "lift1")) (*range(10))
 
-xboxButtons = collections.namedtuple("_", "A B X Y LB RB Back Start LStick RStick") (*range(1, 11))
+xboxButtons = collections.namedtuple("_", "A B X Y LB RB Back Start LS RS") (*range(1, 11))
 
-ControlSystem = collections.namedtuple("_", (   "SwitchA " 
-                                                "SwitchB "
-                                                "SwitchC "
+ControlSystem = collections.namedtuple("_", (   "SwitchE " 
                                                 "SwitchD "
-                                                "SwitchR "
-                                                "TopLeft "
-                                                "TopMiddle "
-                                                "TopRight "
+                                                "SwitchC "
+                                                "SwitchB "
+                                                "SwitchA "
                                                 "BottomLeft "
-                                                "BottomMiddle "
-                                                "BottomRight ")) (*range(1, 12))
+                                                "TopLeft "
+                                                "BottomRight "
+                                                "TopRight "
+                                                "TopMiddle "
+                                                "BottomMiddle ")) (*range(1, 12))
                                                
 
 NeutralModes = collections.namedtuple("_", "Coast Brake") (*range(2))
