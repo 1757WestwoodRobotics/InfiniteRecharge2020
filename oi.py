@@ -20,6 +20,7 @@ from commands.rotate_turret_vision import RotateTurretVision
 from commands.rotate_turret_by_angle import RotateTurretByAngle
 from commands.rotate_turret_to_angle import RotateTurretToAngle
 from commands.set_lift_brake import SetLiftBrake
+from commands.move_turret import MoveTurret
 
 class OI:
     def __init__(self, robot):
@@ -47,6 +48,9 @@ class OI:
         # Elevator - NOTE: RT raises elevator, LT lowers elevator
         JoystickButton(self.xboxController, xboxButtons.A).whileHeld(SetLiftBrake(True))
         JoystickButton(self.xboxController, xboxButtons.B).whileHeld(SetLiftBrake(False))
+
+        # Turret
+        JoystickButton(self.xboxController, xboxButtons.RB).whileHeld(MoveTurret())
 
         
         # |---Control System---|
