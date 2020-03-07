@@ -30,7 +30,7 @@ class Lift(Subsystem):
         # configObject.set
 
     def setSpeed(self, speed):
-        self.lift1.set(speed)
+        self.lift1.set(.5*speed)
 
     def setPosition(self, position_in_inches):
         position_in_encoder_counts = position_in_inches * Lift.inches_to_encodercounts_factor

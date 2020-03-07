@@ -4,6 +4,7 @@ opkg_cache/
 pip_cache/
 *.py[cod]
 *$py.class
+frc2020/
 
 #vs code settings file
 .vscode

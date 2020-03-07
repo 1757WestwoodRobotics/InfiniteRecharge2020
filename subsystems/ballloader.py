@@ -8,8 +8,10 @@ class BallLoader(Subsystem):
     def __init__(self):
         Subsystem.__init__(self, "Ball Loader")
 
-        self.upper = WPI_TalonSRX(Can.ballShooterUpper)
-        self.lower = WPI_TalonSRX(Can.ballShooterLower)
+        self.upper = WPI_TalonSRX(Can.ballLoader1)
+        self.lower = WPI_TalonSRX(Can.ballLoader2)
+
+        self.lower.setInverted(True)
 
     def spin(self, lowerSpeed, upperSpeed):
         self.upper.set(upperSpeed)

@@ -39,6 +39,3 @@ class Turret(Subsystem):
 
     def setSpeed(self, speed):
         self.motor.set(speed)
-
-    def initDefaultCommand(self):
-        self.setDefaultCommand(RotateTurretByAngle())
