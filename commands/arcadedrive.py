@@ -19,7 +19,7 @@ class ArcadeDrive(Command):
         self.squaredInputs = SquaredInputs
 
     def execute(self):
-        self.speed = -self.getRobot().oi.xboxController.getRawAxis(1)
+        self.speed = self.getRobot().oi.xboxController.getRawAxis(1)
         self.rotation = self.getRobot().oi.xboxController.getRawAxis(4)
 
         subsystems.team1757Subsystems.drivetrain.arcadeDrive(self.speed, self.rotation, self.squaredInputs)

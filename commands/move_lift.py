@@ -31,7 +31,7 @@ class MoveLift(Command):
         else:
             subsystems.team1757Subsystems.lift.setSpeed(-self.LT)
 
-        if subsystems.team1757Subsystems.lift.fwdstatus or subsystems.team1757Subsystems.lift.revstatus:
+        if not subsystems.team1757Subsystems.lift.fwdstatus or not subsystems.team1757Subsystems.lift.revstatus:
             subsystems.team1757Subsystems.lift.setSpeed(0)
 
     def end(self):

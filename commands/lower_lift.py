@@ -25,7 +25,7 @@ class LowerLift(Command):
 
         subsystems.team1757Subsystems.lift.setSpeed(-self.speed)
             
-        if subsystems.team1757Subsystems.lift.revstatus:
+        if not subsystems.team1757Subsystems.lift.fwdstatus:
             subsystems.team1757Subsystems.lift.setSpeed(0)
 
     def end(self):

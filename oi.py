@@ -55,7 +55,7 @@ class OI:
         JoystickButton(self.controlSystem, ControlSystem.BottomMiddle).whileHeld(
             SpinBallLoader(.75, .5))
         JoystickButton(self.controlSystem, ControlSystem.BottomRight).whileHeld(
-            SpinBallLoader(-.75, -.25))
+            SpinBallLoader(-.75, -.5))
 
         #Elevator
         JoystickButton(self.controlSystem, ControlSystem.SwitchC).whileHeld(
@@ -83,9 +83,9 @@ class OI:
         # |---Xbox Controller 2---|
 
         #Ball Loader
-        JoystickButton(self.controlSystem, xboxButtons.A).whileHeld(
+        JoystickButton(self.xboxController2, xboxButtons.A).whileHeld(
             SpinBallLoader(.75, .5))
-        JoystickButton(self.controlSystem, xboxButtons.B).whileHeld(
+        JoystickButton(self.xboxController2, xboxButtons.B).whileHeld(
             SpinBallLoader(-.75, -.25))
 
         #Shooter

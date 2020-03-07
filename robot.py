@@ -1,5 +1,3 @@
-#!/usr/bin/env python3
-
 import wpilib
 from wpilib.command import Command
 from wpilib.command import Scheduler

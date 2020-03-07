@@ -86,8 +86,8 @@ class RotateTurretVision(Command):
         SmartDashboard.putBoolean(RotateTurretVision.dashboard_at_position, self.controller.atSetpoint())
         SmartDashboard.putNumber(RotateTurretVision.dashboard_position_error, self.controller.getPositionError())
 
-        if subsystems.team1757Subsystems.turret.leftstatus or subsystems.team1757Subsystems.turret.rightstatus:
-            subsystems.team1757Subsystems.turret.setSpeed(0)
+        # if subsystems.team1757Subsystems.turret.leftstatus or subsystems.team1757Subsystems.turret.rightstatus:
+        #     subsystems.team1757Subsystems.turret.setSpeed(0)
 
     def end(self):
         subsystems.team1757Subsystems.turret.setSpeed(0)

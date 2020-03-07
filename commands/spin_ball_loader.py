@@ -27,4 +27,4 @@ class SpinBallLoader(Command):
         subsystems.team1757Subsystems.ballLoader.stopSpin()
 
     def isFinished(self):
-        return True
+        return False
