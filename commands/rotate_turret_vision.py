@@ -70,7 +70,7 @@ class RotateTurretVision(Command):
             self.integrator_max_last = integrator_max
         tolerance = SmartDashboard.getNumber(RotateTurretVision.dashboard_tolerance, 0)
         self.controller.setTolerance(tolerance)
-        target_position = self.original_position + self.limelight.getNumber("tx", 0) * -1 # SmartDashboard.getNumber("target_bearing", 0)
+        target_position = actual_position + self.limelight.getNumber("tx", 0) * -1 # Change actual_position to self.original_position if this no longer works
         #lower_limit = subsystems.team1757Subsystems.turret.getLowerLimitDegrees()
         #upper_limit = subsystems.team1757Subsystems.turret.getUpperLimitDegrees()
         #target_position = min(max(target_position, lower_limit), upper_limit)
