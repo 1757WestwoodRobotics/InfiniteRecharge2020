@@ -2,6 +2,7 @@ import math
 import wpilib
 from ctre import WPI_TalonSRX, ControlMode
 from wpilib.command import Subsystem
+from networktables import NetworkTables
 
 # Team 1757 stuff
 from robotmap import Can
@@ -23,6 +24,8 @@ class Turret(Subsystem):
         Subsystem.__init__(self, "Turret")
         self.motor = WPI_TalonSRX(Can.turret)
         self.motor.setSensorPhase(True)
+        self.limelight = NetworkTables.getTable("limelight")
+        # self.limelight.putNumber("ledMode", 1)
     
     def periodic(self):
         self.leftstatus = self.motor.isFwdLimitSwitchClosed()

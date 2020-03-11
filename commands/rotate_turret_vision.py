@@ -1,9 +1,11 @@
 import wpilib
+from networktables import NetworkTables
 from wpilib import SmartDashboard
 from wpilib.command import Command
 from wpilib.controller import PIDController
-from networktables import NetworkTables
+
 import subsystems
+
 
 class RotateTurretVision(Command):
     """
@@ -40,6 +42,7 @@ class RotateTurretVision(Command):
         self.isDone = False
 
     def execute(self):
+        # self.limelight.putNumber("ledMode", 3)
         if self.controller.atSetpoint():
             self.isDone = False
         if self.isDone == False:
@@ -94,6 +97,7 @@ class RotateTurretVision(Command):
         SmartDashboard.putNumber(RotateTurretVision.dashboard_controller_output, 0)
         SmartDashboard.putBoolean(RotateTurretVision.dashboard_at_position, False)
         SmartDashboard.putNumber(RotateTurretVision.dashboard_position_error, 0)
+        # self.limelight.putValue("ledMode", 1)
 
     def isFinished(self):
         return self.controller.atSetpoint()

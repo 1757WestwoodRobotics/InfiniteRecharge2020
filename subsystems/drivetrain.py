@@ -24,8 +24,10 @@ class Drivetrain(Subsystem):
 
         self.differentialDrive = drive.DifferentialDrive(self.leftDrive, self.rightDrive)
 
+        self.coefficient = 1
+
     def arcadeDrive(self, speed, rotation, SquaredInputs):
-        self.differentialDrive.arcadeDrive(speed, rotation, SquaredInputs)
+        self.differentialDrive.arcadeDrive(self.coefficient*speed, rotation, SquaredInputs)
 
     def tankDrive(self, leftSpeed, rightSpeed, SquaredInputs):
         self.differentialDrive.tankDrive(leftSpeed, rightSpeed, SquaredInputs)

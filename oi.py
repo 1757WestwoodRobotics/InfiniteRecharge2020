@@ -21,6 +21,8 @@ from commands.rotate_turret_by_angle import RotateTurretByAngle
 from commands.rotate_turret_to_angle import RotateTurretToAngle
 from commands.set_lift_brake import SetLiftBrake
 from commands.move_turret import MoveTurret
+from commands.move_turret_manual import MoveTurretManual
+from commands.set_drive_limit import SetDriveLimit
 
 class OI:
     def __init__(self, robot):
@@ -57,19 +59,19 @@ class OI:
 
         #Ball Loader
         JoystickButton(self.controlSystem, ControlSystem.BottomMiddle).whileHeld(
-            SpinBallLoader(.75, .5))
+            SpinBallLoader(1, .5))
         JoystickButton(self.controlSystem, ControlSystem.BottomRight).whileHeld(
-            SpinBallLoader(-.75, -.5))
+            SpinBallLoader(-1, -.5))
 
         #Elevator
         JoystickButton(self.controlSystem, ControlSystem.SwitchC).whileHeld(
             RaiseLift(1))
         JoystickButton(self.controlSystem, ControlSystem.SwitchD).whileHeld(
             LowerLift(1))
-        JoystickButton(self.controlSystem, ControlSystem.TopMiddle).whileHeld(
-            SetLiftBrake(True))
-        JoystickButton(self.controlSystem, ControlSystem.TopRight).whileHeld(
-            SetLiftBrake(False))
+    
+        #Drivetrain
+        JoystickButton(self.controlSystem, ControlSystem.SwitchE).whileHeld(
+            SetDriveLimit(.5))
         
         #Shooter
         JoystickButton(self.controlSystem, ControlSystem.SwitchA).whileHeld(
@@ -82,6 +84,10 @@ class OI:
             RotateTurretByAngle())
         JoystickButton(self.controlSystem, ControlSystem.TopLeft).whenPressed(
             RotateTurretToAngle())
+        JoystickButton(self.controlSystem, ControlSystem.TopMiddle).whileHeld(
+            MoveTurretManual(False))
+        JoystickButton(self.controlSystem, ControlSystem.TopRight).whileHeld(
+            MoveTurretManual(True))
 
 
         # |---Xbox Controller 2---|

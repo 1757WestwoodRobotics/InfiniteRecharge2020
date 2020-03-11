@@ -13,4 +13,4 @@ class AutonomousProgram(CommandGroup):
     def __init__(self):
         CommandGroup.__init__(self, "Autonomous Program")
 
-        self.addSequential(DriveForward(.5, 3))
+        self.addSequential(DriveForward(.25, 1))
